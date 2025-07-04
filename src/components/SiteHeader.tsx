@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import bgImage from "../assets/safe4talk_cover.png";
 
@@ -43,8 +42,7 @@ export function SiteHeader() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto sora-400"
         >
-          Começe já! 
-          É grátis!
+          Experimente já é grátis!
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
