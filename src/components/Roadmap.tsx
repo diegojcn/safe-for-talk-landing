@@ -52,7 +52,7 @@ const container = {
   }
 }
 
-const item = {
+const fadeIn = {
   hidden: { opacity: 0, x: -20 },
   show: { opacity: 1, x: 0 }
 }
@@ -86,7 +86,7 @@ export function Roadmap() {
           {roadmapItems.map((item, index) => (
             <motion.div
               key={index}
-              variants={item}
+              variants={fadeIn}
               className="relative pl-8 pb-12 last:pb-0 border-l-2 border-blue-600"
             >
               <motion.div 
