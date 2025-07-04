@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import bgImage from "../assets/safe4talk_cover.png";
+import GooglePlayIcon from '../assets/google-play.svg';
 
 
 export function SiteHeader() {
@@ -57,7 +58,7 @@ export function SiteHeader() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-8 bg-black text-white px-5 py-3 rounded-lg hover:bg-neutral-800 transition-all font-sora"
           >
-           <img src="src/assets/google-play.svg" alt="Google Play" className="w-12 h-12" />
+           <img src={GooglePlayIcon} alt="Google Play" className="w-12 h-12" />
             
             <div className="text-left">
               <span className="text-xs leading-none block">Disponível no</span>
