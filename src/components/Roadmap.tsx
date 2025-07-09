@@ -1,43 +1,44 @@
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { useTranslation } from 'react-i18next';
 
 
 const roadmapItems = [
   {
-    date: "Q2 2025",
-    title: "Lançamento Beta Android e Web",
-    description: "Primeira versão com funcionalidades básicas de chat e matching por nível",
-    features: ["Versão Android", "Versão web", "Login via facebook"]
+    date: "Q3 2025",
+    title: "roadmap-item-one-title",
+    description: "roadmap-item-one-description",
+    features: ["roadmap-item-one-feature-one", "roadmap-item-one-feature-two", "roadmap-item-one-feature-three"]
   },
   {
     date: "Q3 2025",
-    title: "Chats",
-    description: "Comunicação por texto",
-    features: ["Chat Privado", "Chat na sala", "Chat geral"]
+    title: "roadmap-item-two-title",
+    description: "roadmap-item-two-description",
+    features: ["roadmap-item-two-feature-one", "roadmap-item-two-feature-two", "roadmap-item-two-feature-three"]
   },
   {
     date: "Q1 2026",
-    title: "Versão para iOS",
-    description: "Lançamento Beta para iphone",
-    features: ["Versão iPhone, Login via apple"]
+    title: "roadmap-item-three-title",
+    description: "roadmap-item-three-description",
+    features: ["roadmap-item-three-feature-one", "roadmap-item-three-feature-two"]
   },
   {
     date: "Q2 2026",
-    title: "Mais controle da sala",
-    description: "Lançamento de recursos adicionais e expansão para novos mercados",
-    features: ["Votação para kickar participante", "Mutar participante", "Score participante"]
+    title: "roadmap-item-four-title",
+    description: "roadmap-item-four-description",
+    features: ["roadmap-item-four-feature-one", "roadmap-item-four-feature-two", "roadmap-item-four-feature-three"]
   },
   {
     date: "Q3 2026",
-    title: "Salas privadas",
-    description: "As salas para mais privacidade das pessoas.",
-    features: ["Salas privadas", "Salas pagas", "Gorjetas na sala"]
+    title: "roadmap-item-five-title",
+    description: "roadmap-item-five-description",
+    features: ["roadmap-item-five-feature-one", "roadmap-item-five-feature-two", "roadmap-item-five-feature-three"]
   },
   {
-    date: "5000 Usuários",
-    title: "Converse com estranhos",
-    description: "Converse com pessoas aleatórias",
-    features: ["Omegle mode", "Pagar mensal para não ter ads"]
+    date: "roadmap-item-six-when",
+    title: "roadmap-item-six-title",
+    description: "roadmap-item-six-description",
+    features: ["roadmap-item-six-feature-one", "roadmap-item-six-feature-two"]
   }
 ]
 
@@ -58,6 +59,7 @@ const fadeIn = {
 }
 
 export function Roadmap() {
+  const { t } = useTranslation();
   return (
     <section className="py-24 bg-white">
       <div className="absolute inset-0 bg-grid-gray-900/[0.02] bg-[size:60px_60px]" />
@@ -70,10 +72,10 @@ export function Roadmap() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4 sora-400">
-            Nosso Roadmap
+            {t('roadmap-page-title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto sora-400">
-            Conheça nosso plano de desenvolvimento e o que está por vir
+            {t('roadmap-page-title-description')}
           </p>
         </motion.div>
         <motion.div 
@@ -97,13 +99,13 @@ export function Roadmap() {
                 className="absolute left-[-9px] top-0 w-4 h-4 bg-blue-600 rounded-full" 
               />
               <div className="mb-4 sora-400">
-                <span className="text-blue-600 sora-400 font-semibold">{item.date}</span>
-                <h3 className="text-2xl font-bold sora-400 text-gray-900 mt-2">{item.title}</h3>
-                <p className="text-gray-600 sora-400 mt-2">{item.description}</p>
+                <span className="text-blue-600 sora-400 font-semibold">{t(item.date)}</span>
+                <h3 className="text-2xl font-bold sora-400 text-gray-900 mt-2">{t(item.title)}</h3>
+                <p className="text-gray-600 sora-400 mt-2">{t(item.description)}</p>
               </div>
               <ul className="list-disc list-inside text-gray-600 sora-400 space-y-1">
                 {item.features.map((feature, featureIndex) => (
-                  <li key={featureIndex}>{feature}</li>
+                  <li key={featureIndex}>{t(feature)}</li>
                 ))}
               </ul>
             </motion.div>
@@ -123,7 +125,7 @@ export function Roadmap() {
             variant="outline" 
             className="border-blue-600 text-blue-600 sora-400 hover:bg-blue-50 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg hover:text-blue-600"
           >
-            Fique por Dentro das Novidades
+            {t('button-news')}
           </Button>
         </motion.div>
       </div>

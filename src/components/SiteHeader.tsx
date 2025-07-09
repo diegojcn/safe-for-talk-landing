@@ -1,9 +1,11 @@
 import { motion } from "framer-motion"
 import bgImage from "../assets/safe4talk_cover.png";
 import GooglePlayIcon from '../assets/google-play.svg';
+import { useTranslation } from 'react-i18next';
 
 
 export function SiteHeader() {
+  const { t } = useTranslation();
   return (
     // <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 overflow-hidden">
     <section id="site-header" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bgImage})` }} >
@@ -17,15 +19,14 @@ export function SiteHeader() {
           transition={{ duration: 0.5 }}
           className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight sora-400"
         >
-
-          Pratique idiomas em um Ambiente
+          {t('site-header-start-one')}
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="block text-blue-200 sora-400"
           >
-            Seguro e Acolhedor
+            {t('site-header-start-two')}
           </motion.span>
         </motion.h1>
         <motion.p
@@ -34,8 +35,7 @@ export function SiteHeader() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto sora-400"
         >
-          Conecte-se com pessoas do mundo todo e pratique idiomas sem medo de errar.
-          Um espaço acolhedor para todos os níveis de proficiência.
+          {t('site-header-start-three')}
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -43,7 +43,7 @@ export function SiteHeader() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto sora-400"
         >
-          Experimente já é grátis!
+          {t('site-header-start-four')}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,8 +61,8 @@ export function SiteHeader() {
            <img src={GooglePlayIcon} alt="Google Play" className="w-12 h-12" />
             
             <div className="text-left">
-              <span className="text-xs leading-none block">Disponível no</span>
-              <span className="text-sm font-medium leading-none">Google Play</span>
+              <span className="text-xs leading-none block">{t('site-header-google-one')}</span>
+              <span className="text-sm font-medium leading-none">{t('site-header-google-two')}</span>
             </div>
           </a>
 

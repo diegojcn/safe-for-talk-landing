@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { FaInstagram } from "react-icons/fa"
 import ThreadsIcon from '../assets/threads.svg';
+import { useTranslation } from 'react-i18next';
 
 export function CTA() {
+  const { t } = useTranslation();
   return (
     <section id="cta" className="py-24 bg-gray-50 relative" >
       <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:60px_60px]" />
@@ -23,7 +25,7 @@ export function CTA() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-4xl font-bold text-blue-600 mb-6 sora-400"
           >
-            Nos siga nas redes sociais
+            {t('cta-page-tile')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -32,8 +34,7 @@ export function CTA() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-xl text-blue-600 mb-8 sora-400"
           >
-            Junte-se a milhares de pessoas que já estão praticando inglês de forma
-            segura e eficiente no Safe 4 Talk.
+            {t('cta-page-description')}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +55,7 @@ export function CTA() {
                 className="flex items-center gap-2"
               >
                 <FaInstagram className="text-2xl" />
-                <span>Instagram</span>
+                <span>{t('instagram-button')}</span>
               </a>
             </Button>
 
@@ -71,7 +72,7 @@ export function CTA() {
                 className="inline-flex items-center gap-2"
               >
                 <img src={ThreadsIcon} alt="Threads" className="w-6 h-6" />
-                <span>Threads</span>
+                <span>{t('threads-button')}</span>
               </a>
             </Button>
           </motion.div>
@@ -89,7 +90,7 @@ export function CTA() {
               variant="outline"
               className="border-blue-600 text-blue-600 sora-400 hover:bg-blue-50 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg hover:text-blue-600"
             >
-              Experimente já.
+              {t('cta-page-button')}
             </Button>
           </motion.div>
         </motion.div>
