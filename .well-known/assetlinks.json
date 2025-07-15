@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "br.com.safefortalk.android",
+      "sha256_cert_fingerprints": [
+        "AF:1A:E1:4D:C8:81:3D:77:46:EE:61:89:49:98:3A:9E:21:FA:4F:C1:A8:49:0A:A9:BD:76:BE:10:A6:F8:57:21"
+      ]
+    }
+  }
+]
