@@ -40,14 +40,11 @@ const Unsubscribe: React.FC = () => {
             deleteUser(encodedEmail);
             setMessage(`The ${email} was unsubscribed with success!`)
         } catch (error) {
-            if (error.response?.status === 404) {
-                setMessage('Conta não encontrada.')
-            } else {
-                console.error('Erro ao cancelar inscrição:', error);
-                alert('Ocorreu um erro ao tentar cancelar sua inscrição.');
-                setMessage('Erro ao processar sua solicitação.')
-            }
-            setMessage('Erro ao processar sua solicitação*.')
+
+            console.error('Erro ao cancelar inscrição:', error);
+            alert('Ocorreu um erro ao tentar cancelar sua inscrição.');
+            setMessage('Erro ao processar sua solicitação.')
+
         } finally {
             setLoading(false)
         }
@@ -75,7 +72,7 @@ const Unsubscribe: React.FC = () => {
                             onChange={e => setEmail(e.target.value)}
                             style={{ display: 'block', width: '100%', margin: '12px 0', padding: 8 }}
                             placeholder="your@email.com"
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         />
 
                         <Button
