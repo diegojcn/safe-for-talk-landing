@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
+const UNSUBSCRIBE_URL_API: String = import.meta.env.VITE_SAFE_4_TALK_UNSUBSCRIBE_URL;
 
 const deleteUser = async (email: string) => {
     try {
-        const response = await fetch(`http://localhost:8080/api/safe-for-talk/v1/auth/unsubscribe/${email}`, {
+        console.log(`UNSUBSCRIBE_URL_API: ${UNSUBSCRIBE_URL_API} `);
+        const response = await fetch(`${UNSUBSCRIBE_URL_API}${email}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
         });
-        console.log(`Usuário deletado status: ${response.status} ${response.headers}- ${response.statusText} `);
+        console.log(`Usuário deletado status: ${response.status} ${response.headers} - ${response.statusText} `);
 
         if (!response.ok) {
             throw new Error(`Erro ao deletar: ${response.status} - ${response.statusText}`);
         }
-
 
         console.log('Usuário deletado com sucesso:', response);
     } catch (error) {
