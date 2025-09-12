@@ -24,7 +24,7 @@ const deleteUser = async (email: string) => {
 };
 
 const Unsubscribe: React.FC = () => {
-    const [email, setEmail] = useState('teste@teste.com.br');
+    const [email, setEmail] = useState('');
     const [message, setMessage] = useState('')
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false)
