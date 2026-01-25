@@ -69,6 +69,8 @@
   "data-deletion-title": "Instruções de Exclusão de Dados",
   "data-deletion-intro": "O Safe4Talk valoriza sua privacidade. Em conformidade com as políticas da Plataforma do Facebook, Políticas de Dados do Google, LGPD e GDPR, fornecemos abaixo as instruções para solicitar a exclusão de seus dados.",
   "data-deletion-request-title": "Como solicitar a exclusão",
+  "data-deletion-form-intro": "A maneira mais rápida de excluir seus dados é usar o formulário automatizado abaixo. Digite o e-mail vinculado à sua conta:",
+  "data-deletion-alt-intro": "Alternativamente, você pode solicitar a exclusão de dados por e-mail. Se você se cadastrou ou fez login usando o <strong>Facebook Login</strong> ou <strong>Google Login</strong>:",
   "data-deletion-request-p1": "Se você se cadastrou ou fez login usando o <strong>Facebook Login</strong> ou <strong>Google Login</strong> e deseja remover seus dados associados ao Safe4Talk, siga estes passos:",
   "data-deletion-request-li1": "Envie um e-mail para nossa equipe de Privacidade em <a href=\"mailto:privacy@safe4talk.com\">privacy@safe4talk.com</a>.",
   "data-deletion-request-li2": "Utilize o assunto: <strong>Solicitação de Exclusão de Dados</strong>.",

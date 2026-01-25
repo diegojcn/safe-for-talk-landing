@@ -69,6 +69,8 @@
   "data-deletion-title": "User Data Deletion Instructions",
   "data-deletion-intro": "Safe4Talk values your privacy. In compliance with Facebook Platform policies, Google API Services User Data Policy, GDPR, and LGPD, we provide the following instructions on how to request the deletion of your data.",
   "data-deletion-request-title": "How to request data deletion",
+  "data-deletion-form-intro": "The fastest way to delete your data is using the automated form below. Enter the email linked to your account:",
+  "data-deletion-alt-intro": "Alternatively, you can request data deletion via email. If you signed up or logged in using <strong>Facebook Login</strong> or <strong>Google Login</strong>:",
   "data-deletion-request-p1": "If you signed up or logged in using <strong>Facebook Login</strong> or <strong>Google Login</strong> and wish to remove your data associated with Safe4Talk, please follow these steps:",
   "data-deletion-request-li1": "Send an email to our Data Protection Team at <a href=\"mailto:privacy@safe4talk.com\">privacy@safe4talk.com</a>.",
   "data-deletion-request-li2": "Use the subject line: <strong>Data Deletion Request</strong>.",
