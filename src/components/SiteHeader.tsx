@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import bgImage from "../assets/safe4talk_cover.png";
 import GooglePlayIcon from '../assets/google-play.svg';
 import { useTranslation } from 'react-i18next';
+import { Globe } from 'lucide-react';
 
 
 export function SiteHeader() {
@@ -59,10 +60,22 @@ export function SiteHeader() {
             className="inline-flex items-center gap-8 bg-black text-white px-5 py-3 rounded-lg hover:bg-neutral-800 transition-all font-sora"
           >
            <img src={GooglePlayIcon} alt="Google Play" className="w-12 h-12" />
-            
             <div className="text-left">
               <span className="text-xs leading-none block">{t('site-header-google-one')}</span>
               <span className="text-sm font-medium leading-none">{t('site-header-google-two')}</span>
+            </div>
+          </a>
+
+          <a
+            href="https://safe-for-talk-web.diginfrastructures.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-8 bg-black text-white px-5 py-3 rounded-lg hover:bg-neutral-800 transition-all font-sora"
+          >
+            <Globe className="w-12 h-12" />
+            <div className="text-left">
+              <span className="text-xs leading-none block">{t('site-header-web-one')}</span>
+              <span className="text-sm font-medium leading-none">{t('site-header-web-two')}</span>
             </div>
           </a>
 
