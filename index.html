@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/safe4tal - image.svg" />
@@ -7,10 +7,83 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Safe 4 Talk</title>
+
+    <!-- SEO Primary -->
+    <title>Safe 4 Talk – Chat ao Vivo, Aprenda Idiomas Falando</title>
+    <meta name="description" content="Conecte ao vivo com pessoas do mundo todo. Pratique idiomas em salas de áudio e vídeo, sem julgamentos e de graça. Disponível no Android e navegador." />
+    <meta name="keywords" content="chat ao vivo, aprender inglês falando, app para praticar idiomas, salas de conversação, chat seguro, praticar inglês com nativos, safe 4 talk" />
+    <meta name="author" content="Safe 4 Talk" />
+    <link rel="canonical" href="https://safe4talk.com/" />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://safe4talk.com/" />
+    <meta property="og:title" content="Safe 4 Talk – Chat ao Vivo, Aprenda Idiomas Falando" />
+    <meta property="og:description" content="Conecte ao vivo com pessoas do mundo todo. Pratique idiomas em salas de áudio e vídeo, sem julgamentos e de graça." />
+    <meta property="og:image" content="https://safe4talk.com/og-image.png" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:site_name" content="Safe 4 Talk" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Safe 4 Talk – Chat ao Vivo, Aprenda Idiomas Falando" />
+    <meta name="twitter:description" content="Conecte ao vivo com pessoas do mundo todo. Pratique idiomas em salas de áudio e vídeo, sem julgamentos e de graça." />
+    <meta name="twitter:image" content="https://safe4talk.com/og-image.png" />
+
+    <!-- Mobile / PWA -->
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Safe 4 Talk" />
+
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="pt-BR" href="https://safe4talk.com/" />
+    <link rel="alternate" hreflang="en" href="https://safe4talk.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://safe4talk.com/" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Safe 4 Talk",
+      "description": "Conecte ao vivo com pessoas do mundo todo. Pratique idiomas em salas de áudio e vídeo, sem julgamentos e de graça.",
+      "url": "https://safe4talk.com",
+      "applicationCategory": "SocialNetworkingApplication",
+      "operatingSystem": "Android, Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BRL"
+      },
+      "inLanguage": ["pt-BR", "en"],
+      "screenshot": "https://safe4talk.com/og-image.png",
+      "installUrl": "https://play.google.com/store/apps/details?id=br.com.safefortalk.android",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Safe 4 Talk",
+        "url": "https://safe4talk.com"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Safe 4 Talk",
+      "url": "https://safe4talk.com",
+      "description": "App para praticar idiomas ao vivo com pessoas do mundo todo, de graça.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://safe4talk.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </body>
 </html>

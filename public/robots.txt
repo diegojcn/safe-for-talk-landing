@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://safe4talk.com/sitemap.xml
