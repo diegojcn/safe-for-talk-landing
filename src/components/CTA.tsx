@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { FaInstagram } from "react-icons/fa"
 import ThreadsIcon from '../assets/threads.svg';
 import { useTranslation } from 'react-i18next';
+import { trackEvent, Events } from '@/lib/analytics';
 
 export function CTA() {
   const { t } = useTranslation();
@@ -52,6 +53,7 @@ export function CTA() {
                 href="https://www.instagram.com/safe4talk/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent(Events.ClickInstagram)}
                 className="flex items-center gap-2"
               >
                 <FaInstagram className="text-2xl" />
@@ -69,6 +71,7 @@ export function CTA() {
                 href="https://www.threads.net/@safe4talk"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent(Events.ClickThreads)}
                 className="inline-flex items-center gap-2"
               >
                 <img src={ThreadsIcon} alt="Threads" className="w-6 h-6" />
@@ -86,7 +89,10 @@ export function CTA() {
 
             <Button
               size="lg"
-              onClick={() => document.getElementById("site-header")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => {
+                trackEvent(Events.ClickBackToTop)
+                document.getElementById("site-header")?.scrollIntoView({ behavior: "smooth" })
+              }}
               variant="outline"
               className="border-blue-600 text-blue-600 sora-400 hover:bg-blue-50 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg hover:text-blue-600"
             >

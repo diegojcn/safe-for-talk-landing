@@ -3,6 +3,7 @@ import bgImage from "../assets/safe4talk_cover.png";
 import GooglePlayIcon from '../assets/google-play.svg';
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
+import { trackEvent, Events } from '@/lib/analytics';
 
 
 export function SiteHeader() {
@@ -57,6 +58,7 @@ export function SiteHeader() {
             href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent(Events.ClickPlayStore, { source: 'hero' })}
             className="inline-flex items-center gap-8 bg-black text-white px-5 py-3 rounded-lg hover:bg-neutral-800 transition-all font-sora"
           >
            <img src={GooglePlayIcon} alt="Google Play" className="w-12 h-12" />
@@ -70,6 +72,7 @@ export function SiteHeader() {
             href="https://safe-for-talk-web.diginfrastructures.com/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent(Events.ClickWebApp, { source: 'hero' })}
             className="inline-flex items-center gap-8 bg-black text-white px-5 py-3 rounded-lg hover:bg-neutral-800 transition-all font-sora"
           >
             <Globe className="w-12 h-12" />
