@@ -12,4 +12,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // SSR config (usado pelo build:ssr para gerar entry-server.js)
+  ssr: {
+    noExternal: ['react-helmet-async'],
+  },
 })

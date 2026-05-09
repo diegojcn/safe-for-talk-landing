@@ -6,33 +6,28 @@ import { Footer } from "./components/Footer"
 import Unsubscribe from './pages/Unsubcribe'
 import ChatAnonimoSeguro from './pages/ChatAnonimoSeguro'
 import PraticarInglesAoVivo from './pages/PraticarInglesAoVivo'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
+// Router is provided externally (BrowserRouter in main.tsx, StaticRouter in entry-server.tsx)
 function App() {
   return (
-     <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="w-full">
-              <SiteHeader />
-              <Features />
-              <Roadmap />
-              <CTA />
-              <Footer />
-            </div>
-          }
-        />
-        <Route path="/unsubscribe" element={<Unsubscribe />} />
-        <Route path="/chat-anonimo-seguro" element={<ChatAnonimoSeguro />} />
-        <Route path="/praticar-ingles-ao-vivo" element={<PraticarInglesAoVivo />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <div className="w-full">
+            <SiteHeader />
+            <Features />
+            <Roadmap />
+            <CTA />
+            <Footer />
+          </div>
+        }
+      />
+      <Route path="/unsubscribe" element={<Unsubscribe />} />
+      <Route path="/chat-anonimo-seguro" element={<ChatAnonimoSeguro />} />
+      <Route path="/praticar-ingles-ao-vivo" element={<PraticarInglesAoVivo />} />
+    </Routes>
   )
 }
 
