@@ -1,0 +1,88 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0f172a"/>
+
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Top accent line -->
+  <rect width="1200" height="3" fill="url(#accent)"/>
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="1200" y2="0">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0" y1="0" x2="600" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#a5b4fc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Badge -->
+  <rect x="80" y="80" width="200" height="36" rx="18" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="104" cy="98" r="6" fill="#22c55e"/>
+  <text x="120" y="103" font-family="system-ui, sans-serif" font-size="13" fill="#94a3b8">Disponível Agora</text>
+
+  <!-- Main title -->
+  <text x="80" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="80" font-weight="700" fill="url(#textGrad)">Safe 4 Talk</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="300" font-family="system-ui, sans-serif" font-size="32" font-weight="400" fill="#94a3b8">Chat ao Vivo · Aprenda Idiomas Falando</text>
+
+  <!-- Description -->
+  <text x="80" y="370" font-family="system-ui, sans-serif" font-size="22" fill="#64748b">Conecte com pessoas do mundo todo em salas de</text>
+  <text x="80" y="400" font-family="system-ui, sans-serif" font-size="22" fill="#64748b">áudio e vídeo. Grátis, sem julgamentos.</text>
+
+  <!-- Feature pills -->
+  <rect x="80" y="450" width="160" height="38" rx="19" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="160" y="474" font-family="system-ui, sans-serif" font-size="14" fill="#a5b4fc" text-anchor="middle">🎙 Salas ao Vivo</text>
+
+  <rect x="256" y="450" width="180" height="38" rx="19" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="346" y="474" font-family="system-ui, sans-serif" font-size="14" fill="#a5b4fc" text-anchor="middle">🌍 100% Grátis</text>
+
+  <rect x="452" y="450" width="200" height="38" rx="19" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="552" y="474" font-family="system-ui, sans-serif" font-size="14" fill="#a5b4fc" text-anchor="middle">📱 Android + Web</text>
+
+  <!-- Right visual -->
+  <rect x="850" y="150" width="280" height="340" rx="32" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Phone screen content -->
+  <rect x="870" y="185" width="240" height="36" rx="8" fill="#0f172a"/>
+  <circle cx="890" cy="203" r="12" fill="#6366f1"/>
+  <text x="910" y="208" font-family="system-ui, sans-serif" font-size="13" fill="#e2e8f0">Sala: English Practice</text>
+
+  <rect x="870" y="235" width="240" height="60" rx="8" fill="#0f172a"/>
+  <circle cx="890" cy="255" r="10" fill="#22c55e"/>
+  <circle cx="920" cy="255" r="10" fill="#f59e0b"/>
+  <circle cx="950" cy="255" r="10" fill="#6366f1"/>
+  <circle cx="980" cy="255" r="10" fill="#ec4899"/>
+  <text x="1000" y="260" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">+24</text>
+  <text x="870" y="285" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">28 participantes ao vivo</text>
+
+  <rect x="870" y="310" width="120" height="32" rx="6" fill="#6366f1"/>
+  <text x="930" y="331" font-family="system-ui, sans-serif" font-size="13" fill="white" text-anchor="middle">Entrar agora</text>
+
+  <rect x="870" y="358" width="240" height="50" rx="8" fill="#0f172a"/>
+  <circle cx="890" cy="383" r="10" fill="#8b5cf6"/>
+  <text x="908" y="379" font-family="system-ui, sans-serif" font-size="12" fill="#e2e8f0">Sala: Deutsch für Anfänger</text>
+  <text x="908" y="396" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">12 participantes · Nível iniciante</text>
+
+  <rect x="870" y="422" width="240" height="50" rx="8" fill="#0f172a"/>
+  <circle cx="890" cy="447" r="10" fill="#06b6d4"/>
+  <text x="908" y="443" font-family="system-ui, sans-serif" font-size="12" fill="#e2e8f0">Sala: Spanish Conversation</text>
+  <text x="908" y="460" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">45 participantes · Todos os níveis</text>
+
+  <!-- URL -->
+  <text x="80" y="590" font-family="system-ui, sans-serif" font-size="18" fill="#475569">safe4talk.com</text>
+</svg>
