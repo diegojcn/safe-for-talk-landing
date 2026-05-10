@@ -1,0 +1,9 @@
+{
+  "buildCommand": "pnpm build:ssg",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/chat-anonimo-seguro", "destination": "/chat-anonimo-seguro/index.html" },
+    { "source": "/praticar-ingles-ao-vivo", "destination": "/praticar-ingles-ao-vivo/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
