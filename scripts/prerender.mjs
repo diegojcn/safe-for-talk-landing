@@ -26,6 +26,20 @@ const routes = [
   '/',
   '/chat-anonimo-seguro',
   '/praticar-ingles-ao-vivo',
+  '/app-para-praticar-ingles',
+  '/conversar-com-nativos-gratis',
+  '/aprender-ingles-sem-curso',
+  '/salas-de-conversacao-ingles',
+  '/praticar-ingles-com-medo',
+  '/ingles-para-trabalho',
+  '/alternativa-duolingo',
+  '/como-melhorar-sotaque-ingles',
+  '/praticar-espanhol-ao-vivo',
+  '/aprender-alemao-falando',
+  '/conversar-com-estranhos-online',
+  '/chat-para-conhecer-pessoas',
+  '/fazer-amigos-online',
+  '/chat-com-estrangeiros',
 ]
 
 async function prerender() {
