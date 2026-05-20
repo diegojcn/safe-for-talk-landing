@@ -1,134 +1,184 @@
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
+import { CheckCircle, Circle, Clock } from 'lucide-react'
 
-
-const roadmapItems = [
+const PHASES = [
   {
-    date: "Q3 2025",
-    title: "roadmap-item-one-title",
-    description: "roadmap-item-one-description",
-    features: ["roadmap-item-one-feature-one", "roadmap-item-one-feature-two", "roadmap-item-one-feature-three"]
+    badgeKey: 'roadmap-phase-1-badge',
+    periodKey: 'roadmap-phase-1-period',
+    titleKey: 'roadmap-phase-1-title',
+    kpiKey: 'roadmap-phase-1-kpi',
+    descKey: 'roadmap-phase-1-description',
+    features: ['roadmap-phase-1-f1', 'roadmap-phase-1-f2', 'roadmap-phase-1-f3', 'roadmap-phase-1-f4'],
+    statusKey: 'roadmap-phase-1-status',
+    statusColor: 'bg-green-500/20 text-green-400 border-green-500/30',
+    dotColor: 'bg-green-500',
+    accent: 'border-green-500/30 hover:border-green-500/60',
+    icon: <CheckCircle size={14} />,
   },
   {
-    date: "Q3 2025",
-    title: "roadmap-item-two-title",
-    description: "roadmap-item-two-description",
-    features: ["roadmap-item-two-feature-one", "roadmap-item-two-feature-two", "roadmap-item-two-feature-three"]
+    badgeKey: 'roadmap-phase-2-badge',
+    periodKey: 'roadmap-phase-2-period',
+    titleKey: 'roadmap-phase-2-title',
+    kpiKey: 'roadmap-phase-2-kpi',
+    descKey: 'roadmap-phase-2-description',
+    features: ['roadmap-phase-2-f1', 'roadmap-phase-2-f2', 'roadmap-phase-2-f3', 'roadmap-phase-2-f4'],
+    statusKey: 'roadmap-phase-2-status',
+    statusColor: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+    dotColor: 'bg-blue-500',
+    accent: 'border-blue-500/30 hover:border-blue-500/60',
+    icon: <Circle size={14} />,
   },
   {
-    date: "Q1 2026",
-    title: "roadmap-item-three-title",
-    description: "roadmap-item-three-description",
-    features: ["roadmap-item-three-feature-one", "roadmap-item-three-feature-two"]
+    badgeKey: 'roadmap-phase-3-badge',
+    periodKey: 'roadmap-phase-3-period',
+    titleKey: 'roadmap-phase-3-title',
+    kpiKey: 'roadmap-phase-3-kpi',
+    descKey: 'roadmap-phase-3-description',
+    features: ['roadmap-phase-3-f1', 'roadmap-phase-3-f2', 'roadmap-phase-3-f3', 'roadmap-phase-3-f4'],
+    statusKey: 'roadmap-phase-3-status',
+    statusColor: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+    dotColor: 'bg-orange-500',
+    accent: 'border-orange-500/30 hover:border-orange-500/60',
+    icon: <Clock size={14} />,
   },
   {
-    date: "Q2 2026",
-    title: "roadmap-item-four-title",
-    description: "roadmap-item-four-description",
-    features: ["roadmap-item-four-feature-one", "roadmap-item-four-feature-two", "roadmap-item-four-feature-three"]
+    badgeKey: 'roadmap-phase-4-badge',
+    periodKey: 'roadmap-phase-4-period',
+    titleKey: 'roadmap-phase-4-title',
+    kpiKey: 'roadmap-phase-4-kpi',
+    descKey: 'roadmap-phase-4-description',
+    features: ['roadmap-phase-4-f1', 'roadmap-phase-4-f2', 'roadmap-phase-4-f3', 'roadmap-phase-4-f4'],
+    statusKey: 'roadmap-phase-4-status',
+    statusColor: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+    dotColor: 'bg-purple-500',
+    accent: 'border-purple-500/30 hover:border-purple-500/60',
+    icon: <Clock size={14} />,
   },
   {
-    date: "Q3 2026",
-    title: "roadmap-item-five-title",
-    description: "roadmap-item-five-description",
-    features: ["roadmap-item-five-feature-one", "roadmap-item-five-feature-two", "roadmap-item-five-feature-three"]
+    badgeKey: 'roadmap-phase-5-badge',
+    periodKey: 'roadmap-phase-5-period',
+    titleKey: 'roadmap-phase-5-title',
+    kpiKey: 'roadmap-phase-5-kpi',
+    descKey: 'roadmap-phase-5-description',
+    features: ['roadmap-phase-5-f1', 'roadmap-phase-5-f2', 'roadmap-phase-5-f3', 'roadmap-phase-5-f4'],
+    statusKey: 'roadmap-phase-5-status',
+    statusColor: 'bg-slate-500/20 text-slate-400 border-slate-500/30',
+    dotColor: 'bg-slate-500',
+    accent: 'border-slate-500/30 hover:border-slate-500/60',
+    icon: <Clock size={14} />,
   },
-  {
-    date: "roadmap-item-six-when",
-    title: "roadmap-item-six-title",
-    description: "roadmap-item-six-description",
-    features: ["roadmap-item-six-feature-one", "roadmap-item-six-feature-two"]
-  }
 ]
 
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-}
-
-const fadeIn = {
-  hidden: { opacity: 0, x: -20 },
-  show: { opacity: 1, x: 0 }
-}
-
 export function Roadmap() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
+
   return (
-    <section className="py-24 bg-white">
-      <div className="absolute inset-0 bg-grid-gray-900/[0.02] bg-[size:60px_60px]" />
-      <div className="w-full max-w-7xl mx-auto px-6 relative">
-        <motion.div 
+    <section id="roadmap" className="py-24 bg-white relative">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 sora-400">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
             {t('roadmap-page-title')}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto sora-400">
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
             {t('roadmap-page-title-description')}
           </p>
         </motion.div>
-        <motion.div 
-          variants={container}
-          initial="hidden"
-          whileInView="show"
+
+        {/* Progress bar */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="relative mb-12 origin-left"
         >
-          {roadmapItems.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={fadeIn}
-              className="relative pl-8 pb-12 last:pb-0 border-l-2 border-blue-600"
-            >
-              <motion.div 
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                className="absolute left-[-9px] top-0 w-4 h-4 bg-blue-600 rounded-full" 
-              />
-              <div className="mb-4 sora-400">
-                <span className="text-blue-600 sora-400 font-semibold">{t(item.date)}</span>
-                <h3 className="text-2xl font-bold sora-400 text-gray-900 mt-2">{t(item.title)}</h3>
-                <p className="text-gray-600 sora-400 mt-2">{t(item.description)}</p>
+          <div className="hidden md:flex justify-between items-center mb-2">
+            {PHASES.map((p, i) => (
+              <div key={i} className="flex flex-col items-center gap-1 flex-1">
+                <div className={`w-4 h-4 rounded-full ${p.dotColor} ${i < 2 ? 'shadow-lg' : 'opacity-40'}`} />
+                <span className="text-[10px] text-gray-400 font-medium">{t(p.badgeKey)}</span>
               </div>
-              <ul className="list-disc list-inside text-gray-600 sora-400 space-y-1">
-                {item.features.map((feature, featureIndex) => (
-                  <li key={featureIndex}>{t(feature)}</li>
+            ))}
+          </div>
+          <div className="hidden md:block h-1 bg-gray-100 rounded-full relative">
+            <div className="absolute left-0 top-0 h-full w-[20%] bg-gradient-to-r from-green-500 to-blue-400 rounded-full" />
+          </div>
+        </motion.div>
+
+        {/* Phase cards */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {PHASES.map((phase, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.1 }}
+              className={`relative rounded-2xl border bg-white p-6 flex flex-col gap-4 transition-colors duration-300 ${phase.accent} shadow-sm hover:shadow-md`}
+            >
+              {/* Phase number + status */}
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                  {t(phase.badgeKey)} · {t(phase.periodKey)}
+                </span>
+                <span className={`inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full border ${phase.statusColor}`}>
+                  {phase.icon}
+                  {t(phase.statusKey)}
+                </span>
+              </div>
+
+              {/* Title */}
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 leading-tight">
+                  {t(phase.titleKey)}
+                </h3>
+                <p className="text-sm text-gray-500 mt-1">{t(phase.descKey)}</p>
+              </div>
+
+              {/* KPI badge */}
+              <div className="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg self-start">
+                {t(phase.kpiKey)}
+              </div>
+
+              {/* Features */}
+              <ul className="flex flex-col gap-2">
+                {phase.features.map((fk, fi) => (
+                  <li key={fi} className="flex items-start gap-2 text-sm text-gray-600">
+                    <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${phase.dotColor}`} />
+                    {t(fk)}
+                  </li>
                 ))}
               </ul>
             </motion.div>
           ))}
-        </motion.div>
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+        </div>
+
+        {/* Bottom quote from PDF */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="text-center mt-12"
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-14 bg-gray-900 rounded-2xl px-8 py-6 text-center"
         >
-          
-          <Button 
-            size="lg" 
-            onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
-            variant="outline" 
-            className="border-blue-600 text-blue-600 sora-400 hover:bg-blue-50 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg hover:text-blue-600"
-          >
-            {t('button-news')}
-          </Button>
+          <p className="text-white/70 text-sm italic max-w-2xl mx-auto leading-relaxed">
+            "Safe Talk não é um chat. É a plataforma onde você aprende o idioma e pratica com pessoas reais."
+          </p>
+          <p className="text-indigo-400 text-xs mt-2 font-medium tracking-wide uppercase">
+            Hábito → Engajamento → Monetização → Expansão
+          </p>
         </motion.div>
       </div>
     </section>
   )
-} 
+}
