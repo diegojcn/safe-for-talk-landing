@@ -59,7 +59,7 @@ const item = {
 export function Features() {
   const { t } = useTranslation();
   return (
-    <section className="py-24 bg-gray-50 relative">
+    <section id="features" className="py-24 bg-gray-50 relative">
       <div className="absolute inset-0 bg-grid-gray-900/[0.02] bg-[size:60px_60px]" />
       <div className="w-full max-w-7xl mx-auto px-6 relative">
         <motion.div
