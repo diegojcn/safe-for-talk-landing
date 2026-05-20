@@ -1,26 +1,179 @@
-import { motion } from "framer-motion"
-import GooglePlayIcon from '../assets/google-play.svg';
-import safe4talkLogo from '../assets/safe4tal - image.svg';
-import { useTranslation } from 'react-i18next';
-import { Globe, Mic, Users, Zap } from 'lucide-react';
-import { trackEvent, Events } from '@/lib/analytics';
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import GooglePlayIcon from '../assets/google-play.svg'
+import { useTranslation } from 'react-i18next'
+import { Globe, ArrowLeft, Mic, MicOff, Video, Users, LogOut } from 'lucide-react'
+import { trackEvent, Events } from '@/lib/analytics'
 
-const AVATARS = [
-  'https://i.pravatar.cc/40?img=1',
-  'https://i.pravatar.cc/40?img=5',
-  'https://i.pravatar.cc/40?img=9',
-  'https://i.pravatar.cc/40?img=12',
-  'https://i.pravatar.cc/40?img=20',
+const SOCIAL_AVATARS = [
+  'https://i.pravatar.cc/40?img=32',
+  'https://i.pravatar.cc/40?img=44',
+  'https://i.pravatar.cc/40?img=47',
+  'https://i.pravatar.cc/40?img=60',
+  'https://i.pravatar.cc/40?img=68',
 ]
 
-const FLOATING_BADGES = [
-  { icon: <Mic size={14} />, label: 'Áudio ao vivo', delay: 0, x: '-left-4', y: 'top-16' },
-  { icon: <Users size={14} />, label: '+2.400 usuários', delay: 0.3, x: '-right-4', y: 'top-32' },
-  { icon: <Zap size={14} />, label: 'Entre em segundos', delay: 0.6, x: '-left-2', y: 'bottom-24' },
+// Participants inside the room — matching Figma's "Sala de Vídeo · 5 pessoas"
+const PARTICIPANTS = [
+  { id: 0, name: 'Diego N.',  avatar: 'https://i.pravatar.cc/80?img=12', muted: false, color: 'from-[#0d2b45] to-[#0a1f35]' },
+  { id: 1, name: 'Teri J.',   avatar: 'https://i.pravatar.cc/80?img=47', muted: false, color: 'from-[#1a2744] to-[#0f1e38]' },
+  { id: 2, name: 'Damon W.', avatar: 'https://i.pravatar.cc/80?img=52', muted: true,  color: 'from-[#0d2b45] to-[#0a1f35]' },
+  { id: 3, name: 'Nuage L.', avatar: 'https://i.pravatar.cc/80?img=25', muted: false, color: 'from-[#1b3a2a] to-[#0f2820]' },
+  { id: 4, name: 'Sara K.',  avatar: 'https://i.pravatar.cc/80?img=38', muted: false, color: 'from-[#0d2b45] to-[#0a1f35]' },
+  { id: 5, name: 'Aguard…',  avatar: '',                                  muted: true,  color: 'from-[#111827] to-[#0a0f1e]', waiting: true },
 ]
+
+// speaking indices that cycle to simulate live conversation
+const SPEAKING_SEQUENCE = [0, 3, 1, 4, 0, 1, 3]
+
+function ParticipantTile({ p, speaking }: { p: typeof PARTICIPANTS[0]; speaking: boolean }) {
+  return (
+    <div className={`relative rounded-2xl bg-gradient-to-b ${p.color} overflow-hidden flex flex-col items-center justify-center gap-1.5 p-3 border border-white/5`}>
+      {/* Speaking ring */}
+      <div className="relative flex items-center justify-center">
+        {speaking && (
+          <>
+            <span className="absolute w-14 h-14 rounded-full border-2 border-green-400 animate-ping opacity-40" />
+            <span className="absolute w-14 h-14 rounded-full border-2 border-green-400 opacity-70" />
+          </>
+        )}
+        {p.waiting ? (
+          <div className="w-12 h-12 rounded-full border-2 border-dashed border-white/20 flex items-center justify-center">
+            <span className="text-white/30 text-lg">+</span>
+          </div>
+        ) : (
+          <img
+            src={p.avatar}
+            alt={p.name}
+            className={`w-12 h-12 rounded-full object-cover border-2 transition-all duration-500 ${
+              speaking ? 'border-green-400 shadow-lg shadow-green-400/40' : 'border-white/10'
+            }`}
+          />
+        )}
+        {/* Mic indicator */}
+        {!p.waiting && (
+          <span className={`absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full flex items-center justify-center text-[8px] ${
+            p.muted ? 'bg-red-500' : 'bg-indigo-500'
+          }`}>
+            {p.muted ? <MicOff size={8} /> : <Mic size={8} />}
+          </span>
+        )}
+      </div>
+      <span className={`text-[9px] font-medium truncate max-w-full ${p.waiting ? 'text-white/20' : 'text-white/80'}`}>
+        {p.name}
+      </span>
+    </div>
+  )
+}
+
+function AppMockup() {
+  const [speakingIdx, setSpeakingIdx] = useState(0)
+  const seqPosRef = useRef(0)
+  const [timer, setTimer] = useState(874) // 14:34
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      seqPosRef.current = (seqPosRef.current + 1) % SPEAKING_SEQUENCE.length
+      setSpeakingIdx(SPEAKING_SEQUENCE[seqPosRef.current])
+    }, 1800)
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    const t = setInterval(() => setTimer(s => s + 1), 1000)
+    return () => clearInterval(t)
+  }, [])
+
+  const mins = String(Math.floor(timer / 60)).padStart(2, '0')
+  const secs = String(timer % 60).padStart(2, '0')
+
+  return (
+    /* Phone shell */
+    <div className="relative w-[270px] h-[560px] bg-[#080e1c] rounded-[38px] border border-white/10 shadow-2xl shadow-indigo-500/20 overflow-hidden flex flex-col">
+
+      {/* Status bar */}
+      <div className="flex-none flex justify-between items-center px-6 pt-3 pb-1">
+        <span className="text-white/50 text-[10px] font-medium">9:41</span>
+        <div className="w-20 h-5 bg-black rounded-full" />
+        <div className="flex items-center gap-1">
+          <svg width="15" height="10" viewBox="0 0 15 10" fill="none" className="opacity-50">
+            <rect x="0" y="4" width="3" height="6" rx="1" fill="white"/>
+            <rect x="4" y="2" width="3" height="8" rx="1" fill="white"/>
+            <rect x="8" y="0" width="3" height="10" rx="1" fill="white"/>
+          </svg>
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" className="opacity-50">
+            <path d="M7 2 C4 2 1.5 3.5 0 5.7 L7 10 L14 5.7 C12.5 3.5 10 2 7 2Z" fill="white"/>
+          </svg>
+        </div>
+      </div>
+
+      {/* Room header */}
+      <div className="flex-none flex items-center gap-2 px-4 py-2 border-b border-white/5">
+        <button className="text-white/50 hover:text-white">
+          <ArrowLeft size={16} />
+        </button>
+        <div className="flex-1 text-center">
+          <p className="text-white text-xs font-bold leading-none">Only English</p>
+          <p className="text-white/40 text-[9px] mt-0.5">Any Level · 5/10</p>
+        </div>
+        {/* Timer */}
+        <span className="bg-indigo-600/80 text-white text-[9px] font-mono font-bold px-2 py-0.5 rounded-full">
+          {mins}:{secs}
+        </span>
+      </div>
+
+      {/* Participants grid */}
+      <div className="flex-1 grid grid-cols-2 gap-1.5 p-2 overflow-hidden">
+        {PARTICIPANTS.map((p) => (
+          <ParticipantTile
+            key={p.id}
+            p={p}
+            speaking={speakingIdx === p.id && !p.waiting}
+          />
+        ))}
+      </div>
+
+      {/* Speaking label */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={speakingIdx}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.3 }}
+          className="flex-none text-center pb-1"
+        >
+          <span className="text-green-400 text-[9px] font-medium">
+            🎙 {PARTICIPANTS[speakingIdx]?.name} está falando…
+          </span>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Bottom bar */}
+      <div className="flex-none flex justify-around items-center px-4 py-3 border-t border-white/5 bg-[#0a1020]">
+        {[
+          { icon: <Mic size={16} />, label: 'Mic', active: true },
+          { icon: <Video size={16} />, label: 'Câmera', active: true },
+          { icon: <Users size={16} />, label: 'Pessoas', active: false },
+          { icon: <LogOut size={16} />, label: 'Sair', danger: true },
+        ].map((btn) => (
+          <button
+            key={btn.label}
+            className={`flex flex-col items-center gap-0.5 ${
+              btn.danger ? 'text-red-400' : btn.active ? 'text-white' : 'text-white/40'
+            }`}
+          >
+            {btn.icon}
+            <span className="text-[8px]">{btn.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export function SiteHeader() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <section
@@ -36,7 +189,7 @@ export function SiteHeader() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-24 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          {/* ── LEFT: Text content ── */}
+          {/* ── LEFT: Text ── */}
           <div className="flex flex-col gap-6">
 
             {/* Social proof pill */}
@@ -47,18 +200,12 @@ export function SiteHeader() {
               className="inline-flex items-center gap-3 self-start bg-white/5 border border-white/10 rounded-full px-4 py-2"
             >
               <div className="flex -space-x-2">
-                {AVATARS.map((src, i) => (
-                  <img
-                    key={i}
-                    src={src}
-                    alt="user"
-                    className="w-7 h-7 rounded-full border-2 border-[#0a0f1e] object-cover"
-                  />
+                {SOCIAL_AVATARS.map((src, i) => (
+                  <img key={i} src={src} alt="user"
+                    className="w-7 h-7 rounded-full border-2 border-[#0a0f1e] object-cover" />
                 ))}
               </div>
-              <span className="text-slate-300 text-sm font-medium">
-                +2.400 pessoas conversando agora
-              </span>
+              <span className="text-slate-300 text-sm font-medium">+2.400 pessoas conversando agora</span>
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
@@ -70,7 +217,7 @@ export function SiteHeader() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-6xl font-bold text-white leading-tight tracking-tight"
+              className="text-5xl md:text-6xl font-bold text-white leading-tight tracking-tight"
             >
               {t('site-header-start-one')}
               <span className="block bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
@@ -95,7 +242,6 @@ export function SiteHeader() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-3"
             >
-              {/* Primary: Google Play */}
               <a
                 href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android"
                 target="_blank"
@@ -110,7 +256,6 @@ export function SiteHeader() {
                 </div>
               </a>
 
-              {/* Secondary: Web */}
               <a
                 href="https://safe-for-talk-web.diginfrastructures.com/"
                 target="_blank"
@@ -139,7 +284,7 @@ export function SiteHeader() {
             </motion.div>
           </div>
 
-          {/* ── RIGHT: App mockup ── */}
+          {/* ── RIGHT: Animated phone mockup ── */}
           <div className="hidden lg:flex justify-center items-center relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.92, y: 20 }}
@@ -147,87 +292,38 @@ export function SiteHeader() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="relative"
             >
-              {/* Phone frame */}
-              <div className="relative w-72 h-[580px] bg-gradient-to-b from-slate-800 to-slate-900 rounded-[40px] border border-white/10 shadow-2xl shadow-indigo-500/20 overflow-hidden">
-                {/* Status bar */}
-                <div className="flex justify-between items-center px-6 pt-4 pb-2">
-                  <span className="text-white/60 text-xs">9:41</span>
-                  <div className="w-24 h-6 bg-black rounded-full mx-auto" />
-                  <div className="flex gap-1">
-                    <div className="w-4 h-3 border border-white/40 rounded-sm" />
-                  </div>
-                </div>
+              <AppMockup />
 
-                {/* App UI simulation */}
-                <div className="px-4 py-2 flex flex-col gap-3">
-                  {/* Header */}
-                  <div className="flex items-center gap-2 mb-1">
-                    <img src={safe4talkLogo} alt="Safe 4 Talk" className="w-7 h-7" />
-                    <span className="text-white font-bold text-sm">Safe 4 Talk</span>
-                    <span className="ml-auto flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-green-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-                    </span>
-                  </div>
+              {/* Floating badge: language */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.2 }}
+                className="absolute -right-14 top-20 bg-[#0a0f1e] border border-white/10 rounded-2xl px-3 py-2 shadow-xl"
+              >
+                <p className="text-white/50 text-[9px] uppercase tracking-wide">Sala ativa</p>
+                <p className="text-white text-xs font-bold">🇺🇸 Only English</p>
+                <p className="text-green-400 text-[9px]">● 5 participantes</p>
+              </motion.div>
 
-                  {/* Rooms list */}
-                  {[
-                    { flag: '🇺🇸', name: 'English Practice', members: 8, live: true },
-                    { flag: '🇧🇷', name: 'Conversação Livre', members: 14, live: true },
-                    { flag: '🇪🇸', name: 'Español Avanzado', members: 5, live: true },
-                    { flag: '🇩🇪', name: 'Deutsch B2', members: 3, live: false },
-                  ].map((room, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.5 + i * 0.1 }}
-                      className="flex items-center gap-3 bg-white/5 rounded-2xl p-3 border border-white/5"
-                    >
-                      <span className="text-2xl">{room.flag}</span>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-white text-xs font-medium truncate">{room.name}</p>
-                        <p className="text-slate-400 text-[10px]">{room.members} participantes</p>
-                      </div>
-                      {room.live && (
-                        <span className="text-[9px] font-bold bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30">
-                          AO VIVO
-                        </span>
-                      )}
-                    </motion.div>
-                  ))}
-
-                  {/* CTA button inside app */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="mt-2 bg-indigo-600 rounded-2xl py-3 text-center"
-                  >
-                    <span className="text-white text-xs font-bold">+ Criar nova sala</span>
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Floating badges */}
-              {FLOATING_BADGES.map((badge, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8 + badge.delay }}
-                  className={`absolute ${badge.x} ${badge.y} bg-[#0a0f1e] border border-white/10 rounded-xl px-3 py-2 flex items-center gap-2 shadow-xl`}
-                >
-                  <span className="text-indigo-400">{badge.icon}</span>
-                  <span className="text-white text-xs font-medium whitespace-nowrap">{badge.label}</span>
-                </motion.div>
-              ))}
+              {/* Floating badge: speaking */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.5 }}
+                className="absolute -left-14 bottom-28 bg-[#0a0f1e] border border-white/10 rounded-2xl px-3 py-2 shadow-xl"
+              >
+                <p className="text-white/50 text-[9px] uppercase tracking-wide">Ao vivo</p>
+                <p className="text-white text-xs font-bold">🎙 Falando agora</p>
+                <p className="text-indigo-400 text-[9px]">Áudio em tempo real</p>
+              </motion.div>
             </motion.div>
           </div>
+
         </div>
       </div>
 
-      {/* Bottom wave */}
+      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0f172a] to-transparent pointer-events-none" />
     </section>
   )
