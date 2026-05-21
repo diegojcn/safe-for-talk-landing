@@ -7,7 +7,6 @@ const PHASES = [
     badgeKey: 'roadmap-phase-1-badge',
     periodKey: 'roadmap-phase-1-period',
     titleKey: 'roadmap-phase-1-title',
-    kpiKey: 'roadmap-phase-1-kpi',
     descKey: 'roadmap-phase-1-description',
     features: ['roadmap-phase-1-f1', 'roadmap-phase-1-f2', 'roadmap-phase-1-f3', 'roadmap-phase-1-f4'],
     statusKey: 'roadmap-phase-1-status',
@@ -20,7 +19,6 @@ const PHASES = [
     badgeKey: 'roadmap-phase-2-badge',
     periodKey: 'roadmap-phase-2-period',
     titleKey: 'roadmap-phase-2-title',
-    kpiKey: 'roadmap-phase-2-kpi',
     descKey: 'roadmap-phase-2-description',
     features: ['roadmap-phase-2-f1', 'roadmap-phase-2-f2', 'roadmap-phase-2-f3', 'roadmap-phase-2-f4'],
     statusKey: 'roadmap-phase-2-status',
@@ -33,7 +31,6 @@ const PHASES = [
     badgeKey: 'roadmap-phase-3-badge',
     periodKey: 'roadmap-phase-3-period',
     titleKey: 'roadmap-phase-3-title',
-    kpiKey: 'roadmap-phase-3-kpi',
     descKey: 'roadmap-phase-3-description',
     features: ['roadmap-phase-3-f1', 'roadmap-phase-3-f2', 'roadmap-phase-3-f3', 'roadmap-phase-3-f4'],
     statusKey: 'roadmap-phase-3-status',
@@ -46,7 +43,6 @@ const PHASES = [
     badgeKey: 'roadmap-phase-4-badge',
     periodKey: 'roadmap-phase-4-period',
     titleKey: 'roadmap-phase-4-title',
-    kpiKey: 'roadmap-phase-4-kpi',
     descKey: 'roadmap-phase-4-description',
     features: ['roadmap-phase-4-f1', 'roadmap-phase-4-f2', 'roadmap-phase-4-f3', 'roadmap-phase-4-f4'],
     statusKey: 'roadmap-phase-4-status',
@@ -59,7 +55,6 @@ const PHASES = [
     badgeKey: 'roadmap-phase-5-badge',
     periodKey: 'roadmap-phase-5-period',
     titleKey: 'roadmap-phase-5-title',
-    kpiKey: 'roadmap-phase-5-kpi',
     descKey: 'roadmap-phase-5-description',
     features: ['roadmap-phase-5-f1', 'roadmap-phase-5-f2', 'roadmap-phase-5-f3', 'roadmap-phase-5-f4'],
     statusKey: 'roadmap-phase-5-status',
@@ -137,17 +132,12 @@ export function Roadmap() {
                 </span>
               </div>
 
-              {/* Title */}
+              {/* Title + description */}
               <div>
                 <h3 className="text-xl font-bold text-gray-900 leading-tight">
                   {t(phase.titleKey)}
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">{t(phase.descKey)}</p>
-              </div>
-
-              {/* KPI badge */}
-              <div className="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg self-start">
-                {t(phase.kpiKey)}
               </div>
 
               {/* Features */}
@@ -163,7 +153,7 @@ export function Roadmap() {
           ))}
         </div>
 
-        {/* Bottom quote from PDF */}
+        {/* Bottom quote */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -172,10 +162,7 @@ export function Roadmap() {
           className="mt-14 bg-gray-900 rounded-2xl px-8 py-6 text-center"
         >
           <p className="text-white/70 text-sm italic max-w-2xl mx-auto leading-relaxed">
-            "Safe Talk não é um chat. É a plataforma onde você aprende o idioma e pratica com pessoas reais."
-          </p>
-          <p className="text-indigo-400 text-xs mt-2 font-medium tracking-wide uppercase">
-            Hábito → Engajamento → Monetização → Expansão
+            {t('roadmap-quote')}
           </p>
         </motion.div>
       </div>
