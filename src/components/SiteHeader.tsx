@@ -412,108 +412,21 @@ function BottomBar() {
   )
 }
 
-/* ─── Secondary phone — vocabulary/home screen ─── */
+/* ─── Secondary phone — real app screenshot ─── */
 function SecondaryPhone() {
   return (
     <div
-      className="w-[200px] h-[430px] rounded-[34px] border border-white/10 shadow-2xl overflow-hidden flex flex-col"
+      className="w-[200px] h-[430px] rounded-[34px] border border-white/10 shadow-2xl overflow-hidden"
       style={{ backgroundColor: '#080e1c' }}
     >
-      {/* Status bar */}
-      <div className="flex-none flex justify-between items-center px-4 pt-2.5 pb-1">
-        <span className="text-white/40 text-[9px] font-medium">9:41</span>
-        <div className="w-14 h-4 bg-black rounded-full" />
-        <svg width="11" height="8" viewBox="0 0 15 10" fill="none" className="opacity-40">
-          <rect x="0" y="4" width="3" height="6" rx="0.5" fill="white" />
-          <rect x="4" y="2" width="3" height="8" rx="0.5" fill="white" />
-          <rect x="8" y="0" width="3" height="10" rx="0.5" fill="white" />
-        </svg>
-      </div>
-
-      {/* Header */}
-      <div className="flex-none px-4 py-2">
-        <p className="text-white font-bold text-sm">Safe 4 Talk</p>
-        <p className="text-white/40 text-[9px]">Bom dia! Continue seu streak 🔥</p>
-      </div>
-
-      {/* Streak card */}
-      <div className="mx-3 mb-2 rounded-xl p-3" style={{ background: 'linear-gradient(135deg,#1d4ed8,#4f46e5)' }}>
-        <div className="flex items-center justify-between mb-1.5">
-          <span className="text-white text-[10px] font-semibold">Streak atual</span>
-          <span className="text-[10px] text-white/60">Recorde: 21 dias</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-3xl">🔥</span>
-          <div>
-            <p className="text-white font-bold text-xl leading-none">14</p>
-            <p className="text-white/60 text-[9px]">dias consecutivos</p>
-          </div>
-          <div className="ml-auto flex gap-1">
-            {['S','T','Q','Q','S','S','D'].map((d, i) => (
-              <div key={i} className="flex flex-col items-center gap-0.5">
-                <div className={`w-4 h-4 rounded-full flex items-center justify-center text-[7px] font-bold ${i < 6 ? 'bg-white/20 text-white' : 'bg-white/5 text-white/30'}`}>
-                  {i < 6 ? '✓' : d}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Daily challenge */}
-      <div className="mx-3 mb-2 rounded-xl p-3 border border-white/8" style={{ backgroundColor: '#0d1525' }}>
-        <div className="flex items-center justify-between mb-1">
-          <span className="text-white text-[10px] font-semibold">Desafio Diário</span>
-          <span className="text-yellow-400 text-[9px] font-bold">+2× XP</span>
-        </div>
-        <p className="text-white/50 text-[9px] mb-2">Complete 5 palavras hoje</p>
-        <div className="h-1.5 bg-white/10 rounded-full">
-          <div className="h-full w-3/5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full" />
-        </div>
-        <p className="text-white/40 text-[8px] mt-0.5">3 / 5 palavras</p>
-      </div>
-
-      {/* Word cards */}
-      <div className="mx-3 flex-1 overflow-hidden">
-        <p className="text-white/40 text-[9px] font-semibold uppercase tracking-wider mb-1.5">Vocabulário</p>
-        {[
-          { word: 'Accomplish', transl: 'Realizar, alcançar', level: 'B2', color: '#4f46e5' },
-          { word: 'Resilience',  transl: 'Resiliência',        level: 'C1', color: '#0891b2' },
-          { word: 'Fluent',      transl: 'Fluente',            level: 'B1', color: '#059669' },
-        ].map((w, i) => (
-          <div key={i} className="flex items-center gap-2 py-1.5 border-b border-white/5">
-            <div className="w-6 h-6 rounded-lg flex items-center justify-center text-[8px] font-bold text-white shrink-0"
-              style={{ backgroundColor: w.color + '33', border: `1px solid ${w.color}55` }}>
-              {w.level}
-            </div>
-            <div className="min-w-0">
-              <p className="text-white text-[10px] font-semibold">{w.word}</p>
-              <p className="text-white/40 text-[8px] truncate">{w.transl}</p>
-            </div>
-            <div className="ml-auto w-5 h-5 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-              <svg width="8" height="8" viewBox="0 0 24 24" fill="none">
-                <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.4"/>
-                <path d="M9 7v6l4-2-4-4z" fill="white" fillOpacity="0.3"/>
-              </svg>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Bottom nav */}
-      <div className="flex-none flex justify-around items-center px-2 py-2 border-t border-white/5" style={{ backgroundColor: '#060c18' }}>
-        {[
-          { icon: '📚', label: 'Aprender', active: true },
-          { icon: '🎙', label: 'Salas',    active: false },
-          { icon: '🏆', label: 'Ranking',  active: false },
-          { icon: '👤', label: 'Perfil',   active: false },
-        ].map((tab, i) => (
-          <button key={i} className="flex flex-col items-center gap-0.5">
-            <span className="text-xs">{tab.icon}</span>
-            <span className={`text-[7px] font-medium ${tab.active ? 'text-indigo-400' : 'text-white/30'}`}>{tab.label}</span>
-          </button>
-        ))}
-      </div>
+      {/* screen-rooms-list.png is a 2122×2250 dual-mode export (dark left, light right).
+          object-fit:cover scales to fill height, object-position:left shows only the dark half. */}
+      <img
+        src="/figma-screens/screen-rooms-list.png"
+        alt="Safe 4 Talk — Salas ao vivo"
+        className="w-full h-full"
+        style={{ objectFit: 'cover', objectPosition: 'left top' }}
+      />
     </div>
   )
 }
