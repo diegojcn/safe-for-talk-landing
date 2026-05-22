@@ -503,29 +503,6 @@ function PhoneShell({ children, width, height }: { children: React.ReactNode; wi
   )
 }
 
-/* ─── Secondary phone — real app screenshot ─── */
-function SecondaryPhone() {
-  // screen-rooms-list.png: 2122×2250 dual-mode export (dark left = rooms, light right).
-  // The Figma export includes a "DARK" mode label above the phone mockup (~top 12% of image).
-  // Fix: make the img 16% taller than the container with marginTop:-16% so overflow:hidden
-  // clips away the label artifact and shows the actual app content.
-  return (
-    <div className="w-full h-full overflow-hidden" style={{ background: '#090f1d' }}>
-      <img
-        src="/figma-screens/screen-rooms-list.png"
-        alt="Safe 4 Talk — Salas ao vivo"
-        style={{
-          display: 'block',
-          width: '100%',
-          height: 'calc(100% + 54px)',
-          marginTop: '-54px',
-          objectFit: 'cover',
-          objectPosition: 'left top',
-        }}
-      />
-    </div>
-  )
-}
 
 /* ─── App Mockup ─── */
 function AppMockup() {
@@ -717,36 +694,11 @@ export function SiteHeader() {
             </motion.div>
           </div>
 
-          {/* RIGHT: Two phone mockups */}
-          <div className="hidden lg:flex justify-end items-end">
-            {/* Wrapper — front phone is the anchor; back phone overflows left */}
+          {/* RIGHT: Phone mockup */}
+          <div className="hidden lg:flex justify-center items-center">
             <div className="relative">
 
-              {/* Back phone — rooms screenshot, tilted behind */}
-              <motion.div
-                initial={{ opacity: 0, x: -20, rotate: -10 }}
-                animate={{ opacity: 1, x: 0, rotate: -7 }}
-                transition={{ duration: 0.8, delay: 0.35 }}
-                className="absolute bottom-0 z-0"
-                style={{ right: '240px', transformOrigin: 'bottom right' }}
-              >
-                <PhoneShell width={200} height={430}>
-                  <SecondaryPhone />
-                </PhoneShell>
-                {/* XP badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.5 }}
-                  className="absolute -left-20 top-28 bg-[#0a0f1e] border border-white/10 rounded-2xl px-3 py-2 shadow-xl"
-                >
-                  <p className="text-white/40 text-[9px] uppercase tracking-wide">Vocabulário</p>
-                  <p className="text-white text-xs font-bold">📚 3 palavras hoje</p>
-                  <p className="text-indigo-400 text-[9px]">+120 XP ganhos</p>
-                </motion.div>
-              </motion.div>
-
-              {/* Front phone — animated live room */}
+              {/* Phone — animated live room */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.92, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -757,12 +709,24 @@ export function SiteHeader() {
                   <AppMockup />
                 </PhoneShell>
 
-                {/* Live badge — overlaps bottom-right of phone (intentional floating chip) */}
+                {/* XP badge — left */}
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.4 }}
+                  className="absolute -left-28 top-32 bg-[#0a0f1e] border border-white/10 rounded-2xl px-3 py-2 shadow-xl"
+                >
+                  <p className="text-white/40 text-[9px] uppercase tracking-wide">Vocabulário</p>
+                  <p className="text-white text-xs font-bold">📚 3 palavras hoje</p>
+                  <p className="text-indigo-400 text-[9px]">+120 XP ganhos</p>
+                </motion.div>
+
+                {/* Live badge — right */}
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1.7 }}
-                  className="absolute right-4 -bottom-4 bg-[#0a0f1e] border border-white/10 rounded-2xl px-3 py-2 shadow-xl min-w-[120px]"
+                  className="absolute -right-28 bottom-32 bg-[#0a0f1e] border border-white/10 rounded-2xl px-3 py-2 shadow-xl min-w-[120px]"
                 >
                   <p className="text-white/40 text-[9px] uppercase tracking-wide">Ao vivo</p>
                   <p className="text-white text-xs font-bold">🎙 Falando agora</p>
