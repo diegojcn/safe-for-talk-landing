@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { CheckCircle, Circle, Clock } from 'lucide-react'
+import { Circle, Clock } from 'lucide-react'
 
 const PHASES = [
   {
@@ -10,10 +10,10 @@ const PHASES = [
     descKey: 'roadmap-phase-1-description',
     features: ['roadmap-phase-1-f1', 'roadmap-phase-1-f2', 'roadmap-phase-1-f3', 'roadmap-phase-1-f4'],
     statusKey: 'roadmap-phase-1-status',
-    statusColor: 'bg-green-500/20 text-green-400 border-green-500/30',
-    dotColor: 'bg-green-500',
-    accent: 'border-green-500/30 hover:border-green-500/60',
-    icon: <CheckCircle size={14} />,
+    statusColor: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+    dotColor: 'bg-yellow-500',
+    accent: 'border-yellow-500/30 hover:border-yellow-500/60',
+    icon: <Clock size={14} />,
   },
   {
     badgeKey: 'roadmap-phase-2-badge',
@@ -100,13 +100,13 @@ export function Roadmap() {
           <div className="hidden md:flex justify-between items-center mb-2">
             {PHASES.map((p, i) => (
               <div key={i} className="flex flex-col items-center gap-1 flex-1">
-                <div className={`w-4 h-4 rounded-full ${p.dotColor} ${i < 2 ? 'shadow-lg' : 'opacity-40'}`} />
+                <div className={`w-4 h-4 rounded-full ${p.dotColor} ${i < 1 ? 'shadow-lg' : 'opacity-40'}`} />
                 <span className="text-[10px] text-gray-400 font-medium">{t(p.badgeKey)}</span>
               </div>
             ))}
           </div>
           <div className="hidden md:block h-1 bg-gray-100 rounded-full relative">
-            <div className="absolute left-0 top-0 h-full w-[20%] bg-gradient-to-r from-green-500 to-blue-400 rounded-full" />
+            <div className="absolute left-0 top-0 h-full w-[10%] bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full" />
           </div>
         </motion.div>
 

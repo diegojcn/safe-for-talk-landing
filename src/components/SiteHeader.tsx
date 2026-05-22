@@ -412,20 +412,116 @@ function BottomBar() {
   )
 }
 
+/* ─── Realistic phone shell ─── */
+function PhoneShell({ children, width, height }: { children: React.ReactNode; width: number; height: number }) {
+  const bezel = 8
+  const outerR = 46
+  const innerR = 38
+  const btn = (extra: React.CSSProperties) => ({
+    position: 'absolute' as const,
+    width: 3,
+    background: 'linear-gradient(180deg, #3c3c42, #26262c)',
+    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.4)',
+    borderRadius: 2,
+    ...extra,
+  })
+
+  return (
+    <div className="relative" style={{ width: width + bezel * 2, height: height + bezel * 2 }}>
+      {/* Body */}
+      <div
+        className="absolute inset-0"
+        style={{
+          borderRadius: outerR,
+          background: 'linear-gradient(160deg, #313136 0%, #1d1d22 55%, #29292f 100%)',
+          boxShadow: [
+            '0 0 0 1px rgba(255,255,255,0.14)',
+            'inset 0 0 0 1px rgba(255,255,255,0.06)',
+            '0 70px 140px rgba(0,0,0,0.85)',
+            '0 35px 70px rgba(0,0,0,0.55)',
+            '0 0 120px rgba(99,102,241,0.10)',
+          ].join(','),
+        }}
+      />
+
+      {/* Left: silent switch */}
+      <div style={btn({ left: -3, top: '10%', height: '3.5%' })} />
+      {/* Left: volume up */}
+      <div style={btn({ left: -3, top: '17%', height: '7%' })} />
+      {/* Left: volume down */}
+      <div style={btn({ left: -3, top: '27%', height: '7%' })} />
+      {/* Right: power */}
+      <div style={btn({ right: -3, top: '22%', height: '11%' })} />
+
+      {/* Screen — inset shadow gives "pressed-in" depth */}
+      <div
+        className="absolute overflow-hidden"
+        style={{
+          inset: bezel,
+          borderRadius: innerR,
+          background: '#000',
+          boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.07), inset 0 2px 10px rgba(0,0,0,0.7)',
+        }}
+      >
+        {/* Dynamic island */}
+        <div
+          className="absolute z-20"
+          style={{
+            top: 10,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: Math.round(width * 0.28),
+            height: 10,
+            background: '#000',
+            borderRadius: 999,
+          }}
+        />
+        {children}
+        {/* Glass glare — subtle diagonal highlight over screen */}
+        <div
+          className="absolute inset-0 pointer-events-none z-30"
+          style={{
+            borderRadius: innerR,
+            background: 'linear-gradient(145deg, rgba(255,255,255,0.04) 0%, transparent 38%)',
+          }}
+        />
+      </div>
+
+      {/* Body top-edge shine */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: 0,
+          left: '15%',
+          right: '15%',
+          height: 1,
+          borderRadius: 999,
+          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)',
+        }}
+      />
+    </div>
+  )
+}
+
 /* ─── Secondary phone — real app screenshot ─── */
 function SecondaryPhone() {
+  // screen-rooms-list.png: 2122×2250 dual-mode export (dark left = rooms, light right).
+  // The Figma export includes a "DARK" mode label above the phone mockup (~top 12% of image).
+  // Fix: make the img 16% taller than the container with marginTop:-16% so overflow:hidden
+  // clips away the label artifact and shows the actual app content.
   return (
-    <div
-      className="w-[200px] h-[430px] rounded-[34px] border border-white/10 shadow-2xl overflow-hidden"
-      style={{ backgroundColor: '#080e1c' }}
-    >
-      {/* screen-rooms-list.png is a 2122×2250 dual-mode export (dark left, light right).
-          object-fit:cover scales to fill height, object-position:left shows only the dark half. */}
+    <div className="w-full h-full overflow-hidden" style={{ background: '#090f1d' }}>
       <img
         src="/figma-screens/screen-rooms-list.png"
         alt="Safe 4 Talk — Salas ao vivo"
-        className="w-full h-full"
-        style={{ objectFit: 'cover', objectPosition: 'left top' }}
+        style={{
+          display: 'block',
+          width: '100%',
+          height: 'calc(100% + 54px)',
+          marginTop: '-54px',
+          objectFit: 'cover',
+          objectPosition: 'left top',
+        }}
       />
     </div>
   )
@@ -455,13 +551,13 @@ function AppMockup() {
 
   return (
     <div
-      className="relative w-[270px] h-[580px] rounded-[38px] border border-white/10 shadow-2xl shadow-indigo-500/20 overflow-hidden flex flex-col"
+      className="relative w-[270px] h-[580px] flex flex-col"
       style={{ backgroundColor: '#080e1c' }}
     >
       {/* Status bar */}
       <div className="flex-none flex justify-between items-center px-5 pt-3 pb-1">
         <span className="text-white/40 text-[10px] font-medium">9:41</span>
-        <div className="w-20 h-5 bg-black rounded-full" />
+        <div className="w-20" />{/* spacer — PhoneShell renders the real Dynamic Island */}
         <div className="flex items-center gap-0.5">
           <svg width="13" height="9" viewBox="0 0 15 10" fill="none" className="opacity-40">
             <rect x="0" y="4" width="3" height="6" rx="0.5" fill="white" />
@@ -626,7 +722,7 @@ export function SiteHeader() {
             {/* Wrapper — front phone is the anchor; back phone overflows left */}
             <div className="relative">
 
-              {/* Back phone — vocabulary/study screen, tilted behind */}
+              {/* Back phone — rooms screenshot, tilted behind */}
               <motion.div
                 initial={{ opacity: 0, x: -20, rotate: -10 }}
                 animate={{ opacity: 1, x: 0, rotate: -7 }}
@@ -634,7 +730,9 @@ export function SiteHeader() {
                 className="absolute bottom-0 z-0"
                 style={{ right: '240px', transformOrigin: 'bottom right' }}
               >
-                <SecondaryPhone />
+                <PhoneShell width={200} height={430}>
+                  <SecondaryPhone />
+                </PhoneShell>
                 {/* XP badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
@@ -655,26 +753,16 @@ export function SiteHeader() {
                 transition={{ duration: 0.7, delay: 0.15 }}
                 className="relative z-10"
               >
-                <AppMockup />
+                <PhoneShell width={270} height={580}>
+                  <AppMockup />
+                </PhoneShell>
 
-                {/* Room badge */}
+                {/* Live badge — overlaps bottom-right of phone (intentional floating chip) */}
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.2 }}
-                  className="absolute -right-20 top-20 bg-[#0a0f1e] border border-white/10 rounded-2xl px-3 py-2 shadow-xl min-w-[120px]"
-                >
-                  <p className="text-white/40 text-[9px] uppercase tracking-wide">Sala ativa</p>
-                  <p className="text-white text-xs font-bold">🇺🇸 Only English</p>
-                  <p className="text-green-400 text-[9px]">● 5 participantes</p>
-                </motion.div>
-
-                {/* Live badge */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.7 }}
-                  className="absolute -right-20 bottom-28 bg-[#0a0f1e] border border-white/10 rounded-2xl px-3 py-2 shadow-xl min-w-[120px]"
+                  className="absolute right-4 -bottom-4 bg-[#0a0f1e] border border-white/10 rounded-2xl px-3 py-2 shadow-xl min-w-[120px]"
                 >
                   <p className="text-white/40 text-[9px] uppercase tracking-wide">Ao vivo</p>
                   <p className="text-white text-xs font-bold">🎙 Falando agora</p>
