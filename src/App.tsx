@@ -1,5 +1,7 @@
+import { Navbar } from "./components/Navbar"
 import { SiteHeader } from "./components/SiteHeader"
 import { Features } from "./components/Features"
+import { HowItWorks } from "./components/HowItWorks"
 import { Roadmap } from "./components/Roadmap"
 import { CTA } from "./components/CTA"
 import { Footer } from "./components/Footer"
@@ -30,8 +32,10 @@ function App() {
         path="/"
         element={
           <div className="w-full">
+            <Navbar />
             <SiteHeader />
             <Features />
+            <HowItWorks />
             <Roadmap />
             <CTA />
             <Footer />
