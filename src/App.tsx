@@ -6,6 +6,8 @@ import { Roadmap } from "./components/Roadmap"
 import { CTA } from "./components/CTA"
 import { Footer } from "./components/Footer"
 import Unsubscribe from './pages/Unsubcribe'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfUse from './pages/TermsOfUse'
 import ChatAnonimoSeguro from './pages/ChatAnonimoSeguro'
 import PraticarInglesAoVivo from './pages/PraticarInglesAoVivo'
 import AppParaPraticarIngles from './pages/AppParaPraticarIngles'
@@ -43,6 +45,8 @@ function App() {
         }
       />
       <Route path="/unsubscribe" element={<Unsubscribe />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<TermsOfUse />} />
       <Route path="/chat-anonimo-seguro" element={<ChatAnonimoSeguro />} />
       <Route path="/praticar-ingles-ao-vivo" element={<PraticarInglesAoVivo />} />
       <Route path="/app-para-praticar-ingles" element={<AppParaPraticarIngles />} />
