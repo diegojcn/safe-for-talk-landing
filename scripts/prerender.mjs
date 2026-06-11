@@ -40,6 +40,9 @@ const routes = [
   '/chat-para-conhecer-pessoas',
   '/fazer-amigos-online',
   '/chat-com-estrangeiros',
+  '/privacy',
+  '/terms',
+  '/unsubscribe',
 ]
 
 async function prerender() {

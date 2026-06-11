@@ -4,6 +4,9 @@
   "rewrites": [
     { "source": "/chat-anonimo-seguro", "destination": "/chat-anonimo-seguro/index.html" },
     { "source": "/praticar-ingles-ao-vivo", "destination": "/praticar-ingles-ao-vivo/index.html" },
+    { "source": "/privacy", "destination": "/privacy/index.html" },
+    { "source": "/terms", "destination": "/terms/index.html" },
+    { "source": "/unsubscribe", "destination": "/unsubscribe/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
