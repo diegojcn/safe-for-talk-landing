@@ -6,6 +6,8 @@
     { "source": "/praticar-ingles-ao-vivo", "destination": "/praticar-ingles-ao-vivo/index.html" },
     { "source": "/privacy", "destination": "/privacy/index.html" },
     { "source": "/terms", "destination": "/terms/index.html" },
+    { "source": "/support", "destination": "/support/index.html" },
+    { "source": "/suporte", "destination": "/suporte/index.html" },
     { "source": "/unsubscribe", "destination": "/unsubscribe/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]

@@ -42,6 +42,8 @@ const routes = [
   '/chat-com-estrangeiros',
   '/privacy',
   '/terms',
+  '/support',
+  '/suporte',
   '/unsubscribe',
 ]
 
