@@ -106,7 +106,7 @@ export function Roadmap() {
             ))}
           </div>
           <div className="hidden md:block h-1 bg-gray-100 rounded-full relative">
-            <div className="absolute left-0 top-0 h-full w-[10%] bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full" />
+            <div className="absolute left-0 top-0 h-full w-[20%] bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full" />
           </div>
         </motion.div>
 

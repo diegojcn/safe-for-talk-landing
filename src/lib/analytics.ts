@@ -15,6 +15,7 @@ export function trackEvent(
 export const Events = {
   // SiteHeader
   ClickPlayStore: 'click_download_playstore',
+  ClickAppStore: 'click_download_appstore',
   ClickWebApp: 'click_open_webapp',
   // CTA
   ClickInstagram: 'click_social_instagram',
