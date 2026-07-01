@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { Circle, Clock } from 'lucide-react'
+import { Circle, Clock, CheckCircle2 } from 'lucide-react'
 
 const PHASES = [
   {
@@ -8,19 +8,29 @@ const PHASES = [
     periodKey: 'roadmap-phase-1-period',
     titleKey: 'roadmap-phase-1-title',
     descKey: 'roadmap-phase-1-description',
-    features: ['roadmap-phase-1-f1', 'roadmap-phase-1-f2', 'roadmap-phase-1-f3', 'roadmap-phase-1-f4'],
+    features: [
+      { key: 'roadmap-phase-1-f1', done: true },
+      { key: 'roadmap-phase-1-f2', done: true },
+      { key: 'roadmap-phase-1-f3', done: true },
+      { key: 'roadmap-phase-1-f4', done: true },
+    ],
     statusKey: 'roadmap-phase-1-status',
-    statusColor: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-    dotColor: 'bg-yellow-500',
-    accent: 'border-yellow-500/30 hover:border-yellow-500/60',
-    icon: <Clock size={14} />,
+    statusColor: 'bg-green-500/20 text-green-600 border-green-500/30',
+    dotColor: 'bg-green-500',
+    accent: 'border-green-500/30 hover:border-green-500/60',
+    icon: <CheckCircle2 size={14} />,
   },
   {
     badgeKey: 'roadmap-phase-2-badge',
     periodKey: 'roadmap-phase-2-period',
     titleKey: 'roadmap-phase-2-title',
     descKey: 'roadmap-phase-2-description',
-    features: ['roadmap-phase-2-f1', 'roadmap-phase-2-f2', 'roadmap-phase-2-f3', 'roadmap-phase-2-f4'],
+    features: [
+      { key: 'roadmap-phase-2-f1', done: false },
+      { key: 'roadmap-phase-2-f2', done: false },
+      { key: 'roadmap-phase-2-f3', done: false },
+      { key: 'roadmap-phase-2-f4', done: false },
+    ],
     statusKey: 'roadmap-phase-2-status',
     statusColor: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
     dotColor: 'bg-blue-500',
@@ -32,7 +42,12 @@ const PHASES = [
     periodKey: 'roadmap-phase-3-period',
     titleKey: 'roadmap-phase-3-title',
     descKey: 'roadmap-phase-3-description',
-    features: ['roadmap-phase-3-f1', 'roadmap-phase-3-f2', 'roadmap-phase-3-f3', 'roadmap-phase-3-f4'],
+    features: [
+      { key: 'roadmap-phase-3-f1', done: false },
+      { key: 'roadmap-phase-3-f2', done: false },
+      { key: 'roadmap-phase-3-f3', done: false },
+      { key: 'roadmap-phase-3-f4', done: false },
+    ],
     statusKey: 'roadmap-phase-3-status',
     statusColor: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
     dotColor: 'bg-orange-500',
@@ -44,7 +59,12 @@ const PHASES = [
     periodKey: 'roadmap-phase-4-period',
     titleKey: 'roadmap-phase-4-title',
     descKey: 'roadmap-phase-4-description',
-    features: ['roadmap-phase-4-f1', 'roadmap-phase-4-f2', 'roadmap-phase-4-f3', 'roadmap-phase-4-f4'],
+    features: [
+      { key: 'roadmap-phase-4-f1', done: false },
+      { key: 'roadmap-phase-4-f2', done: false },
+      { key: 'roadmap-phase-4-f3', done: false },
+      { key: 'roadmap-phase-4-f4', done: false },
+    ],
     statusKey: 'roadmap-phase-4-status',
     statusColor: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
     dotColor: 'bg-purple-500',
@@ -56,7 +76,12 @@ const PHASES = [
     periodKey: 'roadmap-phase-5-period',
     titleKey: 'roadmap-phase-5-title',
     descKey: 'roadmap-phase-5-description',
-    features: ['roadmap-phase-5-f1', 'roadmap-phase-5-f2', 'roadmap-phase-5-f3', 'roadmap-phase-5-f4'],
+    features: [
+      { key: 'roadmap-phase-5-f1', done: false },
+      { key: 'roadmap-phase-5-f2', done: false },
+      { key: 'roadmap-phase-5-f3', done: false },
+      { key: 'roadmap-phase-5-f4', done: false },
+    ],
     statusKey: 'roadmap-phase-5-status',
     statusColor: 'bg-slate-500/20 text-slate-400 border-slate-500/30',
     dotColor: 'bg-slate-500',
@@ -142,10 +167,22 @@ export function Roadmap() {
 
               {/* Features */}
               <ul className="flex flex-col gap-2">
-                {phase.features.map((fk, fi) => (
-                  <li key={fi} className="flex items-start gap-2 text-sm text-gray-600">
-                    <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${phase.dotColor}`} />
-                    {t(fk)}
+                {phase.features.map((f, fi) => (
+                  <li
+                    key={fi}
+                    className={`flex items-start gap-2 text-sm ${f.done ? 'text-gray-700' : 'text-gray-600'}`}
+                  >
+                    {f.done ? (
+                      <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-green-600" />
+                    ) : (
+                      <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${phase.dotColor}`} />
+                    )}
+                    <span className={f.done ? 'font-medium' : ''}>{t(f.key)}</span>
+                    {f.done && (
+                      <span className="ml-auto text-[10px] font-semibold text-green-700 bg-green-100 border border-green-200 rounded-full px-2 py-0.5 shrink-0">
+                        {t('roadmap-done-label')}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
