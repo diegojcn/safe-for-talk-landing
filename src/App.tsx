@@ -25,6 +25,7 @@ import ConversarComEstranhosOnline from './pages/ConversarComEstranhosOnline'
 import ChatParaConhecerPessoas from './pages/ChatParaConhecerPessoas'
 import FazerAmigosOnline from './pages/FazerAmigosOnline'
 import ChatComEstrangeiros from './pages/ChatComEstrangeiros'
+import TeacherPublicProfile from './pages/TeacherPublicProfile'
 import { Routes, Route } from 'react-router-dom'
 
 // Router is provided externally (BrowserRouter in main.tsx, StaticRouter in entry-server.tsx)
@@ -66,6 +67,13 @@ function App() {
       <Route path="/chat-para-conhecer-pessoas" element={<ChatParaConhecerPessoas />} />
       <Route path="/fazer-amigos-online" element={<FazerAmigosOnline />} />
       <Route path="/chat-com-estrangeiros" element={<ChatComEstrangeiros />} />
+      {/*
+        Public teacher page: safe4talk.com/@handle. React Router v6+ rejects
+        partial dynamic segments ("/@:handle"), so the whole segment is the
+        param and the component rejects anything that isn't @-prefixed. Keep
+        this route last — it is the only single-segment catch-all.
+      */}
+      <Route path="/:handle" element={<TeacherPublicProfile />} />
     </Routes>
   )
 }
