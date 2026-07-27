@@ -285,6 +285,7 @@ const TeacherPublicProfile: React.FC = () => {
 
         {/* Prices + agenda: sidebar on desktop, inline on mobile */}
         <aside className="order-1 md:order-none md:mt-0">
+          {priceFrom && (
           <div className="rounded-2xl border border-[#DEDFE4] p-5">
             <h2 className="text-lg font-bold">Preços</h2>
             <ul className="mt-3 divide-y divide-[#DEDFE4]">
@@ -305,12 +306,11 @@ const TeacherPublicProfile: React.FC = () => {
                 />
               ))}
             </ul>
-            {priceFrom && (
-              <p className="mt-3 text-xs text-[#6A6C72]">
-                Você só é cobrado quando a aula começar. Cancele grátis até 24h antes.
-              </p>
-            )}
+            <p className="mt-3 text-xs text-[#6A6C72]">
+              Você só é cobrado quando a aula começar. Cancele grátis até 24h antes.
+            </p>
           </div>
+          )}
 
           <div id="horarios" className="mt-6 rounded-2xl border border-[#DEDFE4] p-5">
             <h2 className="text-lg font-bold">Agenda da semana</h2>
