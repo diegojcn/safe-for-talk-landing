@@ -33,6 +33,11 @@ export type TeacherCredential = {
   year: number | null
 }
 
+/**
+ * The API omits empty collections entirely (Micronaut's serializer drops them),
+ * so every list here is optional. A teacher with no credentials is the normal
+ * case for a new profile, and `.map` on undefined blanks the whole page.
+ */
 export type PublicTeacher = {
   handle: string
   displayName: string
@@ -44,10 +49,10 @@ export type PublicTeacher = {
   ratingAvg: number | null
   ratingCount: number
   lessonsDone: number
-  languages: TeacherLanguage[]
-  specialties: string[]
-  credentials: TeacherCredential[]
-  offerings: TeacherOffering[]
+  languages?: TeacherLanguage[]
+  specialties?: string[]
+  credentials?: TeacherCredential[]
+  offerings?: TeacherOffering[]
   /** today | tomorrow | mon..sun — server-computed in the visitor's timezone. */
   nextSlotKey: string | null
   nextSlotTime: string | null
@@ -88,6 +93,43 @@ export async function fetchPublicSlots(handle: string, durationMinutes = 60): Pr
   )
   if (!response.ok) throw new Error(`slots_fetch_failed_${response.status}`)
   return (await response.json()) as TeacherSlots
+}
+
+export type AgendaCell = { hour: string; state: 'FREE' | 'UNAVAILABLE'; startAtUtc: string | null }
+export type AgendaDay = {
+  date: string
+  weekdayKey: string
+  dayOfMonth: number
+  isToday: boolean
+  cells: AgendaCell[]
+}
+export type TeacherAgenda = {
+  timezone: string
+  weekLabel: string
+  weekOffset: number
+  hours: string[]
+  days: AgendaDay[]
+}
+
+/**
+ * The public week grid. It has two states — free and unavailable — and that is
+ * a privacy decision, not a simplification: the API stops offering a booked
+ * hour, so a reserved slot arrives here indistinguishable from an hour the
+ * teacher never worked. Anything that told them apart would let a visitor
+ * count a teacher's lessons from a public page.
+ */
+export async function fetchPublicAgenda(
+  handle: string,
+  weekOffset = 0,
+  durationMinutes = 30,
+): Promise<TeacherAgenda> {
+  const tz = encodeURIComponent(visitorTimezone())
+  const response = await fetch(
+    `${API_BASE}/teachers/public/${encodeURIComponent(handle)}/agenda` +
+      `?tz=${tz}&weekOffset=${weekOffset}&duration=${durationMinutes}`,
+  )
+  if (!response.ok) throw new Error(`agenda_fetch_failed_${response.status}`)
+  return (await response.json()) as TeacherAgenda
 }
 
 /** Store links — the page's only conversion target until deep links ship. */

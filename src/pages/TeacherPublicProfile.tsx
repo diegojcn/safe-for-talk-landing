@@ -3,15 +3,15 @@ import { Helmet } from 'react-helmet-async'
 import { Link, useParams } from 'react-router-dom'
 import {
   appStoreUrlForVisitor,
-  dayLabel,
+  fetchPublicAgenda,
   fetchPublicSlots,
   fetchPublicTeacher,
   formatPrice,
   nextSlotLabel,
   PublicTeacher,
   STORE_LINKS,
-  TeacherDaySlots,
   TeacherNotFoundError,
+  TeacherAgenda,
   TeacherSlots,
 } from '../lib/teacherApi'
 
@@ -48,11 +48,26 @@ const TeacherPublicProfile: React.FC = () => {
 
   const [teacher, setTeacher] = useState<PublicTeacher | null>(null)
   const [slots, setSlots] = useState<TeacherSlots | null>(null)
+  const [agenda, setAgenda] = useState<TeacherAgenda | null>(null)
+  const [weekOffset, setWeekOffset] = useState(0)
   const [status, setStatus] = useState<'loading' | 'ready' | 'notfound' | 'error'>('loading')
   // Media lives on a CDN we don't control; a dead URL must degrade, not show a
   // broken-image icon on the teacher's own landing page.
   const [photoBroken, setPhotoBroken] = useState(false)
   const [videoBroken, setVideoBroken] = useState(false)
+
+  // The grid reloads on its own when the visitor pages weeks; the profile
+  // fetch below must not restart for that.
+  useEffect(() => {
+    let cancelled = false
+    if (!handle) return
+    fetchPublicAgenda(handle, weekOffset)
+      .then((a) => !cancelled && setAgenda(a))
+      .catch(() => !cancelled && setAgenda(null))
+    return () => {
+      cancelled = true
+    }
+  }, [handle, weekOffset])
 
   useEffect(() => {
     let cancelled = false
@@ -86,8 +101,9 @@ const TeacherPublicProfile: React.FC = () => {
 
   const firstName = teacher.displayName.split(' ')[0]
   const flag = teacher.countryCode ? FLAGS[teacher.countryCode.toUpperCase()] ?? '' : ''
-  const trial = teacher.offerings.find((o) => o.kind === 'TRIAL')
-  const standard = teacher.offerings
+  const offerings = teacher.offerings ?? []
+  const trial = offerings.find((o) => o.kind === 'TRIAL')
+  const standard = offerings
     .filter((o) => o.kind === 'STANDARD')
     .sort((a, b) => a.priceCents - b.priceCents)
   const availability = nextSlotLabel(teacher.nextSlotKey, teacher.nextSlotTime)
@@ -162,7 +178,7 @@ const TeacherPublicProfile: React.FC = () => {
               </span>
               <p className="mt-2 text-sm text-[#6A6C72]">
                 Inglês
-                {teacher.languages.some((l) => l.isNative) && ' · Nativo'}
+                {(teacher.languages ?? []).some((l) => l.isNative) && ' · Nativo'}
                 {teacher.ratingAvg
                   ? ` · ⭐ ${teacher.ratingAvg} (${teacher.ratingCount} avaliações)`
                   : ' · Professor novo por aqui'}
@@ -248,9 +264,9 @@ const TeacherPublicProfile: React.FC = () => {
             </>
           )}
 
-          {(teacher.specialties.length > 0 || teacher.credentials.length > 0) && (
+          {((teacher.specialties?.length ?? 0) > 0 || (teacher.credentials?.length ?? 0) > 0) && (
             <div className="mt-5 flex flex-wrap gap-2">
-              {teacher.specialties.map((s) => (
+              {(teacher.specialties ?? []).map((s) => (
                 <span
                   key={s}
                   className="rounded-lg bg-[#2D8CFF]/10 px-3 py-1.5 text-sm font-semibold text-[#2D8CFF]"
@@ -258,7 +274,7 @@ const TeacherPublicProfile: React.FC = () => {
                   {SPECIALTY_LABELS[s] ?? s}
                 </span>
               ))}
-              {teacher.credentials.map((c, index) => (
+              {(teacher.credentials ?? []).map((c, index) => (
                 <span
                   key={`${c.title}-${index}`}
                   className="rounded-lg border border-[#DEDFE4] px-3 py-1.5 text-sm font-semibold text-[#161616]"
@@ -297,7 +313,7 @@ const TeacherPublicProfile: React.FC = () => {
                   price={formatPrice(trial.priceCents, trial.currency)}
                 />
               )}
-              {standard.map((o) => (
+              {(standard ?? []).map((o) => (
                 <PriceRow
                   key={`${o.kind}-${o.durationMinutes}`}
                   href={storeUrl}
@@ -317,7 +333,11 @@ const TeacherPublicProfile: React.FC = () => {
             {slots?.studentTimezone && (
               <p className="text-xs text-[#6A6C72]">Horários no seu fuso ({slots.studentTimezone})</p>
             )}
-            <AgendaBody days={slots?.days} storeUrl={storeUrl} />
+            <AgendaGrid
+              agenda={agenda}
+              storeUrl={storeUrl}
+              onWeek={(delta) => setWeekOffset((current) => Math.max(0, current + delta))}
+            />
           </div>
         </aside>
       </section>
@@ -403,45 +423,122 @@ const PriceRow: React.FC<{ href: string; label: string; price: string; badge?: s
   </li>
 )
 
-const AgendaBody: React.FC<{ days?: TeacherDaySlots[]; storeUrl: string }> = ({ days, storeUrl }) => {
-  if (!days) {
+/**
+ * The public week grid — two states, free and unavailable.
+ *
+ * A booked hour is not a third state: the API stops offering it, so it lands
+ * here as "not offered" and looks exactly like an hour the teacher never
+ * worked. That is deliberate. This page is public and indexable, and any
+ * visual difference between "taken" and "off" would publish how many lessons
+ * this person gives and when.
+ */
+const AgendaGrid: React.FC<{
+  agenda: TeacherAgenda | null
+  storeUrl: string
+  onWeek: (delta: number) => void
+}> = ({ agenda, storeUrl, onWeek }) => {
+  if (!agenda) {
     return (
       <div className="mt-3 space-y-2">
         <div className="h-4 w-24 animate-pulse rounded bg-[#DEDFE4]" />
-        <div className="h-9 w-full animate-pulse rounded bg-[#F5F6FA]" />
+        <div className="h-28 w-full animate-pulse rounded-xl bg-[#F5F6FA]" />
       </div>
     )
   }
-  const withSlots = days.filter((d) => d.slots.length > 0)
-  if (withSlots.length === 0) {
+  if (agenda.hours.length === 0) {
     return (
       <p className="mt-3 text-sm text-[#6A6C72]">
-        Sem horários nesta semana. Baixe o app para ver as próximas semanas.
+        Sem horários nos próximos 30 dias. Baixe o app e peça para ser avisado.
       </p>
     )
   }
   return (
-    <div className="mt-3 space-y-4">
-      {withSlots.map((day) => (
-        <div key={day.date}>
-          <p className="text-xs font-semibold text-[#6A6C72]">{dayLabel(day.labelKey, day.date)}</p>
-          <div className="mt-1.5 flex flex-wrap gap-2">
-            {day.slots.map((slot) => (
-              <a
-                key={slot.startAtUtc}
-                href={storeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-lg bg-[#2D8CFF]/10 px-3 py-2 text-sm font-semibold text-[#2D8CFF] hover:bg-[#2D8CFF]/20"
-              >
-                {slot.startLocal}
-              </a>
+    <div className="mt-3">
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => onWeek(-1)}
+          aria-label="Semana anterior"
+          className="rounded-full px-2 py-1 text-lg text-[#6A6C72] hover:bg-[#F5F6FA]"
+        >
+          ‹
+        </button>
+        <span className="text-sm font-semibold">{agenda.weekLabel}</span>
+        <button
+          type="button"
+          onClick={() => onWeek(1)}
+          aria-label="Próxima semana"
+          className="rounded-full px-2 py-1 text-lg text-[#6A6C72] hover:bg-[#F5F6FA]"
+        >
+          ›
+        </button>
+        <span className="ml-auto rounded-full bg-[#F5F6FA] px-2 py-1 text-[11px] font-semibold text-[#6A6C72]">
+          {agenda.timezone}
+        </span>
+      </div>
+
+      {/* The grid scrolls inside itself: seven columns must never push the page sideways. */}
+      <div className="mt-2 overflow-x-auto rounded-xl bg-[#F5F6FA] p-3">
+        <table className="w-full min-w-[420px] border-separate border-spacing-1">
+          <thead>
+            <tr>
+              <th className="w-8" />
+              {agenda.days.map((day) => (
+                <th key={day.date} className="pb-1 text-center">
+                  <div
+                    className={`text-[10px] font-semibold ${
+                      day.isToday ? 'text-[#2D8CFF]' : 'text-[#6A6C72]'
+                    }`}
+                  >
+                    {WEEKDAY_SHORT[day.weekdayKey] ?? day.weekdayKey}
+                  </div>
+                  <div className={`text-sm font-bold ${day.isToday ? 'text-[#2D8CFF]' : ''}`}>
+                    {day.dayOfMonth}
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {agenda.hours.map((hour, rowIndex) => (
+              <tr key={hour}>
+                <td className="pr-1 text-right align-middle text-[10px] text-[#6A6C72]">{hour}</td>
+                {agenda.days.map((day) => {
+                  const cell = day.cells[rowIndex]
+                  const free = cell?.state === 'FREE'
+                  return (
+                    <td key={`${day.date}-${hour}`} className="p-0">
+                      {free ? (
+                        <a
+                          href={storeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Livre ${hour} em ${day.dayOfMonth}`}
+                          className="block h-9 rounded-lg border-[1.5px] border-[#2D8CFF] bg-[#2D8CFF]/10 hover:bg-[#2D8CFF]/20 md:h-11"
+                        />
+                      ) : (
+                        <div className="h-9 rounded-lg bg-[#DEDFE4]/45 md:h-11" aria-hidden="true" />
+                      )}
+                    </td>
+                  )
+                })}
+              </tr>
             ))}
-          </div>
-        </div>
-      ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
+}
+
+const WEEKDAY_SHORT: Record<string, string> = {
+  sun: 'Dom',
+  mon: 'Seg',
+  tue: 'Ter',
+  wed: 'Qua',
+  thu: 'Qui',
+  fri: 'Sex',
+  sat: 'Sáb',
 }
 
 /** The site is dark-themed; the teacher page (and its states) is light. */
