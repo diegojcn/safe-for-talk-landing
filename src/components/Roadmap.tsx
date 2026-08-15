@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { Circle, Clock, CheckCircle2 } from 'lucide-react'
+import { Circle, Clock, CheckCircle2, Loader2 } from 'lucide-react'
 
 const PHASES = [
   {
@@ -13,6 +13,8 @@ const PHASES = [
       { key: 'roadmap-phase-1-f2', done: true },
       { key: 'roadmap-phase-1-f3', done: true },
       { key: 'roadmap-phase-1-f4', done: true },
+      { key: 'roadmap-phase-1-f5', done: true },
+      { key: 'roadmap-phase-1-f6', done: true },
     ],
     statusKey: 'roadmap-phase-1-status',
     statusColor: 'bg-green-500/20 text-green-600 border-green-500/30',
@@ -26,7 +28,7 @@ const PHASES = [
     titleKey: 'roadmap-phase-2-title',
     descKey: 'roadmap-phase-2-description',
     features: [
-      { key: 'roadmap-phase-2-f1', done: false },
+      { key: 'roadmap-phase-2-f1', done: true },
       { key: 'roadmap-phase-2-f2', done: false },
       { key: 'roadmap-phase-2-f3', done: false },
       { key: 'roadmap-phase-2-f4', done: false },
@@ -43,16 +45,16 @@ const PHASES = [
     titleKey: 'roadmap-phase-3-title',
     descKey: 'roadmap-phase-3-description',
     features: [
-      { key: 'roadmap-phase-3-f1', done: false },
-      { key: 'roadmap-phase-3-f2', done: false },
-      { key: 'roadmap-phase-3-f3', done: false },
-      { key: 'roadmap-phase-3-f4', done: false },
+      { key: 'roadmap-phase-3-f1', done: true },
+      { key: 'roadmap-phase-3-f4', done: true },
+      { key: 'roadmap-phase-3-f2', inProgress: true },
+      { key: 'roadmap-phase-3-f3', inProgress: true },
     ],
     statusKey: 'roadmap-phase-3-status',
-    statusColor: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
-    dotColor: 'bg-orange-500',
-    accent: 'border-orange-500/30 hover:border-orange-500/60',
-    icon: <Clock size={14} />,
+    statusColor: 'bg-amber-500/20 text-amber-600 border-amber-500/30',
+    dotColor: 'bg-amber-500',
+    accent: 'border-amber-500/30 hover:border-amber-500/60',
+    icon: <Loader2 size={14} />,
   },
   {
     badgeKey: 'roadmap-phase-4-badge',
@@ -78,7 +80,7 @@ const PHASES = [
     descKey: 'roadmap-phase-5-description',
     features: [
       { key: 'roadmap-phase-5-f1', done: false },
-      { key: 'roadmap-phase-5-f2', done: false },
+      { key: 'roadmap-phase-5-f2', done: true },
       { key: 'roadmap-phase-5-f3', done: false },
       { key: 'roadmap-phase-5-f4', done: false },
     ],
@@ -131,7 +133,7 @@ export function Roadmap() {
             ))}
           </div>
           <div className="hidden md:block h-1 bg-gray-100 rounded-full relative">
-            <div className="absolute left-0 top-0 h-full w-[20%] bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full" />
+            <div className="absolute left-0 top-0 h-full w-[40%] bg-gradient-to-r from-green-500 to-green-400 rounded-full" />
           </div>
         </motion.div>
 
@@ -170,17 +172,24 @@ export function Roadmap() {
                 {phase.features.map((f, fi) => (
                   <li
                     key={fi}
-                    className={`flex items-start gap-2 text-sm ${f.done ? 'text-gray-700' : 'text-gray-600'}`}
+                    className={`flex items-start gap-2 text-sm ${f.done || f.inProgress ? 'text-gray-700' : 'text-gray-600'}`}
                   >
                     {f.done ? (
                       <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-green-600" />
+                    ) : f.inProgress ? (
+                      <Loader2 size={16} className="mt-0.5 shrink-0 text-amber-600" />
                     ) : (
                       <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${phase.dotColor}`} />
                     )}
-                    <span className={f.done ? 'font-medium' : ''}>{t(f.key)}</span>
+                    <span className={f.done || f.inProgress ? 'font-medium' : ''}>{t(f.key)}</span>
                     {f.done && (
                       <span className="ml-auto text-[10px] font-semibold text-green-700 bg-green-100 border border-green-200 rounded-full px-2 py-0.5 shrink-0">
                         {t('roadmap-done-label')}
+                      </span>
+                    )}
+                    {f.inProgress && (
+                      <span className="ml-auto text-[10px] font-semibold text-amber-700 bg-amber-100 border border-amber-200 rounded-full px-2 py-0.5 shrink-0">
+                        {t('roadmap-in-progress-label')}
                       </span>
                     )}
                   </li>
