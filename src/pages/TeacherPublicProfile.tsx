@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+// Simple Icons: the official monochrome brand glyphs — consistent weight across
+// Apple/Google/Instagram/Threads, unlike mixing Font Awesome with a custom svg.
+import { SiApple, SiGoogleplay, SiInstagram, SiThreads } from 'react-icons/si'
+import { trackEvent, Events } from '@/lib/analytics'
 import { Link, useParams } from 'react-router-dom'
 import {
   appStoreUrlForVisitor,
@@ -354,19 +358,54 @@ const TeacherPublicProfile: React.FC = () => {
               href={STORE_LINKS.ios}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-[#161616] px-5 py-3 text-sm font-semibold text-white"
+              onClick={() => trackEvent(Events.ClickAppStore)}
+              className="flex items-center gap-2 rounded-full bg-[#161616] px-5 py-3 text-sm font-semibold text-white transition-transform hover:scale-105"
             >
+              <SiApple className="text-lg" />
               App Store
             </a>
             <a
               href={STORE_LINKS.android}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-[#161616] px-5 py-3 text-sm font-semibold text-white"
+              onClick={() => trackEvent(Events.ClickPlayStore)}
+              className="flex items-center gap-2 rounded-full bg-[#161616] px-5 py-3 text-sm font-semibold text-white transition-transform hover:scale-105"
             >
+              <SiGoogleplay className="text-base" />
               Google Play
             </a>
           </div>
+
+          {/* Social row: the teacher shares this page on social media, so the way back to
+              the profiles that vouch for the product belongs right next to the stores. */}
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#6A6C72]">
+              Siga o Safe 4 Talk
+            </span>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://www.instagram.com/safe4talk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram do Safe 4 Talk"
+                onClick={() => trackEvent(Events.ClickInstagram)}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#DEDFE4] bg-white text-[#161616] transition-all hover:scale-110 hover:border-pink-400 hover:text-pink-600"
+              >
+                <SiInstagram className="text-lg" />
+              </a>
+              <a
+                href="https://www.threads.net/@safe4talk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Threads do Safe 4 Talk"
+                onClick={() => trackEvent(Events.ClickThreads)}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#DEDFE4] bg-white text-[#161616] transition-all hover:scale-110 hover:border-black"
+              >
+                <SiThreads className="text-lg" />
+              </a>
+            </div>
+          </div>
+
           <a
             href={STORE_LINKS.android}
             target="_blank"
