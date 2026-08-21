@@ -14,6 +14,7 @@ import {
   nextSlotLabel,
   PublicTeacher,
   STORE_LINKS,
+  webAppTeacherUrl,
   TeacherNotFoundError,
   TeacherAgenda,
   TeacherSlots,
@@ -99,6 +100,10 @@ const TeacherPublicProfile: React.FC = () => {
     }
   }, [handle])
 
+  // Booking chooser: every "agendar" tap offers browser-first booking or the app —
+  // the visitor may not have (or want) the app yet, and the web books just as well.
+  const [bookingOpen, setBookingOpen] = useState(false)
+
   if (status === 'loading') return <ProfileSkeleton />
   if (status === 'notfound') return <NotFound handle={handle || segment.replace(/^@/, '')} />
   if (status === 'error' || !teacher) return <LoadError handle={handle} />
@@ -112,6 +117,7 @@ const TeacherPublicProfile: React.FC = () => {
     .sort((a, b) => a.priceCents - b.priceCents)
   const availability = nextSlotLabel(teacher.nextSlotKey, teacher.nextSlotTime)
   const storeUrl = appStoreUrlForVisitor()
+  const webBookUrl = webAppTeacherUrl(handle)
   const pageTitle = `${teacher.displayName} — aulas de inglês 1:1 | Safe 4 Talk`
   const pageDescription = teacher.bio
     ? `${teacher.bio.slice(0, 150)}`
@@ -197,14 +203,13 @@ const TeacherPublicProfile: React.FC = () => {
             </div>
           </div>
 
-          <a
-            href={storeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => setBookingOpen(true)}
             className="mt-6 block w-full rounded-full bg-[#2D8CFF] py-4 text-center text-base font-semibold text-white hover:bg-[#1B7BEE] transition-colors"
           >
             Agendar aula com {firstName}
-          </a>
+          </button>
           <a href="#horarios" className="mt-3 block text-center text-sm font-semibold text-[#2D8CFF]">
             Ver horários ↓
           </a>
@@ -311,7 +316,7 @@ const TeacherPublicProfile: React.FC = () => {
             <ul className="mt-3 divide-y divide-[#DEDFE4]">
               {trial && (
                 <PriceRow
-                  href={storeUrl}
+                  onBook={() => setBookingOpen(true)}
                   label={`Experimental · ${trial.durationMinutes}min`}
                   badge="1ª AULA"
                   price={formatPrice(trial.priceCents, trial.currency)}
@@ -320,7 +325,7 @@ const TeacherPublicProfile: React.FC = () => {
               {(standard ?? []).map((o) => (
                 <PriceRow
                   key={`${o.kind}-${o.durationMinutes}`}
-                  href={storeUrl}
+                  onBook={() => setBookingOpen(true)}
                   label={`Aula · ${o.durationMinutes}min`}
                   price={formatPrice(o.priceCents, o.currency)}
                 />
@@ -339,7 +344,7 @@ const TeacherPublicProfile: React.FC = () => {
             )}
             <AgendaGrid
               agenda={agenda}
-              storeUrl={storeUrl}
+              onBook={() => setBookingOpen(true)}
               onWeek={(delta) => setWeekOffset((current) => Math.max(0, current + delta))}
             />
           </div>
@@ -419,18 +424,100 @@ const TeacherPublicProfile: React.FC = () => {
 
       {/* Sticky mobile CTA — the page is long, the CTA should never be far */}
       <div className="sticky bottom-0 z-20 border-t border-[#DEDFE4] bg-white/95 p-3 backdrop-blur md:hidden">
-        <a
-          href={storeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={() => setBookingOpen(true)}
           className="block w-full rounded-full bg-[#2D8CFF] py-3.5 text-center font-semibold text-white"
         >
           Agendar aula com {firstName}
-        </a>
+        </button>
       </div>
+
+      {bookingOpen && (
+        <BookingChooser
+          firstName={firstName}
+          webBookUrl={webBookUrl}
+          onClose={() => setBookingOpen(false)}
+        />
+      )}
     </div>
   )
 }
+
+/**
+ * "Como você quer agendar?" — browser first, app second.
+ *
+ * The visitor arriving from a shared link often has no app installed, and the
+ * web app books end to end; sending everyone to the store put an install
+ * between them and the lesson. The store stays one tap away for whoever
+ * prefers the app experience.
+ */
+const BookingChooser: React.FC<{
+  firstName: string
+  webBookUrl: string
+  onClose: () => void
+}> = ({ firstName, webBookUrl, onClose }) => (
+  <div
+    className="fixed inset-0 z-50 flex items-end justify-center bg-black/45 p-0 md:items-center md:p-6"
+    onClick={onClose}
+    role="dialog"
+    aria-modal="true"
+    aria-label={`Agendar aula com ${firstName}`}
+  >
+    <div
+      className="w-full max-w-md rounded-t-3xl bg-white p-6 shadow-xl md:rounded-3xl"
+      onClick={(event) => event.stopPropagation()}
+    >
+      <h3 className="text-lg font-bold">Como você quer agendar com {firstName}?</h3>
+
+      <a
+        href={webBookUrl}
+        onClick={() => trackEvent(Events.ClickWebApp, { source: 'teacher_page_booking' })}
+        className="mt-5 block rounded-2xl bg-[#2D8CFF] px-5 py-4 text-white transition-colors hover:bg-[#1B7BEE]"
+      >
+        <span className="block text-base font-semibold">Agendar no navegador</span>
+        <span className="mt-0.5 block text-sm text-white/85">
+          Sem instalar nada — entra e agenda em 1 minuto
+        </span>
+      </a>
+
+      <div className="mt-3 rounded-2xl border border-[#DEDFE4] px-5 py-4">
+        <span className="block text-sm font-semibold">Prefere o app?</span>
+        <span className="mt-0.5 block text-xs text-[#6A6C72]">
+          Melhor para praticar todo dia entre as aulas
+        </span>
+        <div className="mt-3 flex gap-2">
+          <a
+            href={STORE_LINKS.ios}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent(Events.ClickAppStore, { source: 'teacher_page_booking' })}
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#161616] px-4 py-2.5 text-sm font-semibold text-white"
+          >
+            <SiApple className="text-base" /> App Store
+          </a>
+          <a
+            href={STORE_LINKS.android}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent(Events.ClickPlayStore, { source: 'teacher_page_booking' })}
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#161616] px-4 py-2.5 text-sm font-semibold text-white"
+          >
+            <SiGoogleplay className="text-sm" /> Google Play
+          </a>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        onClick={onClose}
+        className="mt-4 block w-full py-2 text-center text-sm font-semibold text-[#6A6C72]"
+      >
+        Agora não
+      </button>
+    </div>
+  </div>
+)
 
 const Bullet: React.FC<{ title: string; text: string }> = ({ title, text }) => (
   <p className="text-sm leading-relaxed text-[#161616]">
@@ -438,18 +525,17 @@ const Bullet: React.FC<{ title: string; text: string }> = ({ title, text }) => (
   </p>
 )
 
-const PriceRow: React.FC<{ href: string; label: string; price: string; badge?: string }> = ({
-  href,
+const PriceRow: React.FC<{ onBook: () => void; label: string; price: string; badge?: string }> = ({
+  onBook,
   label,
   price,
   badge,
 }) => (
   <li>
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center gap-2 py-3 hover:opacity-80"
+    <button
+      type="button"
+      onClick={onBook}
+      className="flex w-full items-center gap-2 py-3 text-left hover:opacity-80"
     >
       <span className="text-sm">{label}</span>
       {badge && (
@@ -458,7 +544,7 @@ const PriceRow: React.FC<{ href: string; label: string; price: string; badge?: s
         </span>
       )}
       <span className="ml-auto font-bold">{price}</span>
-    </a>
+    </button>
   </li>
 )
 
@@ -473,9 +559,9 @@ const PriceRow: React.FC<{ href: string; label: string; price: string; badge?: s
  */
 const AgendaGrid: React.FC<{
   agenda: TeacherAgenda | null
-  storeUrl: string
+  onBook: () => void
   onWeek: (delta: number) => void
-}> = ({ agenda, storeUrl, onWeek }) => {
+}> = ({ agenda, onBook, onWeek }) => {
   if (!agenda) {
     return (
       <div className="mt-3 space-y-2">
@@ -548,12 +634,11 @@ const AgendaGrid: React.FC<{
                   return (
                     <td key={`${day.date}-${hour}`} className="p-0">
                       {free ? (
-                        <a
-                          href={storeUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <button
+                          type="button"
+                          onClick={onBook}
                           aria-label={`Livre ${hour} em ${day.dayOfMonth}`}
-                          className="block h-9 rounded-lg border-[1.5px] border-[#2D8CFF] bg-[#2D8CFF]/10 hover:bg-[#2D8CFF]/20 md:h-11"
+                          className="block h-9 w-full rounded-lg border-[1.5px] border-[#2D8CFF] bg-[#2D8CFF]/10 hover:bg-[#2D8CFF]/20 md:h-11"
                         />
                       ) : (
                         <div className="h-9 rounded-lg bg-[#DEDFE4]/45 md:h-11" aria-hidden="true" />

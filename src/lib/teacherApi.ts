@@ -132,7 +132,20 @@ export async function fetchPublicAgenda(
   return (await response.json()) as TeacherAgenda
 }
 
-/** Store links — the page's only conversion target until deep links ship. */
+/**
+ * The web app — where booking happens without installing anything. The teacher
+ * deep link (`?teacher=<handle>`) survives the login screens and lands the
+ * visitor on this teacher's in-app profile.
+ */
+const WEB_APP_URL: string =
+  (import.meta.env.VITE_SAFE_4_TALK_WEB_URL as string | undefined) ??
+  'https://safe-for-talk-web.diginfrastructures.com'
+
+export function webAppTeacherUrl(handle: string): string {
+  return `${WEB_APP_URL}/?teacher=${encodeURIComponent(handle)}`
+}
+
+/** Store links — for the visitor who prefers the app experience. */
 export const STORE_LINKS = {
   android: 'https://play.google.com/store/apps/details?id=br.com.safefortalk.android',
   ios: 'https://apps.apple.com/us/app/safe-4-talk/id6778502736?l=pt-BR',
