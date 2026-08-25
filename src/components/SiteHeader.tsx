@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import GooglePlayIcon from '../assets/google-play.svg'
 import { useTranslation } from 'react-i18next'
-import { Globe, ArrowLeft } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { trackEvent, Events } from '@/lib/analytics'
 
 /* ─── Social proof avatars ─── */
@@ -683,19 +683,16 @@ export function SiteHeader() {
                 </div>
               </a>
 
-              <a
-                href="https://safe-for-talk-web.diginfrastructures.com/"
-                target="_blank" rel="noopener noreferrer"
-                onClick={() => trackEvent(Events.ClickWebApp, { source: 'hero' })}
-                className="inline-flex items-center gap-3 bg-white/10 border border-white/20 text-white px-5 py-3 rounded-xl hover:bg-white/15 transition-all font-semibold"
-              >
-                <Globe className="w-6 h-6 text-indigo-400" />
-                <div className="text-left">
-                  <span className="text-[10px] leading-none block text-slate-400 uppercase tracking-wide">{t('site-header-web-one')}</span>
-                  <span className="text-sm font-bold leading-none">{t('site-header-web-two')}</span>
-                </div>
-              </a>
             </motion.div>
+
+            <a
+              href="https://safe-for-talk-web.diginfrastructures.com/"
+              target="_blank" rel="noopener noreferrer"
+              onClick={() => trackEvent(Events.ClickWebApp, { source: 'hero' })}
+              className="text-sm text-slate-500 underline hover:text-slate-400 transition-colors"
+            >
+              {t('site-header-web-one')} {t('site-header-web-two')}
+            </a>
 
             <motion.div
               initial={{ opacity: 0 }}

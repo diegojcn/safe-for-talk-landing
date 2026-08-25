@@ -17,6 +17,8 @@ export const Events = {
   ClickPlayStore: 'click_download_playstore',
   ClickAppStore: 'click_download_appstore',
   ClickWebApp: 'click_open_webapp',
+  // Navbar
+  ClickNavCTA: 'click_nav_download_cta',
   // CTA
   ClickInstagram: 'click_social_instagram',
   ClickThreads: 'click_social_threads',

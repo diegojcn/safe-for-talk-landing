@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import safe4talkLogo from '../assets/safe4tal - image.svg'
 import { useTranslation } from 'react-i18next'
+import { trackEvent, Events } from '../lib/analytics'
 
 export function Navbar() {
   const { t } = useTranslation()
@@ -55,15 +56,16 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* CTA desktop */}
-        <a
-          href="https://safe-for-talk-web.diginfrastructures.com/"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* CTA desktop — scroll to hero where store buttons live */}
+        <button
+          onClick={() => {
+            trackEvent(Events.ClickNavCTA, { source: 'navbar-desktop' })
+            scrollTo('#site-header')
+          }}
           className="hidden md:inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
         >
           {t('nav-cta')}
-        </a>
+        </button>
 
         {/* Mobile menu button */}
         <button
@@ -93,14 +95,15 @@ export function Navbar() {
                   {link.label}
                 </button>
               ))}
-              <a
-                href="https://safe-for-talk-web.diginfrastructures.com/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => {
+                  trackEvent(Events.ClickNavCTA, { source: 'navbar-mobile' })
+                  scrollTo('#site-header')
+                }}
                 className="inline-flex justify-center bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
               >
                 {t('nav-cta')}
-              </a>
+              </button>
             </nav>
           </motion.div>
         )}
