@@ -55,16 +55,6 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* CTA desktop */}
-        <a
-          href="https://safe-for-talk-web.diginfrastructures.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
-        >
-          {t('nav-cta')}
-        </a>
-
         {/* Mobile menu button */}
         <button
           className="md:hidden text-white"
@@ -93,14 +83,6 @@ export function Navbar() {
                   {link.label}
                 </button>
               ))}
-              <a
-                href="https://safe-for-talk-web.diginfrastructures.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex justify-center bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
-              >
-                {t('nav-cta')}
-              </a>
             </nav>
           </motion.div>
         )}
