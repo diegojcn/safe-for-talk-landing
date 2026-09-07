@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Worktrees criados por sessões locais do Claude Code — nunca versionados.
+.claude/worktrees/
