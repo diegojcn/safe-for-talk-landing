@@ -25,6 +25,7 @@ import ConversarComEstranhosOnline from './pages/ConversarComEstranhosOnline'
 import ChatParaConhecerPessoas from './pages/ChatParaConhecerPessoas'
 import FazerAmigosOnline from './pages/FazerAmigosOnline'
 import ChatComEstrangeiros from './pages/ChatComEstrangeiros'
+import TeacherProfile from './pages/TeacherProfile'
 import { Routes, Route } from 'react-router-dom'
 
 // Router is provided externally (BrowserRouter in main.tsx, StaticRouter in entry-server.tsx)
@@ -66,6 +67,17 @@ function App() {
       <Route path="/chat-para-conhecer-pessoas" element={<ChatParaConhecerPessoas />} />
       <Route path="/fazer-amigos-online" element={<FazerAmigosOnline />} />
       <Route path="/chat-com-estrangeiros" element={<ChatComEstrangeiros />} />
+      {/*
+        Last on purpose, after every known route.
+
+        It carries the teacher's own link — safe4talk.com/@handle, the one the panel tells them
+        to post on Instagram — which until now matched nothing and rendered a blank page. It
+        cannot be written as `/@:handle`: React Router matches params as whole segments, so a
+        static prefix inside one never matches. The component reads the slug and decides.
+
+        It also ends the blank page on every other unknown URL, which was the same silence.
+      */}
+      <Route path="/:slug" element={<TeacherProfile />} />
     </Routes>
   )
 }
