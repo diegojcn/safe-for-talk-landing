@@ -41,14 +41,16 @@ export default function PraticarInglesAoVivo() {
               falando com pessoas reais. No Safe 4 Talk você entra em salas ao vivo com
               nativos e estudantes do mundo todo — de graça e sem pressão.
             </p>
-            <a
-              href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors"
-            >
-              Começar a Praticar Grátis →
-            </a>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+                Começar a Praticar Grátis →
+              </a>
+              <a href="https://apps.apple.com/us/app/safe-4-talk/id6778502736?l=pt-BR" target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+                Baixar no iOS →
+              </a>
+            </div>
           </motion.div>
         </section>
 

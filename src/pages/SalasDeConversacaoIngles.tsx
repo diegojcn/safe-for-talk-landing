@@ -27,15 +27,19 @@ export default function SalasDeConversacaoIngles() {
               Entre em salas de conversação em inglês com pessoas do mundo todo, agora mesmo. Sem agendamento, sem mensalidade. Funciona no navegador e no Android.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="https://safe-for-talk-web.diginfrastructures.com" target="_blank" rel="noopener noreferrer"
-                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
-                Entrar numa Sala Agora →
-              </a>
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
-                className="inline-block px-8 py-4 bg-slate-700 hover:bg-slate-600 rounded-xl font-semibold text-lg transition-colors">
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
                 Baixar no Android →
               </a>
+              <a href="https://apps.apple.com/us/app/safe-4-talk/id6778502736?l=pt-BR" target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+                Baixar no iOS →
+              </a>
             </div>
+            <a href="https://safe-for-talk-web.diginfrastructures.com" target="_blank" rel="noopener noreferrer"
+              className="text-sm text-slate-500 underline mt-2 inline-block">
+              Entrar numa Sala Agora →
+            </a>
           </motion.div>
         </section>
 
