@@ -88,12 +88,21 @@ export function formatPrice(priceCents: number, currency: string | null): string
 }
 
 const LANGUAGE_NAMES: Record<string, string> = {
+  // ISO codes, for rows written before the language column moved to full names.
   en: 'Inglês',
   es: 'Espanhol',
   it: 'Italiano',
   fr: 'Francês',
   de: 'Alemão',
   pt: 'Português',
+  // The names the column stores today. The API answers "English" and this page is in
+  // Portuguese, so without these a Brazilian visitor reads "ENSINA: English".
+  english: 'Inglês',
+  spanish: 'Espanhol',
+  italian: 'Italiano',
+  french: 'Francês',
+  german: 'Alemão',
+  portuguese: 'Português',
 }
 
 /**
@@ -104,4 +113,38 @@ const LANGUAGE_NAMES: Record<string, string> = {
 export function languageLabel(code: string): string {
   const key = code.trim().toLowerCase()
   return LANGUAGE_NAMES[key] || code.trim()
+}
+
+/**
+ * The teacher's focus areas, which the API returns as the keys the app stores.
+ *
+ * The app translates them; this page did not, so a visitor deciding whether to book read
+ * "conversation · business · toefl" on a Portuguese page. Unknown keys pass through, because
+ * a raw key is still better than dropping a specialty the teacher chose.
+ */
+const SPECIALTY_NAMES: Record<string, string> = {
+  conversation: 'Conversação',
+  business: 'Business',
+  ielts: 'IELTS',
+  toefl: 'TOEFL',
+  interviews: 'Entrevistas',
+  beginners: 'Iniciantes',
+  kids: 'Kids',
+}
+
+export function specialtyLabel(specialty: string): string {
+  const key = specialty.trim().toLowerCase()
+  return SPECIALTY_NAMES[key] || specialty.trim()
+}
+
+/**
+ * "Aula experimental · 30 min" — the kind matters as much as the duration.
+ *
+ * A teacher with a 30-minute trial and a 30-minute standard lesson rendered two identical
+ * "30 min" rows at different prices, which reads as a mistake on the page where the visitor
+ * is deciding what to pay.
+ */
+export function offeringLabel(kind: string, durationMinutes: number): string {
+  const minutes = `${durationMinutes} min`
+  return kind.trim().toUpperCase() === 'TRIAL' ? `Aula experimental · ${minutes}` : minutes
 }
