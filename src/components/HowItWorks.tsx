@@ -94,14 +94,12 @@ export function HowItWorks() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-14 text-center"
         >
-          <a
-            href="https://safe-for-talk-web.diginfrastructures.com/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => document.querySelector('#site-header')?.scrollIntoView({ behavior: 'smooth' })}
             className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3 rounded-xl font-semibold transition-colors shadow-lg shadow-indigo-500/20"
           >
             Comece agora — é grátis
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>

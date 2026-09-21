@@ -27,15 +27,19 @@ export default function ConversarComEstranhosOnline() {
               Às vezes a melhor conversa é com alguém que você nunca viu. No Safe 4 Talk você encontra pessoas do mundo todo em salas ao vivo — sem exposição desnecessária, sem pressão, 100% gratuito no navegador e Android.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="https://safe-for-talk-web.diginfrastructures.com" target="_blank" rel="noopener noreferrer"
-                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
-                Entrar numa Sala pelo Navegador →
-              </a>
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
-                className="inline-block px-8 py-4 bg-slate-700 hover:bg-slate-600 rounded-xl font-semibold text-lg transition-colors">
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
                 Baixar no Android →
               </a>
+              <a href="https://apps.apple.com/us/app/safe-4-talk/id6778502736?l=pt-BR" target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+                Baixar no iOS →
+              </a>
             </div>
+            <a href="https://safe-for-talk-web.diginfrastructures.com" target="_blank" rel="noopener noreferrer"
+              className="text-sm text-slate-500 underline mt-2 inline-block">
+              Entrar numa Sala pelo Navegador →
+            </a>
           </motion.div>
         </section>
 

@@ -41,14 +41,16 @@ export default function ChatAnonimoSeguro() {
               do mundo todo de forma anônima, sem julgamentos e completamente de graça.
               Sua privacidade é nossa prioridade.
             </p>
-            <a
-              href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors"
-            >
-              Baixar Grátis no Android →
-            </a>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+                Baixar Grátis no Android →
+              </a>
+              <a href="https://apps.apple.com/us/app/safe-4-talk/id6778502736?l=pt-BR" target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+                Baixar no iOS →
+              </a>
+            </div>
           </motion.div>
         </section>
 

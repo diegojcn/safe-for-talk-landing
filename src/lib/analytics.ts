@@ -21,6 +21,8 @@ export const Events = {
   ClickInstagram: 'click_social_instagram',
   ClickThreads: 'click_social_threads',
   ClickBackToTop: 'click_cta_back_to_top',
+  // Navbar
+  ClickNavCTA: 'click_nav_download_cta',
   // Features / Roadmap
   ViewFeatures: 'view_section_features',
   ViewRoadmap: 'view_section_roadmap',

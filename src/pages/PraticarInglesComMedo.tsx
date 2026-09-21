@@ -26,8 +26,18 @@ export default function PraticarInglesComMedo() {
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
               Você sabe inglês, mas na hora de falar, trava. Fica com medo de errar, de não ser entendido, de passar vergonha. Isso tem nome — e tem solução. O Safe 4 Talk foi feito para quem está nesse lugar.
             </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+                Baixar no Android →
+              </a>
+              <a href="https://apps.apple.com/us/app/safe-4-talk/id6778502736?l=pt-BR" target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+                Baixar no iOS →
+              </a>
+            </div>
             <a href="https://safe-for-talk-web.diginfrastructures.com" target="_blank" rel="noopener noreferrer"
-              className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+              className="text-sm text-slate-500 underline mt-2 inline-block">
               Praticar Sem Pressão →
             </a>
           </motion.div>

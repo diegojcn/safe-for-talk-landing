@@ -27,15 +27,19 @@ export default function InglesParaTrabalho() {
               Empresas remotas, reuniões em inglês, entrevistas com gringos — o mercado de trabalho exige fluência. O Safe 4 Talk te prepara com conversação real, sem pagar curso caro.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="https://safe-for-talk-web.diginfrastructures.com" target="_blank" rel="noopener noreferrer"
-                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
-                Praticar pelo Navegador →
-              </a>
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
-                className="inline-block px-8 py-4 bg-slate-700 hover:bg-slate-600 rounded-xl font-semibold text-lg transition-colors">
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
                 Baixar no Android →
               </a>
+              <a href="https://apps.apple.com/us/app/safe-4-talk/id6778502736?l=pt-BR" target="_blank" rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold text-lg transition-colors">
+                Baixar no iOS →
+              </a>
             </div>
+            <a href="https://safe-for-talk-web.diginfrastructures.com" target="_blank" rel="noopener noreferrer"
+              className="text-sm text-slate-500 underline mt-2 inline-block">
+              Praticar pelo Navegador →
+            </a>
           </motion.div>
         </section>
 
