@@ -6,6 +6,8 @@ import {
   fetchPublicTeacher,
   formatPrice,
   languageLabel,
+  offeringLabel,
+  specialtyLabel,
   type TeacherLoad,
 } from '../lib/teacherApi'
 import { Events, trackEvent } from '../lib/analytics'
@@ -179,7 +181,7 @@ const TeacherProfile: React.FC = () => {
                 <div className="flex flex-wrap gap-2">
                   {load.profile.specialties.map((specialty) => (
                     <span key={specialty} className="bg-gray-100 text-gray-700 text-sm rounded-full px-3 py-1">
-                      {specialty}
+                      {specialtyLabel(specialty)}
                     </span>
                   ))}
                 </div>
@@ -192,7 +194,9 @@ const TeacherProfile: React.FC = () => {
                 <ul className="divide-y">
                   {load.profile.offerings.map((offering) => (
                     <li key={`${offering.kind}-${offering.durationMinutes}`} className="flex justify-between py-2">
-                      <span className="text-gray-700">{offering.durationMinutes} min</span>
+                      <span className="text-gray-700">
+                        {offeringLabel(offering.kind, offering.durationMinutes)}
+                      </span>
                       <span className="font-semibold">
                         {formatPrice(offering.priceCents, offering.currency)}
                       </span>
