@@ -8,6 +8,7 @@ import {
   languageLabel,
   type TeacherLoad,
 } from '../lib/teacherApi'
+import { Events, trackEvent } from '../lib/analytics'
 
 /**
  * safe4talk.com/@handle — the link the teacher's panel tells them to post on Instagram.
@@ -40,7 +41,17 @@ const TeacherProfile: React.FC = () => {
     let alive = true
     setLoad({ state: 'loading' })
     fetchPublicTeacher(handle).then((result) => {
-      if (alive) setLoad(result)
+      if (!alive) return
+      setLoad(result)
+      // The first step of the booking funnel, and the only one the teacher controls: they
+      // posted the link. Everything after the click is measured inside the app.
+      if (result.state === 'found') {
+        trackEvent(Events.ViewTeacherProfile, { handle })
+      } else if (result.state === 'not-found') {
+        // A visit that hit a profile the teacher never published. Counted apart, because it
+        // is a teacher problem and not a demand problem, and the two would cancel out.
+        trackEvent(Events.ViewTeacherProfileUnavailable, { handle })
+      }
     })
     return () => {
       alive = false
@@ -193,6 +204,7 @@ const TeacherProfile: React.FC = () => {
 
             <a
               href={bookingUrlFor(load.profile.handle)}
+              onClick={() => trackEvent(Events.ClickTeacherBook, { handle: load.profile.handle })}
               className="block w-full text-center bg-blue-600 text-white font-semibold rounded-full px-6 py-3 hover:bg-blue-700 transition-colors"
             >
               Agendar uma aula

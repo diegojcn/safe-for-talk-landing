@@ -63,8 +63,18 @@ export async function fetchPublicTeacher(handle: string): Promise<TeacherLoad> {
   }
 }
 
+/**
+ * Where "Agendar uma aula" goes.
+ *
+ * `src` rides along so the app can tell a visitor who came from the teacher's own public page
+ * apart from one who opened an app link some other way. Without it both arrive as the same
+ * "link", and the question the panel promises the teacher — does posting this on Instagram
+ * bring anyone? — stays unanswerable on the side that matters.
+ */
+export const BOOKING_SOURCE = 'public_page'
+
 export function bookingUrlFor(handle: string): string {
-  return `${WEB_APP_BASE}/?teacher=${encodeURIComponent(handle)}`
+  return `${WEB_APP_BASE}/?teacher=${encodeURIComponent(handle)}&src=${BOOKING_SOURCE}`
 }
 
 /** "R$ 50,00" — prices are shown whole, because a teacher's price is a decision, not a detail. */

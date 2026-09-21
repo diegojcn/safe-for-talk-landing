@@ -24,4 +24,10 @@ export const Events = {
   // Features / Roadmap
   ViewFeatures: 'view_section_features',
   ViewRoadmap: 'view_section_roadmap',
+  // Teacher public page (safe4talk.com/@handle) — the first step of the booking funnel.
+  // Everything after the click is measured inside the app; until these existed, the step the
+  // teacher actually controls (posting their link) was the only one nobody could see.
+  ViewTeacherProfile: 'view_teacher_profile',
+  ViewTeacherProfileUnavailable: 'view_teacher_profile_unavailable',
+  ClickTeacherBook: 'click_teacher_book',
 } as const
