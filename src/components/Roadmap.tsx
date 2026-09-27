@@ -1,8 +1,30 @@
+import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { Circle, Clock, CheckCircle2, Loader2 } from 'lucide-react'
 
-const PHASES = [
+/**
+ * Uma linha da fase. `inProgress` e opcional de proposito: nenhuma fase o usa
+ * hoje (a 3 saiu de "em andamento" em 27/09), e sem a anotacao o TypeScript
+ * infere o tipo sem ele e quebra o render, que continua sabendo desenhar o
+ * estado. Tipar aqui mantem a capacidade viva para a proxima fase que precisar.
+ */
+type RoadmapFeature = { key: string; done?: boolean; inProgress?: boolean }
+
+type RoadmapPhase = {
+  badgeKey: string
+  periodKey: string
+  titleKey: string
+  descKey: string
+  features: RoadmapFeature[]
+  statusKey: string
+  statusColor: string
+  dotColor: string
+  accent: string
+  icon: ReactNode
+}
+
+const PHASES: RoadmapPhase[] = [
   {
     badgeKey: 'roadmap-phase-1-badge',
     periodKey: 'roadmap-phase-1-period',
@@ -47,14 +69,18 @@ const PHASES = [
     features: [
       { key: 'roadmap-phase-3-f1', done: true },
       { key: 'roadmap-phase-3-f4', done: true },
-      { key: 'roadmap-phase-3-f2', inProgress: true },
-      { key: 'roadmap-phase-3-f3', inProgress: true },
+      // Teacher Hub e reserva 1:1 sairam do "em andamento" em 27/09: estao no ar
+      // para todos na web e no Android. A App Store ainda serve a 3.1.15, de
+      // 21/07, que e anterior ao Hub -- por isso a descricao da fase diz onde
+      // esta disponivel em vez de deixar o iPhone subentendido.
+      { key: 'roadmap-phase-3-f2', done: true },
+      { key: 'roadmap-phase-3-f3', done: true },
     ],
     statusKey: 'roadmap-phase-3-status',
-    statusColor: 'bg-amber-500/20 text-amber-600 border-amber-500/30',
-    dotColor: 'bg-amber-500',
-    accent: 'border-amber-500/30 hover:border-amber-500/60',
-    icon: <Loader2 size={14} />,
+    statusColor: 'bg-green-500/20 text-green-600 border-green-500/30',
+    dotColor: 'bg-green-500',
+    accent: 'border-green-500/30 hover:border-green-500/60',
+    icon: <CheckCircle2 size={14} />,
   },
   {
     badgeKey: 'roadmap-phase-4-badge',
