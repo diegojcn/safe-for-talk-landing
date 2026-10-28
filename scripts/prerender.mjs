@@ -16,36 +16,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { prerenderRoutes } from './routes.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const distDir = path.resolve(__dirname, '../dist')
 const ssrDist = path.resolve(__dirname, '../dist-ssr')
-
-// Rotas que devem ser pré-renderizadas
-const routes = [
-  '/',
-  '/chat-anonimo-seguro',
-  '/praticar-ingles-ao-vivo',
-  '/app-para-praticar-ingles',
-  '/conversar-com-nativos-gratis',
-  '/aprender-ingles-sem-curso',
-  '/salas-de-conversacao-ingles',
-  '/praticar-ingles-com-medo',
-  '/ingles-para-trabalho',
-  '/alternativa-duolingo',
-  '/como-melhorar-sotaque-ingles',
-  '/praticar-espanhol-ao-vivo',
-  '/aprender-alemao-falando',
-  '/conversar-com-estranhos-online',
-  '/chat-para-conhecer-pessoas',
-  '/fazer-amigos-online',
-  '/chat-com-estrangeiros',
-  '/privacy',
-  '/terms',
-  '/support',
-  '/suporte',
-  '/unsubscribe',
-]
 
 async function prerender() {
   // Template base gerado pelo Vite
@@ -54,7 +29,7 @@ async function prerender() {
   // Importa o bundle SSR do React
   const { render } = await import(path.join(ssrDist, 'entry-server.js'))
 
-  for (const route of routes) {
+  for (const route of prerenderRoutes) {
     console.log(`⚙️  Pré-renderizando: ${route}`)
 
     const { html, head } = render(route)

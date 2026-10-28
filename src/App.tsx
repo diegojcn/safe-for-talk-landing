@@ -78,6 +78,15 @@ function App() {
         It also ends the blank page on every other unknown URL, which was the same silence.
       */}
       <Route path="/:slug" element={<TeacherProfile />} />
+      {/*
+        And this one closes the other half of the same silence.
+
+        A param only ends the blank page for paths of ONE segment. safe4talk.com/p/pronunciation
+        has two, matched nothing, and rendered blank again — which is where the reactivation post
+        was sending everyone without the app installed. `*` matches whatever is left, with the
+        lowest priority in the router's ranking, so every route above still wins.
+      */}
+      <Route path="*" element={<TeacherProfile />} />
     </Routes>
   )
 }
