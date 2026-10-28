@@ -117,14 +117,30 @@ const TeacherProfile: React.FC = () => {
                 ? 'Tente de novo em alguns instantes.'
                 : isTeacherLink
                   ? 'Esse professor ainda não publicou o perfil, ou o link está errado.'
-                  : 'Essa página não existe.'}
+                  : 'Esse endereço não existe ou mudou de lugar. Na página inicial você encontra o Safe 4 Talk e onde baixar o app.'}
             </p>
-            <a
-              href="https://safe-for-talk-web.diginfrastructures.com/"
-              className="inline-block bg-blue-600 text-white font-semibold rounded-full px-6 py-3 hover:bg-blue-700 transition-colors"
-            >
-              Ver outros professores
-            </a>
+            {/*
+              Two different visitors, so two different actions. A broken teacher link is still
+              someone looking for a teacher, and the panel of teachers is where they go. An
+              unknown address is usually someone arriving from a post about the app — sending
+              them to the teachers' panel answers a question they never asked, while the home
+              presents the app and already carries the store links.
+            */}
+            {load.state === 'error' || isTeacherLink ? (
+              <a
+                href="https://safe-for-talk-web.diginfrastructures.com/"
+                className="inline-block bg-blue-600 text-white font-semibold rounded-full px-6 py-3 hover:bg-blue-700 transition-colors"
+              >
+                Ver outros professores
+              </a>
+            ) : (
+              <Link
+                to="/"
+                className="inline-block bg-blue-600 text-white font-semibold rounded-full px-6 py-3 hover:bg-blue-700 transition-colors"
+              >
+                Ir para a página inicial
+              </Link>
+            )}
           </div>
         )}
 
