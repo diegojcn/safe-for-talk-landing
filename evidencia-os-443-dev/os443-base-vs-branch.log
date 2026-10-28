@@ -1,0 +1,15 @@
+=== /@alguem: BASE (a74d459, sem o patch) vs BRANCH (os/443) ===
+[BASE  ] /@alguem textoVisivel=95
+   "Safe 4 Talk Não foi possível carregar Tente de novo em alguns instantes. Ver outros professores"
+   requisicoes que falharam: http://localhost:8080/api/safe-for-talk/v1/teachers/public/alguem?tz=A -> net::ERR_FAILED | http://localhost:8080/api/safe-for-talk/v1/teachers/public/alguem?tz=A -> net::ERR_FAILED | https://www.google-analytics.com/g/collect?v=2&tid=G-ZH9V6R8XPW&gtm=45 -> net::ERR_ABORTED
+[BRANCH] /@alguem textoVisivel=95
+   "Safe 4 Talk Não foi possível carregar Tente de novo em alguns instantes. Ver outros professores"
+   requisicoes que falharam: http://localhost:8080/api/safe-for-talk/v1/teachers/public/alguem?tz=A -> net::ERR_FAILED | http://localhost:8080/api/safe-for-talk/v1/teachers/public/alguem?tz=A -> net::ERR_FAILED | https://www.google-analytics.com/g/collect?v=2&tid=G-ZH9V6R8XPW&gtm=45 -> net::ERR_ABORTED
+
+=== /p/pronunciation: BASE vs BRANCH — o defeito e a correcao, no navegador ===
+[BASE  ] /p/pronunciation?src=instagram textoVisivel=0
+   ""
+   requisicoes que falharam: https://www.google-analytics.com/g/collect?v=2&tid=G-ZH9V6R8XPW&gtm=45 -> net::ERR_ABORTED
+[BRANCH] /p/pronunciation?src=instagram textoVisivel=169
+   "Safe 4 Talk Página não encontrada Esse endereço não existe ou mudou de lugar. Na página inicial você encontra o Safe 4 T"
+   requisicoes que falharam: https://www.google-analytics.com/g/collect?v=2&tid=G-ZH9V6R8XPW&gtm=45 -> net::ERR_ABORTED

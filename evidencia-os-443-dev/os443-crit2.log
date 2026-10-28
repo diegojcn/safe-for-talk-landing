@@ -1,0 +1,48 @@
+
+> safe-4-talk-landing@0.0.0 check:routes /Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443
+> pnpm build:ssr && node scripts/check-blank-routes.mjs
+
+
+> safe-4-talk-landing@0.0.0 build:ssr /Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443
+> vite build --ssr src/entry-server.tsx --outDir dist-ssr
+
+vite v6.2.3 building SSR bundle for production...
+transforming...
+✓ 48 modules transformed.
+rendering chunks...
+dist-ssr/entry-server.js  325.13 kB
+✓ built in 282ms
+— caminhos desconhecidos: têm de renderizar alguma coisa
+/p/pronunciation bytes=1095 naoEncontrada=true
+/p/pronunciation?src=instagram bytes=1095 naoEncontrada=true
+/p/a/b/c bytes=1095 naoEncontrada=true
+/p/ bytes=1095 naoEncontrada=true
+/xyz-nao-existe bytes=1095 naoEncontrada=true
+
+— rotas reais: nenhuma pode virar "não encontrada"
+/ bytes=76262 naoEncontrada=false
+/chat-anonimo-seguro bytes=15002 naoEncontrada=false
+/praticar-ingles-ao-vivo bytes=16900 naoEncontrada=false
+/app-para-praticar-ingles bytes=13542 naoEncontrada=false
+/conversar-com-nativos-gratis bytes=13020 naoEncontrada=false
+/aprender-ingles-sem-curso bytes=13093 naoEncontrada=false
+/salas-de-conversacao-ingles bytes=13327 naoEncontrada=false
+/praticar-ingles-com-medo bytes=13928 naoEncontrada=false
+/ingles-para-trabalho bytes=13716 naoEncontrada=false
+/alternativa-duolingo bytes=13661 naoEncontrada=false
+/como-melhorar-sotaque-ingles bytes=13898 naoEncontrada=false
+/praticar-espanhol-ao-vivo bytes=11760 naoEncontrada=false
+/aprender-alemao-falando bytes=11459 naoEncontrada=false
+/conversar-com-estranhos-online bytes=13648 naoEncontrada=false
+/chat-para-conhecer-pessoas bytes=13657 naoEncontrada=false
+/fazer-amigos-online bytes=13671 naoEncontrada=false
+/chat-com-estrangeiros bytes=13553 naoEncontrada=false
+/privacy bytes=4238 naoEncontrada=false
+/terms bytes=6888 naoEncontrada=false
+/support bytes=3214 naoEncontrada=false
+/suporte bytes=3214 naoEncontrada=false
+/unsubscribe bytes=4676 naoEncontrada=false
+/@alguem bytes=949 naoEncontrada=false
+
+✅ 5 caminhos desconhecidos com corpo, 23 rotas reais intactas
+EXIT=0

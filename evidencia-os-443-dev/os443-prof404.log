@@ -1,0 +1,7 @@
+=== C5: professor inexistente — BASE vs BRANCH, tem de ser igual ===
+[BASE  ] /@alguem (API respondendo 404) textoVisivel=123
+   "Safe 4 Talk Perfil não disponível Esse professor ainda não publicou o perfil, ou o link está errado. Ver outros professores"
+   pilula(s): ["Ver outros professores"]
+[BRANCH] /@alguem (API respondendo 404) textoVisivel=123
+   "Safe 4 Talk Perfil não disponível Esse professor ainda não publicou o perfil, ou o link está errado. Ver outros professores"
+   pilula(s): ["Ver outros professores"]

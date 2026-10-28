@@ -1,0 +1,58 @@
+=== C4: caminho desconhecido mostra a pagina de nao-encontrada (390x844) ===
+/p/pronunciation?src=instagram     status=200 textoVisivel=169 overflowX=false h1="Página não encontrada"
+   Safe 4 Talk Página não encontrada Esse endereço não existe ou mudou de lugar. Na página inicial você encontra o Safe 4 Talk e onde baixar o app. Ir pa
+/p/qualquer-coisa                  status=200 textoVisivel=169 overflowX=false h1="Página não encontrada"
+   Safe 4 Talk Página não encontrada Esse endereço não existe ou mudou de lugar. Na página inicial você encontra o Safe 4 Talk e onde baixar o app. Ir pa
+/p/a/b/c                           status=200 textoVisivel=169 overflowX=false h1="Página não encontrada"
+   Safe 4 Talk Página não encontrada Esse endereço não existe ou mudou de lugar. Na página inicial você encontra o Safe 4 Talk e onde baixar o app. Ir pa
+/p/                                status=200 textoVisivel=169 overflowX=false h1="Página não encontrada"
+   Safe 4 Talk Página não encontrada Esse endereço não existe ou mudou de lugar. Na página inicial você encontra o Safe 4 Talk e onde baixar o app. Ir pa
+/xyz-nao-existe                    status=200 textoVisivel=169 overflowX=false h1="Página não encontrada"
+   Safe 4 Talk Página não encontrada Esse endereço não existe ou mudou de lugar. Na página inicial você encontra o Safe 4 Talk e onde baixar o app. Ir pa
+
+=== C5: nao regrediu ===
+/                                  status=200 textoVisivel=3978 overflowX=false h1="Learn the language.Practice with real people."
+   Safe 4 Talk Features How it works Roadmap Get the app +300 learners already using the app Learn the language. Practice with real people. The only app 
+/@alguem                           status=200 textoVisivel=95 overflowX=false h1="Não foi possível carregar"
+   Safe 4 Talk Não foi possível carregar Tente de novo em alguns instantes. Ver outros professores
+/privacy                           status=200 textoVisivel=1890 overflowX=false h1="Privacy Policy – Safe 4 Talk"
+   ← Home Privacy Policy – Safe 4 Talk Last updated: 06/24/2025 Your privacy matters to us. This Privacy Policy describes how Safe 4 Talk collects, uses 
+/support                           status=200 textoVisivel=1451 overflowX=false h1="Support – Safe 4 Talk"
+   ← Home Support – Safe 4 Talk Need help with Safe 4 Talk? We're here for you. Check the frequently asked questions below or reach out to us directly by
+
+=== C1/C2: texto e botao exatos, e o que NAO aparece ===
+titulo "Pagina nao encontrada": true
+paragrafo novo presente       : true
+botao "Ir para a pagina inicial": true
+NAO deve ter "Ver outros professores": false
+NAO deve ter "Essa pagina nao existe.": false
+pilulas azuis na tela (esperado 1): 1 -> ["Ir para a página inicial"]
+
+=== C6: botao numa linha, altura >= 44px, sem scroll horizontal (390x844) ===
+botao: largura=212px altura=48px linhas~=1.00
+altura >= 44px: true
+
+=== C7: sem piscada de skeleton na primeira pintura ===
+primeira pintura: h1="Página não encontrada" skeletons=0
+skeletons depois de 1,2s: 0
+
+=== C3: clicar no botao vai para / pelo roteador, sem recarregar ===
+url depois do clique: http://localhost:5443/
+marca de sessao sobreviveu (nao recarregou): true
+navegacoes de documento depois do goto: 1
+
+=== C8: foco de teclado visivel no botao (Tab) ===
+[
+  {
+    "texto": "Safe 4 Talk",
+    "tag": "A",
+    "outlineStyle": "auto",
+    "outlineWidth": "1px"
+  },
+  {
+    "texto": "Ir para a página inicial",
+    "tag": "A",
+    "outlineStyle": "auto",
+    "outlineWidth": "1px"
+  }
+]

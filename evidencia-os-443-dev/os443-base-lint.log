@@ -1,0 +1,15 @@
+
+> safe-4-talk-landing@0.0.0 lint /Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443-base
+> eslint .
+
+
+/Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443-base/src/components/ui/button.tsx
+  59:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+/Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443-base/src/pages/Unsubcribe.tsx
+  4:28  error  Prefer using the primitive `string` as a type name, rather than the upper-cased `String`  @typescript-eslint/no-wrapper-object-types
+
+✖ 2 problems (1 error, 1 warning)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+
+ ELIFECYCLE  Command failed with exit code 1.
