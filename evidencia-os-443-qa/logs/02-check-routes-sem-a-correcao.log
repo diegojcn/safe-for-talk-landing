@@ -1,0 +1,20 @@
+
+> safe-4-talk-landing@0.0.0 check:routes /Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443
+> pnpm build:ssr && node scripts/check-blank-routes.mjs
+
+
+> safe-4-talk-landing@0.0.0 build:ssr /Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443
+> vite build --ssr src/entry-server.tsx --outDir dist-ssr
+
+vite v6.2.3 building SSR bundle for production...
+transforming...
+✓ 48 modules transformed.
+rendering chunks...
+dist-ssr/entry-server.js  325.03 kB
+✓ built in 226ms
+— caminhos desconhecidos: têm de renderizar alguma coisa
+No routes matched location "/p/pronunciation" 
+/p/pronunciation bytes=0 naoEncontrada=false
+
+❌ /p/pronunciation renderizou 0 byte — página branca
+ ELIFECYCLE  Command failed with exit code 1.

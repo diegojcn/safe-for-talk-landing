@@ -1,0 +1,79 @@
+
+> safe-4-talk-landing@0.0.0 build:ssg /Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443
+> pnpm build && pnpm build:ssr && node scripts/prerender.mjs
+
+
+> safe-4-talk-landing@0.0.0 build /Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443
+> tsc -b && vite build
+
+vite v6.2.3 building for production...
+transforming...
+✓ 2045 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                4.70 kB │ gzip:   1.54 kB
+dist/assets/safe4tal - image-C1a05ncZ.svg  1,020.16 kB │ gzip: 766.37 kB
+dist/assets/index-C6_LkqFp.css                45.27 kB │ gzip:   8.59 kB
+dist/assets/index-ChAdUSB_.js                646.85 kB │ gzip: 188.72 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.33s
+
+> safe-4-talk-landing@0.0.0 build:ssr /Users/diegoneves/github/.bd-ia-company-work/safe-for-talk-landing-os-443
+> vite build --ssr src/entry-server.tsx --outDir dist-ssr
+
+vite v6.2.3 building SSR bundle for production...
+transforming...
+✓ 48 modules transformed.
+rendering chunks...
+dist-ssr/entry-server.js  324.62 kB
+✓ built in 180ms
+⚙️  Pré-renderizando: /
+✅  Salvo: dist/index.html
+⚙️  Pré-renderizando: /chat-anonimo-seguro
+✅  Salvo: dist/chat-anonimo-seguro/index.html
+⚙️  Pré-renderizando: /praticar-ingles-ao-vivo
+✅  Salvo: dist/praticar-ingles-ao-vivo/index.html
+⚙️  Pré-renderizando: /app-para-praticar-ingles
+✅  Salvo: dist/app-para-praticar-ingles/index.html
+⚙️  Pré-renderizando: /conversar-com-nativos-gratis
+✅  Salvo: dist/conversar-com-nativos-gratis/index.html
+⚙️  Pré-renderizando: /aprender-ingles-sem-curso
+✅  Salvo: dist/aprender-ingles-sem-curso/index.html
+⚙️  Pré-renderizando: /salas-de-conversacao-ingles
+✅  Salvo: dist/salas-de-conversacao-ingles/index.html
+⚙️  Pré-renderizando: /praticar-ingles-com-medo
+✅  Salvo: dist/praticar-ingles-com-medo/index.html
+⚙️  Pré-renderizando: /ingles-para-trabalho
+✅  Salvo: dist/ingles-para-trabalho/index.html
+⚙️  Pré-renderizando: /alternativa-duolingo
+✅  Salvo: dist/alternativa-duolingo/index.html
+⚙️  Pré-renderizando: /como-melhorar-sotaque-ingles
+✅  Salvo: dist/como-melhorar-sotaque-ingles/index.html
+⚙️  Pré-renderizando: /praticar-espanhol-ao-vivo
+✅  Salvo: dist/praticar-espanhol-ao-vivo/index.html
+⚙️  Pré-renderizando: /aprender-alemao-falando
+✅  Salvo: dist/aprender-alemao-falando/index.html
+⚙️  Pré-renderizando: /conversar-com-estranhos-online
+✅  Salvo: dist/conversar-com-estranhos-online/index.html
+⚙️  Pré-renderizando: /chat-para-conhecer-pessoas
+✅  Salvo: dist/chat-para-conhecer-pessoas/index.html
+⚙️  Pré-renderizando: /fazer-amigos-online
+✅  Salvo: dist/fazer-amigos-online/index.html
+⚙️  Pré-renderizando: /chat-com-estrangeiros
+✅  Salvo: dist/chat-com-estrangeiros/index.html
+⚙️  Pré-renderizando: /privacy
+✅  Salvo: dist/privacy/index.html
+⚙️  Pré-renderizando: /terms
+✅  Salvo: dist/terms/index.html
+⚙️  Pré-renderizando: /support
+✅  Salvo: dist/support/index.html
+⚙️  Pré-renderizando: /suporte
+✅  Salvo: dist/suporte/index.html
+⚙️  Pré-renderizando: /unsubscribe
+✅  Salvo: dist/unsubscribe/index.html
+
+🎉 Pré-renderização concluída!
