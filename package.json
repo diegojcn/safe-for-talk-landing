@@ -9,6 +9,7 @@
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-ssr",
     "build:ssg": "pnpm build && pnpm build:ssr && node scripts/prerender.mjs",
     "lint": "eslint .",
+    "check:routes": "pnpm build:ssr && node scripts/check-blank-routes.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
