@@ -10,6 +10,6 @@
     { "source": "/suporte", "destination": "/suporte/index.html" },
     { "source": "/unsubscribe", "destination": "/unsubscribe/index.html" },
     { "source": "/@:handle", "destination": "/api/teacher-og?handle=:handle" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/404.html" }
   ]
 }

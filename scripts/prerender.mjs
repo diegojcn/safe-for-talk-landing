@@ -50,6 +50,22 @@ async function prerender() {
     console.log(`✅  Salvo: dist${route === '/' ? '/index.html' : route + '/index.html'}`)
   }
 
+  // Página de não-encontrada: o documento que o vercel.json entrega a todo endereço sem
+  // arquivo. Antes ele recebia o dist/index.html, que é a home — e o visitante via a home até
+  // o React trocar. Fica fora do routes.mjs porque lá só entra rota real (o check de rotas
+  // afirma que nenhuma delas é "não encontrada"). Grava o arquivo solto, dist/404.html, e não
+  // dist/404/index.html como o loop faria. Qualquer caminho que não seja rota nem link de
+  // professor cai no mesmo corpo; /404 é só o nome.
+  console.log('⚙️  Pré-renderizando: não encontrada')
+  const notFound = render('/404')
+  fs.writeFileSync(
+    path.join(distDir, '404.html'),
+    template
+      .replace('<!--app-head-->', notFound.head ?? '')
+      .replace('<!--app-html-->', notFound.html),
+  )
+  console.log('✅  Salvo: dist/404.html')
+
   console.log('\n🎉 Pré-renderização concluída!')
 }
 
