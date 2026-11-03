@@ -46,27 +46,32 @@ function App() {
           </div>
         }
       />
-      <Route path="/unsubscribe" element={<Unsubscribe />} />
-      <Route path="/privacy" element={<PrivacyPolicy />} />
-      <Route path="/terms" element={<TermsOfUse />} />
-      <Route path="/support" element={<Support />} />
-      <Route path="/suporte" element={<Support />} />
-      <Route path="/chat-anonimo-seguro" element={<ChatAnonimoSeguro />} />
-      <Route path="/praticar-ingles-ao-vivo" element={<PraticarInglesAoVivo />} />
-      <Route path="/app-para-praticar-ingles" element={<AppParaPraticarIngles />} />
-      <Route path="/conversar-com-nativos-gratis" element={<ConversarComNativosGratis />} />
-      <Route path="/aprender-ingles-sem-curso" element={<AprenderInglesSemCurso />} />
-      <Route path="/salas-de-conversacao-ingles" element={<SalasDeConversacaoIngles />} />
-      <Route path="/praticar-ingles-com-medo" element={<PraticarInglesComMedo />} />
-      <Route path="/ingles-para-trabalho" element={<InglesParaTrabalho />} />
-      <Route path="/alternativa-duolingo" element={<AlternativaDuolingo />} />
-      <Route path="/como-melhorar-sotaque-ingles" element={<ComoMelhorarSotaqueIngles />} />
-      <Route path="/praticar-espanhol-ao-vivo" element={<PraticarEspanholAoVivo />} />
-      <Route path="/aprender-alemao-falando" element={<AprenderAlemaoFalando />} />
-      <Route path="/conversar-com-estranhos-online" element={<ConversarComEstranhosOnline />} />
-      <Route path="/chat-para-conhecer-pessoas" element={<ChatParaConhecerPessoas />} />
-      <Route path="/fazer-amigos-online" element={<FazerAmigosOnline />} />
-      <Route path="/chat-com-estrangeiros" element={<ChatComEstrangeiros />} />
+      {/*
+        Case-sensitive because the server is: Vercel serves dist/privacy/ for /privacy but has
+        no dist/Privacy/. If React accepted /Privacy as /privacy, the first paint would be one
+        page and the JavaScript would swap it for another seconds later.
+      */}
+      <Route caseSensitive path="/unsubscribe" element={<Unsubscribe />} />
+      <Route caseSensitive path="/privacy" element={<PrivacyPolicy />} />
+      <Route caseSensitive path="/terms" element={<TermsOfUse />} />
+      <Route caseSensitive path="/support" element={<Support />} />
+      <Route caseSensitive path="/suporte" element={<Support />} />
+      <Route caseSensitive path="/chat-anonimo-seguro" element={<ChatAnonimoSeguro />} />
+      <Route caseSensitive path="/praticar-ingles-ao-vivo" element={<PraticarInglesAoVivo />} />
+      <Route caseSensitive path="/app-para-praticar-ingles" element={<AppParaPraticarIngles />} />
+      <Route caseSensitive path="/conversar-com-nativos-gratis" element={<ConversarComNativosGratis />} />
+      <Route caseSensitive path="/aprender-ingles-sem-curso" element={<AprenderInglesSemCurso />} />
+      <Route caseSensitive path="/salas-de-conversacao-ingles" element={<SalasDeConversacaoIngles />} />
+      <Route caseSensitive path="/praticar-ingles-com-medo" element={<PraticarInglesComMedo />} />
+      <Route caseSensitive path="/ingles-para-trabalho" element={<InglesParaTrabalho />} />
+      <Route caseSensitive path="/alternativa-duolingo" element={<AlternativaDuolingo />} />
+      <Route caseSensitive path="/como-melhorar-sotaque-ingles" element={<ComoMelhorarSotaqueIngles />} />
+      <Route caseSensitive path="/praticar-espanhol-ao-vivo" element={<PraticarEspanholAoVivo />} />
+      <Route caseSensitive path="/aprender-alemao-falando" element={<AprenderAlemaoFalando />} />
+      <Route caseSensitive path="/conversar-com-estranhos-online" element={<ConversarComEstranhosOnline />} />
+      <Route caseSensitive path="/chat-para-conhecer-pessoas" element={<ChatParaConhecerPessoas />} />
+      <Route caseSensitive path="/fazer-amigos-online" element={<FazerAmigosOnline />} />
+      <Route caseSensitive path="/chat-com-estrangeiros" element={<ChatComEstrangeiros />} />
       {/*
         Last on purpose, after every known route.
 
