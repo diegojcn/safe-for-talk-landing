@@ -1,0 +1,7 @@
+/Privacy	t0 h1="Página não encontrada" skeleton=false	t+5s h1="Página não encontrada" skeleton=false
+/PRIVACY	t0 h1="Página não encontrada" skeleton=false	t+5s h1="Página não encontrada" skeleton=false
+/App-Para-Praticar-Ingles	t0 h1="Página não encontrada" skeleton=false	t+5s h1="Página não encontrada" skeleton=false
+/privacy	t0 h1="Privacy Policy – Safe 4 Talk" skeleton=false	t+5s h1="Privacy Policy – Safe 4 Talk" skeleton=false
+/suporte	t0 h1="Support – Safe 4 Talk" skeleton=false	t+5s h1="Support – Safe 4 Talk" skeleton=false
+/@alguem	t0 h1="(sem h1)" skeleton=true	t+5s h1="Não foi possível carregar" skeleton=false
+clique "Ir para a página inicial" -> /
