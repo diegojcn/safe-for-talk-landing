@@ -8,7 +8,7 @@ export default function InglesParaTrabalho() {
     <>
       <Helmet>
         <title>Inglês para Trabalho e Home Office – Pratique ao Vivo – Safe 4 Talk</title>
-        <meta name="description" content="Pratique inglês para o trabalho em salas de conversação ao vivo. Reuniões internacionais, e-mails e apresentações. Grátis no navegador e Android." />
+        <meta name="description" content="Pratique inglês para o trabalho em salas de conversação ao vivo. Reuniões internacionais, e-mails e apresentações. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/ingles-para-trabalho" />
         <meta property="og:title" content="Inglês para Trabalho e Home Office – Safe 4 Talk" />
         <meta property="og:description" content="Pratique inglês para o trabalho em salas de conversação ao vivo. Reuniões internacionais sem travar." />

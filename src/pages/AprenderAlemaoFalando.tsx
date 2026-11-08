@@ -8,10 +8,10 @@ export default function AprenderAlemaoFalando() {
     <>
       <Helmet>
         <title>Aprender Alemão Conversando Online Grátis – Safe 4 Talk</title>
-        <meta name="description" content="Aprenda alemão conversando com nativos online. Salas ao vivo com falantes da Alemanha, Áustria e Suíça. Grátis no navegador e Android." />
+        <meta name="description" content="Aprenda alemão conversando com nativos online. Salas ao vivo com falantes da Alemanha, Áustria e Suíça. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/aprender-alemao-falando" />
         <meta property="og:title" content="Aprender Alemão Conversando Online Grátis – Safe 4 Talk" />
-        <meta property="og:description" content="Aprenda alemão conversando com nativos online. Salas ao vivo. Grátis no navegador e Android." />
+        <meta property="og:description" content="Aprenda alemão conversando com nativos online. Salas ao vivo. Grátis no iPhone, Android e navegador." />
         <meta property="og:url" content="https://safe4talk.com/aprender-alemao-falando" />
       </Helmet>
 
@@ -24,7 +24,7 @@ export default function AprenderAlemaoFalando() {
               <span className="text-indigo-400">com Nativos Online e de Graça</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              Alemão é um dos idiomas mais valorizados no mercado de trabalho. No Safe 4 Talk você pratica com falantes nativos da Alemanha, Áustria e Suíça — sem pagar nada, pelo navegador ou Android.
+              Alemão é um dos idiomas mais valorizados no mercado de trabalho. No Safe 4 Talk você pratica com falantes nativos da Alemanha, Áustria e Suíça — sem pagar nada, no iPhone, no Android ou pelo navegador.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -55,7 +55,7 @@ export default function AprenderAlemaoFalando() {
             {[
               { q: 'Precisa saber alemão para começar?', a: 'Não. Há salas para iniciantes absolutos. Você pode começar com frases básicas e ir evoluindo no ritmo da comunidade.' },
               { q: 'Por que aprender alemão vale a pena?', a: 'Alemão é exigido em diversas empresas multinacionais, abre portas para trabalho e estudo na Europa, e é o idioma mais falado da União Europeia.' },
-              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também no Android.' },
+              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também como app no iPhone e no Android.' },
               { q: 'É gratuito?', a: 'Sim. Salas de conversação são gratuitas. Sem assinatura.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">

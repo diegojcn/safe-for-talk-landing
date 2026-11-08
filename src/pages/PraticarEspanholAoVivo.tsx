@@ -8,10 +8,10 @@ export default function PraticarEspanholAoVivo() {
     <>
       <Helmet>
         <title>Praticar Espanhol ao Vivo com Nativos Grátis – Safe 4 Talk</title>
-        <meta name="description" content="Pratique espanhol ao vivo com falantes nativos da América Latina e Espanha. Salas de conversação grátis no navegador e no Android." />
+        <meta name="description" content="Pratique espanhol ao vivo com falantes nativos da América Latina e Espanha. Salas de conversação grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/praticar-espanhol-ao-vivo" />
         <meta property="og:title" content="Praticar Espanhol ao Vivo com Nativos Grátis – Safe 4 Talk" />
-        <meta property="og:description" content="Pratique espanhol ao vivo com nativos da América Latina e Espanha. Grátis no navegador e Android." />
+        <meta property="og:description" content="Pratique espanhol ao vivo com nativos da América Latina e Espanha. Grátis no iPhone, Android e navegador." />
         <meta property="og:url" content="https://safe4talk.com/praticar-espanhol-ao-vivo" />
       </Helmet>
 
@@ -24,7 +24,7 @@ export default function PraticarEspanholAoVivo() {
               <span className="text-indigo-400">com Nativos da América Latina e Espanha</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              O espanhol é o segundo idioma mais falado do mundo. No Safe 4 Talk você pratica com nativos da Argentina, México, Colômbia, Espanha e muito mais — de graça, pelo navegador ou Android.
+              O espanhol é o segundo idioma mais falado do mundo. No Safe 4 Talk você pratica com nativos da Argentina, México, Colômbia, Espanha e muito mais — de graça, no iPhone, no Android ou pelo navegador.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -57,7 +57,7 @@ export default function PraticarEspanholAoVivo() {
               { q: 'Quais países têm nativos no Safe 4 Talk?', a: 'A comunidade é global. Você vai encontrar falantes da Argentina, México, Colômbia, Espanha, Chile, Peru e outros países hispanófonos.' },
               { q: 'Qual variante do espanhol vou aprender?', a: 'Você vai se expor a várias variantes — o que é ótimo para desenvolver uma compreensão ampla do idioma.' },
               { q: 'Precisa ter base em espanhol para entrar?', a: 'Não. Há salas para iniciantes. Com a proximidade com o português, a maioria dos brasileiros consegue se comunicar desde cedo.' },
-              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também no Android.' },
+              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também como app no iPhone e no Android.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">
                 <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>

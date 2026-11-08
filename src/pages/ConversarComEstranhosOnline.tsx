@@ -8,7 +8,7 @@ export default function ConversarComEstranhosOnline() {
     <>
       <Helmet>
         <title>Conversar com Estranhos Online de Forma Segura – Safe 4 Talk</title>
-        <meta name="description" content="Converse com estranhos online de forma segura e sem julgamentos. Salas ao vivo com pessoas do mundo todo. Grátis no navegador e Android." />
+        <meta name="description" content="Converse com estranhos online de forma segura e sem julgamentos. Salas ao vivo com pessoas do mundo todo. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/conversar-com-estranhos-online" />
         <meta property="og:title" content="Conversar com Estranhos Online de Forma Segura – Safe 4 Talk" />
         <meta property="og:description" content="Converse com estranhos online de forma segura. Salas ao vivo com pessoas do mundo todo. Grátis." />
@@ -24,7 +24,7 @@ export default function ConversarComEstranhosOnline() {
               <span className="text-indigo-400">de Forma Segura e Sem Julgamentos</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              Às vezes a melhor conversa é com alguém que você nunca viu. No Safe 4 Talk você encontra pessoas do mundo todo em salas ao vivo — sem exposição desnecessária, sem pressão, 100% gratuito no navegador e Android.
+              Às vezes a melhor conversa é com alguém que você nunca viu. No Safe 4 Talk você encontra pessoas do mundo todo em salas ao vivo — sem exposição desnecessária, sem pressão, 100% gratuito no iPhone, no Android e no navegador.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -76,7 +76,7 @@ export default function ConversarComEstranhosOnline() {
             {[
               { q: 'É seguro conversar com estranhos no Safe 4 Talk?', a: 'Sim. A plataforma tem moderação ativa e sistema de reporte. As salas são temáticas, o que naturalmente filtra o tipo de conversa.' },
               { q: 'Posso entrar sem falar nada?', a: 'Sim. Você pode ouvir a conversa sem participar ativamente. Ninguém vai te forçar a falar.' },
-              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador sem instalar nada. Disponível também no Android.' },
+              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador sem instalar nada. Disponível também como app no iPhone e no Android.' },
               { q: 'Precisa me cadastrar?', a: 'Sim, é necessário um cadastro básico via Google ou Facebook para entrar nas salas.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">
