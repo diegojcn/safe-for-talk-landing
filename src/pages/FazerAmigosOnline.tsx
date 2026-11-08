@@ -8,7 +8,7 @@ export default function FazerAmigosOnline() {
     <>
       <Helmet>
         <title>Como Fazer Amigos Online de Outros Países – Safe 4 Talk</title>
-        <meta name="description" content="Faça amigos online de outros países em salas de conversa ao vivo. Conexões reais, sem julgamento. Grátis pelo navegador e no Android." />
+        <meta name="description" content="Faça amigos online de outros países em salas de conversa ao vivo. Conexões reais, sem julgamento. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/fazer-amigos-online" />
         <meta property="og:title" content="Como Fazer Amigos Online de Outros Países – Safe 4 Talk" />
         <meta property="og:description" content="Faça amigos online de outros países em salas de conversa ao vivo. Conexões reais. Grátis." />
@@ -77,7 +77,7 @@ export default function FazerAmigosOnline() {
             {[
               { q: 'É possível fazer amigos reais online?', a: 'Sim. Pesquisas mostram que amizades online podem ser tão significativas quanto as presenciais quando há conversas reais e consistentes.' },
               { q: 'Como sei que as pessoas são reais?', a: 'No Safe 4 Talk as conversas são por voz ao vivo. É muito mais difícil fingir do que em chats de texto.' },
-              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também no Android.' },
+              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também como app no iPhone e no Android.' },
               { q: 'É gratuito?', a: 'Sim. Entrar nas salas e conversar com pessoas é 100% gratuito.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">

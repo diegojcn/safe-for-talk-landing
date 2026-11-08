@@ -8,10 +8,10 @@ export default function AppParaPraticarIngles() {
     <>
       <Helmet>
         <title>Melhor App para Praticar Inglês Falando – Safe 4 Talk</title>
-        <meta name="description" content="Encontre o melhor app para praticar inglês falando com pessoas reais. Salas ao vivo, nativos e estudantes do mundo todo. Grátis no Android e no navegador." />
+        <meta name="description" content="Encontre o melhor app para praticar inglês falando com pessoas reais. Salas ao vivo, nativos e alunos do mundo todo. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/app-para-praticar-ingles" />
         <meta property="og:title" content="Melhor App para Praticar Inglês Falando – Safe 4 Talk" />
-        <meta property="og:description" content="Pratique inglês falando com pessoas reais em salas ao vivo. Grátis no Android e no navegador." />
+        <meta property="og:description" content="Pratique inglês falando com pessoas reais em salas ao vivo. Grátis no iPhone, Android e navegador." />
         <meta property="og:url" content="https://safe4talk.com/app-para-praticar-ingles" />
       </Helmet>
 
@@ -24,7 +24,7 @@ export default function AppParaPraticarIngles() {
               <span className="text-indigo-400">com Pessoas Reais</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              Chega de apps que só ensinam vocabulário. O Safe 4 Talk coloca você em salas de conversa ao vivo com falantes nativos e estudantes do mundo todo — no Android ou direto no navegador, de graça.
+              Chega de apps que só ensinam vocabulário. O Safe 4 Talk coloca você em salas de conversa ao vivo com falantes nativos e estudantes do mundo todo — no iPhone, no Android ou direto no navegador, de graça.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -55,7 +55,7 @@ export default function AppParaPraticarIngles() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               { icon: '🎙', title: 'Salas de áudio ao vivo', desc: 'Entre em salas por tema e nível. Ouça, fale e aprenda no ritmo da conversa real.' },
-              { icon: '📱', title: 'Android + Navegador', desc: 'Sem desculpa para não praticar. Funciona no celular e no computador, sem instalar nada.' },
+              { icon: '📱', title: 'iPhone, Android e navegador', desc: 'Sem desculpa para não praticar. Funciona no celular e no computador, sem instalar nada.' },
               { icon: '🌍', title: 'Comunidade global', desc: 'Falantes de inglês de EUA, Reino Unido, Austrália, Canadá e muito mais.' },
               { icon: '🎯', title: 'Filtro por nível', desc: 'Salas para iniciantes, intermediários e avançados. Você pratica com quem está no mesmo nível.' },
               { icon: '💸', title: '100% gratuito', desc: 'As principais funcionalidades são grátis. Sem assinatura obrigatória.' },
@@ -74,7 +74,7 @@ export default function AppParaPraticarIngles() {
           <h2 className="text-3xl font-bold mb-10">Perguntas frequentes</h2>
           <div className="space-y-6">
             {[
-              { q: 'Funciona no iPhone?', a: 'A versão iOS está no roadmap. Por enquanto use pelo navegador — funciona em qualquer dispositivo.' },
+              { q: 'Funciona no iPhone?', a: 'Sim. Baixe o app na App Store ou use pelo navegador do iPhone, sem instalar nada.' },
               { q: 'Precisa pagar para falar com nativos?', a: 'Não. As salas públicas são 100% gratuitas. Você conversa com nativos sem pagar nada.' },
               { q: 'Qual o nível mínimo para começar?', a: 'Não existe nível mínimo. Há salas para quem está começando do zero.' },
               { q: 'Funciona no computador?', a: 'Sim. Acesse safe4talk.com pelo navegador e use no PC ou Mac sem instalar nada.' },
