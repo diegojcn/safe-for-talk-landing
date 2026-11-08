@@ -10,6 +10,7 @@
     "build:ssg": "pnpm build && pnpm build:ssr && node scripts/prerender.mjs",
     "lint": "eslint .",
     "check:routes": "pnpm build:ssr && node scripts/check-blank-routes.mjs",
+    "check:ring": "node scripts/check-ring-token.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
