@@ -28,4 +28,5 @@ export const prerenderRoutes = [
   '/support',
   '/suporte',
   '/unsubscribe',
+  '/professores',
 ]
