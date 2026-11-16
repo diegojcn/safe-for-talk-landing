@@ -63,6 +63,51 @@ export async function fetchPublicTeacher(handle: string): Promise<TeacherLoad> {
   }
 }
 
+/** One teacher in the public list — the same card the app's search shows, minus anything personal. */
+export interface TeacherCard {
+  handle: string
+  displayName: string
+  photoUrl: string | null
+  languages: string[]
+  isNative: boolean
+  ratingAvg: number | null
+  ratingCount: number
+  lessonsDone: number
+  /** The standard lesson the price refers to; null when the teacher only offers a trial. */
+  referencePriceCents: number | null
+  referenceDurationMinutes: number | null
+  trialPriceCents: number | null
+  currency: string
+}
+
+export interface TeacherList {
+  teachers: TeacherCard[]
+  page: number
+  pageSize: number
+  totalCount: number
+}
+
+export type TeacherListLoad =
+  | { state: 'loading' }
+  | { state: 'found'; list: TeacherList }
+  | { state: 'error' }
+
+/**
+ * safe4talk.com/professores — published teachers, in the order the API ranks them (relevance,
+ * never price). Anonymous, like the profile: the visitor came from social and has no account.
+ */
+export async function fetchPublicTeachers(): Promise<TeacherListLoad> {
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''
+  const url = `${API_BASE}/teachers/public?pageSize=50&tz=${encodeURIComponent(tz)}`
+  try {
+    const response = await fetch(url, { headers: { Accept: 'application/json' } })
+    if (!response.ok) return { state: 'error' }
+    return { state: 'found', list: (await response.json()) as TeacherList }
+  } catch {
+    return { state: 'error' }
+  }
+}
+
 /**
  * Where "Agendar uma aula" goes.
  *
