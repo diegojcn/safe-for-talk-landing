@@ -8,7 +8,7 @@ export default function ConversarComNativosGratis() {
     <>
       <Helmet>
         <title>Conversar com Nativos de Inglês Grátis – Safe 4 Talk</title>
-        <meta name="description" content="Converse com falantes nativos de inglês de graça em salas ao vivo. Sem pagar professor particular. Disponível no navegador e no Android." />
+        <meta name="description" content="Converse com falantes nativos de inglês de graça em salas ao vivo. Sem pagar professor particular. Disponível no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/conversar-com-nativos-gratis" />
         <meta property="og:title" content="Conversar com Nativos de Inglês Grátis – Safe 4 Talk" />
         <meta property="og:description" content="Converse com falantes nativos de inglês de graça em salas ao vivo. Sem pagar professor particular." />
@@ -24,7 +24,7 @@ export default function ConversarComNativosGratis() {
               <span className="text-indigo-400">Sem Pagar Nada</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              Professor particular custa caro. Intercâmbio então, nem se fala. O Safe 4 Talk te conecta com falantes nativos de inglês ao vivo — de graça, pelo navegador ou pelo Android.
+              Professor particular custa caro. Intercâmbio então, nem se fala. O Safe 4 Talk te conecta com falantes nativos de inglês ao vivo — de graça, no iPhone, no Android ou pelo navegador.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -54,7 +54,7 @@ export default function ConversarComNativosGratis() {
           <h2 className="text-3xl font-bold mb-10">Como funciona</h2>
           <ol className="space-y-6">
             {[
-              { n: '01', title: 'Acesse pelo navegador ou Android', desc: 'Sem precisar baixar nada. Abra safe4talk.com ou instale o app no Android.' },
+              { n: '01', title: 'Baixe o app ou use no navegador', desc: 'Instale o app no iPhone ou no Android, ou abra safe4talk.com sem baixar nada.' },
               { n: '02', title: 'Escolha uma sala com nativos', desc: 'Filtre por idioma inglês e veja quais salas têm falantes nativos participando.' },
               { n: '03', title: 'Ouça antes de falar', desc: 'Fique alguns minutos ouvindo a conversa para pegar o ritmo antes de entrar.' },
               { n: '04', title: 'Pratique todo dia', desc: '20 minutos diários com nativos superam horas de estudo sozinho.' },
@@ -77,7 +77,7 @@ export default function ConversarComNativosGratis() {
               { q: 'Os nativos têm paciência com iniciantes?', a: 'Sim. A comunidade do Safe 4 Talk é conhecida por ser acolhedora. Muitos nativos participam justamente para ajudar quem está aprendendo.' },
               { q: 'Há nativos disponíveis a qualquer hora?', a: 'Como a comunidade é global, sempre há alguém online em algum fuso horário diferente do seu.' },
               { q: 'Precisa ter microfone?', a: 'Para falar sim. Mas você pode começar só ouvindo, sem precisar falar nada.' },
-              { q: 'Funciona no iPhone?', a: 'A versão iOS está em desenvolvimento. Use pelo navegador no iPhone por enquanto — funciona perfeitamente.' },
+              { q: 'Funciona no iPhone?', a: 'Sim. Baixe o app na App Store ou use pelo navegador do iPhone, sem instalar nada.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">
                 <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>

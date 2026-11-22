@@ -8,10 +8,10 @@ export default function ComoMelhorarSotaqueIngles() {
     <>
       <Helmet>
         <title>Como Melhorar o Sotaque em Inglês Praticando ao Vivo – Safe 4 Talk</title>
-        <meta name="description" content="Melhore seu sotaque em inglês conversando com nativos ao vivo. Dicas práticas e salas de conversação grátis no navegador e Android." />
+        <meta name="description" content="Melhore seu sotaque em inglês conversando com nativos ao vivo. Dicas práticas e salas de conversação grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/como-melhorar-sotaque-ingles" />
         <meta property="og:title" content="Como Melhorar o Sotaque em Inglês – Safe 4 Talk" />
-        <meta property="og:description" content="Melhore seu sotaque em inglês conversando com nativos ao vivo. Grátis no navegador e Android." />
+        <meta property="og:description" content="Melhore seu sotaque em inglês conversando com nativos ao vivo. Grátis no iPhone, Android e navegador." />
         <meta property="og:url" content="https://safe4talk.com/como-melhorar-sotaque-ingles" />
       </Helmet>
 
@@ -24,7 +24,7 @@ export default function ComoMelhorarSotaqueIngles() {
               <span className="text-indigo-400">Conversando com Nativos ao Vivo</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              Sotaque não se melhora ouvindo podcast. Se melhora falando — e recebendo feedback de quem fala a língua nativamente. No Safe 4 Talk você faz isso de graça, pelo navegador ou Android.
+              Sotaque não se melhora ouvindo podcast. Se melhora falando — e recebendo feedback de quem fala a língua nativamente. No Safe 4 Talk você faz isso de graça, no iPhone, no Android ou pelo navegador.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -77,7 +77,7 @@ export default function ComoMelhorarSotaqueIngles() {
             {[
               { q: 'Quanto tempo leva para melhorar o sotaque?', a: 'Com prática diária de 20 minutos, mudanças perceptíveis aparecem em 4 a 8 semanas. Sotaque é hábito muscular — leva repetição.' },
               { q: 'Os nativos do Safe 4 Talk corrigem minha pronúncia?', a: 'Muitos corrigem quando pedido. A comunidade é acolhedora e entende que você está aprendendo.' },
-              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também no Android.' },
+              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também como app no iPhone e no Android.' },
               { q: 'Precisa de microfone bom?', a: 'Um microfone básico (de fone de ouvido) já funciona bem. Não precisa de equipamento especial.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">

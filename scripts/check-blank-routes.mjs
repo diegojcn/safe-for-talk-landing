@@ -5,12 +5,16 @@
  * `/p/pronunciation` (dois segmentos) não casava rota nenhuma, `<Routes>` devolvia null e o
  * corpo da página ficava com 0 byte. O visitante via branco — sem mensagem, sem erro.
  *
- * São duas conferências, e as duas precisam existir juntas:
+ * São três conferências, e as três precisam existir juntas:
  *
  * 1. Caminho desconhecido rende HTML. Se qualquer um der 0 byte, o branco voltou.
  * 2. Rota de verdade NÃO rende "não encontrada". É a rede contra o conserto do item 1: um
  *    catch-all com prioridade errada engoliria a home e o site inteiro viraria 404 — em
  *    silêncio, respondendo 200. A lista vem do mesmo routes.mjs que o pré-render usa.
+ * 3. Rota real escrita com maiúscula (`/Privacy`, `/PRIVACY`) RENDE "não encontrada". O
+ *    servidor (Vercel) diferencia maiúscula e não acha `dist/Privacy/`; se o React aceitasse
+ *    `/Privacy` como `/privacy`, a primeira pintura seria uma página e o JavaScript a trocaria
+ *    por outra segundos depois. As variantes saem da mesma lista, para nenhuma rota escapar.
  *
  * Roda sobre o bundle SSR (dist-ssr/entry-server.js), que é o mesmo App.tsx do navegador.
  * Pré-requisito: `pnpm build:ssr`. O script `check:routes` do package.json faz os dois.
@@ -39,6 +43,11 @@ const desconhecidos = [
 
 // Rotas reais + o link de professor, que renderiza o skeleton de carregamento no servidor.
 const reais = [...prerenderRoutes, '/@alguem']
+
+// Cada rota real com a primeira letra maiúscula e toda maiúscula. A home não tem letra.
+const comMaiuscula = prerenderRoutes
+  .filter((rota) => rota !== '/')
+  .flatMap((rota) => ['/' + rota.charAt(1).toUpperCase() + rota.slice(2), rota.toUpperCase()])
 
 async function check() {
   const { render } = await import(path.join(ssrDist, 'entry-server.js'))
@@ -71,12 +80,23 @@ async function check() {
     }
   }
 
+  if (violacoes.length === 0) {
+    console.log('\n— rotas reais com maiúscula: têm de renderizar "não encontrada"')
+    for (const url of comMaiuscula) {
+      const { naoEncontrada } = medir(url)
+      if (!naoEncontrada) {
+        violacoes.push(`${url} não renderizou "${NAO_ENCONTRADA}" — o React aceitou maiúscula e o servidor não`)
+        break
+      }
+    }
+  }
+
   if (violacoes.length > 0) {
     console.error(`\n❌ ${violacoes[0]}`)
     process.exit(1)
   }
 
-  console.log(`\n✅ ${desconhecidos.length} caminhos desconhecidos com corpo, ${reais.length} rotas reais intactas`)
+  console.log(`\n✅ ${desconhecidos.length} caminhos desconhecidos com corpo, ${reais.length} rotas reais intactas, ${comMaiuscula.length} variantes com maiúscula em "não encontrada"`)
 }
 
 check().catch((err) => {

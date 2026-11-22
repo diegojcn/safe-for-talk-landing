@@ -8,7 +8,7 @@ export default function AlternativaDuolingo() {
     <>
       <Helmet>
         <title>Alternativa ao Duolingo para Falar Inglês de Verdade – Safe 4 Talk</title>
-        <meta name="description" content="Cansado do Duolingo e ainda não consegue falar inglês? O Safe 4 Talk é a alternativa com conversação real ao vivo. Grátis no navegador e Android." />
+        <meta name="description" content="Cansado do Duolingo e ainda não consegue falar inglês? O Safe 4 Talk é a alternativa com conversação real ao vivo. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/alternativa-duolingo" />
         <meta property="og:title" content="Alternativa ao Duolingo para Falar Inglês – Safe 4 Talk" />
         <meta property="og:description" content="O Safe 4 Talk é a alternativa ao Duolingo com conversação real. Fale inglês de verdade com nativos." />
@@ -24,7 +24,7 @@ export default function AlternativaDuolingo() {
               <span className="text-indigo-400">Existe uma Alternativa Melhor</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              O Duolingo é ótimo para vocabulário, mas não te ensina a falar. O Safe 4 Talk resolve exatamente isso: conversação real com pessoas reais, ao vivo, de graça — pelo navegador ou Android.
+              O Duolingo é ótimo para vocabulário, mas não te ensina a falar. O Safe 4 Talk resolve exatamente isso: conversação real com pessoas reais, ao vivo, de graça — no iPhone, no Android ou pelo navegador.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -61,7 +61,7 @@ export default function AlternativaDuolingo() {
                   { feat: 'Gratuito', duo: '✅ (limitado)', s4t: '✅ completo' },
                   { feat: 'Vocabulário e gramática', duo: '✅', s4t: '🟡 indireto' },
                   { feat: 'Funciona no navegador', duo: '✅', s4t: '✅' },
-                  { feat: 'App Android', duo: '✅', s4t: '✅' },
+                  { feat: 'App para iPhone e Android', duo: '✅', s4t: '✅' },
                   { feat: 'Comunidade global', duo: '❌', s4t: '✅' },
                   { feat: 'Prática de listening real', duo: '🟡 simulado', s4t: '✅ real' },
                 ].map(row => (
@@ -89,7 +89,7 @@ export default function AlternativaDuolingo() {
               { q: 'O Safe 4 Talk substitui o Duolingo?', a: 'Para quem quer falar, sim. O Safe 4 Talk foca em conversação real, que é o que faz a diferença na fluência. O Duolingo é mais útil para construir base de vocabulário.' },
               { q: 'Precisa ter um nível para começar?', a: 'Não. Há salas para todos os níveis, inclusive quem está no nível A1 (básico total).' },
               { q: 'É realmente gratuito?', a: 'Sim. Salas públicas e conversação são gratuitas. Sem assinatura obrigatória.' },
-              { q: 'Precisa instalar algo?', a: 'Não. Acesse pelo navegador. Se preferir, tem app disponível no Android.' },
+              { q: 'Precisa instalar algo?', a: 'Não. Acesse pelo navegador. Se preferir, tem app no iPhone e no Android.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">
                 <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>
