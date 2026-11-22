@@ -32,4 +32,8 @@ export const Events = {
   ViewTeacherProfile: 'view_teacher_profile',
   ViewTeacherProfileUnavailable: 'view_teacher_profile_unavailable',
   ClickTeacherBook: 'click_teacher_book',
+  // Teacher list (safe4talk.com/professores) — where social sends whoever asks for a teacher.
+  // The step before the profile: did the list bring anyone to a teacher's page?
+  ViewTeacherList: 'view_teacher_list',
+  ClickTeacherListCard: 'click_teacher_list_card',
 } as const

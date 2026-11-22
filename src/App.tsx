@@ -26,6 +26,7 @@ import ChatParaConhecerPessoas from './pages/ChatParaConhecerPessoas'
 import FazerAmigosOnline from './pages/FazerAmigosOnline'
 import ChatComEstrangeiros from './pages/ChatComEstrangeiros'
 import TeacherProfile from './pages/TeacherProfile'
+import TeacherList from './pages/TeacherList'
 import { Routes, Route } from 'react-router-dom'
 
 // Router is provided externally (BrowserRouter in main.tsx, StaticRouter in entry-server.tsx)
@@ -72,6 +73,8 @@ function App() {
       <Route caseSensitive path="/chat-para-conhecer-pessoas" element={<ChatParaConhecerPessoas />} />
       <Route caseSensitive path="/fazer-amigos-online" element={<FazerAmigosOnline />} />
       <Route caseSensitive path="/chat-com-estrangeiros" element={<ChatComEstrangeiros />} />
+      {/* Before /:slug, or the catch-all takes it and answers "Página não encontrada". */}
+      <Route caseSensitive path="/professores" element={<TeacherList />} />
       {/*
         Last on purpose, after every known route.
 

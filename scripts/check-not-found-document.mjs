@@ -32,7 +32,7 @@ const NAO_ENCONTRADA = 'Página não encontrada'
 // A manchete do hero da home. Está no HTML da home e não no da não-encontrada.
 const MANCHETE_HOME = 'Practice with real people'
 // Quantos rewrites o vercel.json tem. Este check troca o destino do último, não acrescenta.
-const TOTAL_REWRITES = 9
+const TOTAL_REWRITES = 11
 
 const ler = (arquivo) => fs.readFileSync(arquivo, 'utf-8')
 
