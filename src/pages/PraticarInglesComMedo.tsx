@@ -8,7 +8,7 @@ export default function PraticarInglesComMedo() {
     <>
       <Helmet>
         <title>Tenho Medo de Falar Inglês – Como Superar e Praticar – Safe 4 Talk</title>
-        <meta name="description" content="Medo de falar inglês é mais comum do que você pensa. Veja como superar o bloqueio e praticar sem pressão em salas ao vivo. Grátis no navegador e Android." />
+        <meta name="description" content="Medo de falar inglês é mais comum do que pensa. Veja como superar o bloqueio e praticar sem pressão em salas ao vivo. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/praticar-ingles-com-medo" />
         <meta property="og:title" content="Tenho Medo de Falar Inglês – Como Superar – Safe 4 Talk" />
         <meta property="og:description" content="Medo de falar inglês é mais comum do que você pensa. Saiba como superar e praticar sem pressão." />
@@ -78,7 +78,7 @@ export default function PraticarInglesComMedo() {
               { q: 'E se eu falar errado e as pessoas rirem?', a: 'Não acontece no Safe 4 Talk. A comunidade é formada por pessoas que também estão aprendendo e entendem o processo. Comportamentos negativos são reportados e moderados.' },
               { q: 'Posso entrar numa sala e só ouvir?', a: 'Sim. Você pode participar só ouvindo por quanto tempo quiser. Ninguém vai te forçar a falar.' },
               { q: 'E se eu não entender nada?', a: 'Comece nas salas de iniciantes. O ritmo é mais lento e as pessoas repetem quando necessário. Com o tempo, sua compreensão melhora naturalmente.' },
-              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também no Android.' },
+              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também como app no iPhone e no Android.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">
                 <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>

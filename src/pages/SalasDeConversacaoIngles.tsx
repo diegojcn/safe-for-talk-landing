@@ -8,7 +8,7 @@ export default function SalasDeConversacaoIngles() {
     <>
       <Helmet>
         <title>Salas de Conversação em Inglês Online e Grátis – Safe 4 Talk</title>
-        <meta name="description" content="Entre em salas de conversação em inglês online ao vivo. Pratique com nativos e estudantes de todo o mundo. Grátis pelo navegador ou Android." />
+        <meta name="description" content="Entre em salas de conversação em inglês online ao vivo. Pratique com nativos e estudantes de todo o mundo. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/salas-de-conversacao-ingles" />
         <meta property="og:title" content="Salas de Conversação em Inglês Online e Grátis – Safe 4 Talk" />
         <meta property="og:description" content="Salas de conversação em inglês online ao vivo. Pratique com nativos e estudantes. Grátis." />
@@ -24,7 +24,7 @@ export default function SalasDeConversacaoIngles() {
               <span className="text-indigo-400">Ao Vivo e Completamente Grátis</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              Entre em salas de conversação em inglês com pessoas do mundo todo, agora mesmo. Sem agendamento, sem mensalidade. Funciona no navegador e no Android.
+              Entre em salas de conversação em inglês com pessoas do mundo todo, agora mesmo. Sem agendamento, sem mensalidade. Funciona no iPhone, no Android e no navegador.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -71,7 +71,7 @@ export default function SalasDeConversacaoIngles() {
               { q: 'Precisa marcar horário para entrar nas salas?', a: 'Não. As salas são abertas e ao vivo. Basta entrar quando quiser e começar a praticar.' },
               { q: 'Quantas pessoas costumam ter nas salas?', a: 'Varia entre 5 e 50 pessoas dependendo do horário e do tema. Nos horários de pico há sempre várias salas ativas.' },
               { q: 'Posso criar minha própria sala?', a: 'Sim. Qualquer usuário pode criar salas públicas ou privadas sobre o tema que quiser.' },
-              { q: 'Funciona sem instalar nada?', a: 'Sim. Acesse safe4talk.com pelo navegador no computador ou celular. Disponível também como app no Android.' },
+              { q: 'Funciona sem instalar nada?', a: 'Sim. Acesse safe4talk.com pelo navegador no computador ou celular. Disponível também como app no iPhone e no Android.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">
                 <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>

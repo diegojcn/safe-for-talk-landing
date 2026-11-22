@@ -187,7 +187,7 @@ export default function PraticarInglesAoVivo() {
               },
               {
                 q: 'Posso usar no computador?',
-                a: 'Sim. O Safe 4 Talk tem versão web que funciona direto no navegador, além do app para Android.',
+                a: 'Sim. O Safe 4 Talk tem versão web que funciona direto no navegador, além do app para iPhone e Android.',
               },
               {
                 q: 'Quanto tempo leva para ver resultados?',

@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "check:routes": "pnpm build:ssr && node scripts/check-blank-routes.mjs",
     "check:head": "pnpm build:ssg && node scripts/check-head-tags.mjs",
+    "check:not-found": "pnpm build:ssg && node scripts/check-not-found-document.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
