@@ -106,8 +106,8 @@ export default function ChatAnonimoSeguro() {
               },
               {
                 icon: '📱',
-                title: 'Android e navegador',
-                desc: 'Use no celular ou direto pelo browser, sem precisar instalar nada.',
+                title: 'iPhone, Android e navegador',
+                desc: 'Baixe o app no celular ou use direto pelo navegador, sem precisar instalar nada.',
               },
             ].map((item) => (
               <div

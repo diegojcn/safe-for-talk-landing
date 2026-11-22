@@ -8,10 +8,10 @@ export default function ChatParaConhecerPessoas() {
     <>
       <Helmet>
         <title>Chat para Conhecer Pessoas Novas do Mundo Todo – Safe 4 Talk</title>
-        <meta name="description" content="Conheça pessoas novas do mundo todo em salas de chat ao vivo. Sem julgamentos, sem pressão. Grátis pelo navegador e no Android." />
+        <meta name="description" content="Conheça pessoas novas do mundo todo em salas de chat ao vivo. Sem julgamentos, sem pressão. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/chat-para-conhecer-pessoas" />
         <meta property="og:title" content="Chat para Conhecer Pessoas Novas do Mundo Todo – Safe 4 Talk" />
-        <meta property="og:description" content="Conheça pessoas novas do mundo todo em salas ao vivo. Sem julgamentos. Grátis pelo navegador e Android." />
+        <meta property="og:description" content="Conheça pessoas novas do mundo todo em salas ao vivo. Sem julgamentos. Grátis no iPhone, Android e navegador." />
         <meta property="og:url" content="https://safe4talk.com/chat-para-conhecer-pessoas" />
       </Helmet>
 
@@ -76,7 +76,7 @@ export default function ChatParaConhecerPessoas() {
             {[
               { q: 'Preciso revelar meu nome ou foto?', a: 'Não. Você controla o que compartilha. Nenhuma informação pessoal é obrigatória.' },
               { q: 'Como funcionam as salas?', a: 'Você entra numa sala por tema ou idioma e conversa por áudio ao vivo com outros participantes.' },
-              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também no Android.' },
+              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também como app no iPhone e no Android.' },
               { q: 'Posso fazer amizades duradouras?', a: 'Muitos usuários relatam amizades que continuam fora da plataforma. As conexões que se formam em conversas reais tendem a ser mais sólidas.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">

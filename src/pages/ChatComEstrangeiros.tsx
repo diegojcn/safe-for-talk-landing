@@ -8,10 +8,10 @@ export default function ChatComEstrangeiros() {
     <>
       <Helmet>
         <title>Chat com Estrangeiros ao Vivo e Grátis – Safe 4 Talk</title>
-        <meta name="description" content="Converse com estrangeiros ao vivo pelo chat de voz. Conheça culturas, pratique idiomas e faça conexões reais. Grátis no navegador e Android." />
+        <meta name="description" content="Converse com estrangeiros ao vivo pelo chat de voz. Conheça culturas, pratique idiomas e faça conexões reais. Grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/chat-com-estrangeiros" />
         <meta property="og:title" content="Chat com Estrangeiros ao Vivo e Grátis – Safe 4 Talk" />
-        <meta property="og:description" content="Converse com estrangeiros ao vivo. Conheça culturas, pratique idiomas. Grátis no navegador e Android." />
+        <meta property="og:description" content="Converse com estrangeiros ao vivo. Conheça culturas, pratique idiomas. Grátis no iPhone, Android e navegador." />
         <meta property="og:url" content="https://safe4talk.com/chat-com-estrangeiros" />
       </Helmet>
 
@@ -24,7 +24,7 @@ export default function ChatComEstrangeiros() {
               <span className="text-indigo-400">O Mundo Inteiro numa Sala ao Vivo</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              Conheça pessoas de EUA, Europa, Ásia e América Latina em conversas ao vivo por voz. Troque culturas, pratique idiomas e faça conexões que vão além da tela — de graça, pelo navegador ou Android.
+              Conheça pessoas de EUA, Europa, Ásia e América Latina em conversas ao vivo por voz. Troque culturas, pratique idiomas e faça conexões que vão além da tela — de graça, no iPhone, no Android ou pelo navegador.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -65,7 +65,7 @@ export default function ChatComEstrangeiros() {
             {[
               { q: 'Em qual idioma as conversas acontecem?', a: 'Principalmente inglês, mas há salas em espanhol, alemão, francês e outros idiomas. Cada sala indica o idioma.' },
               { q: 'E se eu não falar bem inglês?', a: 'Comece nas salas para iniciantes. Muitos participantes estão no mesmo nível que você. O objetivo é praticar, não impressionar.' },
-              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também no Android.' },
+              { q: 'Funciona pelo computador?', a: 'Sim. Acesse safe4talk.com pelo navegador. Disponível também como app no iPhone e no Android.' },
               { q: 'É seguro conversar com desconhecidos de outros países?', a: 'Sim. O Safe 4 Talk tem sistema de moderação e reporte. As salas são monitoradas e comportamentos inadequados são tratados rapidamente.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">

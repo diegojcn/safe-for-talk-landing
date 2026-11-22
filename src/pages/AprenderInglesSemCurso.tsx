@@ -8,7 +8,7 @@ export default function AprenderInglesSemCurso() {
     <>
       <Helmet>
         <title>Como Aprender Inglês Sem Pagar Curso – Safe 4 Talk</title>
-        <meta name="description" content="Aprenda inglês sem pagar curso ou professor. Salas de conversação ao vivo com nativos e estudantes, grátis no navegador e no Android." />
+        <meta name="description" content="Aprenda inglês sem pagar curso ou professor. Salas de conversação ao vivo com nativos e estudantes, grátis no iPhone, Android e navegador." />
         <link rel="canonical" href="https://safe4talk.com/aprender-ingles-sem-curso" />
         <meta property="og:title" content="Como Aprender Inglês Sem Pagar Curso – Safe 4 Talk" />
         <meta property="og:description" content="Aprenda inglês sem pagar curso ou professor. Salas de conversação ao vivo com nativos, grátis." />
@@ -24,7 +24,7 @@ export default function AprenderInglesSemCurso() {
               <span className="text-indigo-400">e Falar Fluente de Verdade</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed mb-8">
-              Curso de inglês não é pré-requisito para fluência. O que faz você falar bem é prática de conversação real — e isso você consegue de graça no Safe 4 Talk, pelo navegador ou Android.
+              Curso de inglês não é pré-requisito para fluência. O que faz você falar bem é prática de conversação real — e isso você consegue de graça no Safe 4 Talk, no iPhone, no Android ou pelo navegador.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="https://play.google.com/store/apps/details?id=br.com.safefortalk.android" target="_blank" rel="noopener noreferrer"
@@ -74,7 +74,7 @@ export default function AprenderInglesSemCurso() {
               { q: 'Consigo aprender inglês sem nunca ter feito um curso?', a: 'Sim. Muitas pessoas atingem fluência através de imersão e conversação, sem método formal. O Safe 4 Talk é ideal para isso.' },
               { q: 'Quanto tempo por dia preciso praticar?', a: '20 a 30 minutos diários são suficientes para progredir. Consistência é mais importante do que intensidade.' },
               { q: 'E se eu não entender nada que falam?', a: 'Comece nas salas de iniciantes. O ritmo é mais lento e as pessoas estão acostumadas a ajudar quem está começando.' },
-              { q: 'Precisa instalar algo?', a: 'Não. Acesse safe4talk.com pelo navegador no computador ou celular. Se preferir, baixe o app no Android.' },
+              { q: 'Precisa instalar algo?', a: 'Não. Acesse safe4talk.com pelo navegador no computador ou celular. Se preferir, baixe o app no iPhone ou no Android.' },
             ].map(faq => (
               <div key={faq.q} className="border border-slate-700/50 rounded-xl p-6">
                 <h3 className="font-semibold text-lg mb-2">{faq.q}</h3>
